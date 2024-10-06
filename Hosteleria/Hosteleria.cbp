@@ -32,6 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="arcPersona.h" />
+		<Unit filename="clsFecha.h" />
+		<Unit filename="clsPersona.h" />
+		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
