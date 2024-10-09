@@ -7,7 +7,7 @@ using namespace std;
 #include "clsFecha.h"
 #include "clsPersona.h"
 #include "arcPersona.h"
-
+#include "clsEmpleado.h"
 int main()
 {
     cout << "Hello world!" << endl;

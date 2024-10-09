@@ -10,21 +10,12 @@ private:
     Fecha _nacimiento;
     bool _estado;
 public:
-    Persona(int dni,const char *n, const char *a, const char *t,Fecha f)
+    Persona(int dni=0,const char *n="0000", const char *a="0000", const char *t="0000")
     {
         _dni=dni;
         strcpy(_nombre,n);
         strcpy(_apellido,a);
         strcpy(_telefono,t);
-        _nacimiento=f;
-
-    }
-    Persona()
-    {
-        _dni=0;
-        strcpy(_nombre,"0");
-        strcpy(_apellido,"0");
-        strcpy(_telefono,"0");
     }
 
     void setEstado(bool est){_estado=est;}
