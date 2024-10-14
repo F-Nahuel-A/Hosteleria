@@ -1,11 +1,13 @@
 # depslib dependency file v1.0
-1728509983 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1728948347 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"funcionesGlobales.h"
 	"clsFecha.h"
 	"clsPersona.h"
 	"arcPersona.h"
+	"clsTipo.h"
+	"arcTipo.h"
 	"clsEmpleado.h"
 
 1719880696 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
@@ -14,7 +16,11 @@
 
 1714658592 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
-1728244222 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
+1728947612 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
-1728510794 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
+1728948504 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
+
+1728948361 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
+
+1728947616 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
 

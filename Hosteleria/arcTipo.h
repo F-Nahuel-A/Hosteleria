@@ -1,30 +1,28 @@
-#ifndef ARCPERSONA_H_INCLUDED
-#define ARCPERSONA_H_INCLUDED
-
-class ArchivoPersona
+#ifndef ARCTIPO_H_INCLUDED
+#define ARCTIPO_H_INCLUDED
+class ArchivoTipo
 {
 private:
     char _nombre[30];
 public:
-    ArchivoPersona(const char *n="persona.dat"){strcpy(_nombre,n);}
+    ArchivoTipo(const char *n="tipo.dat"){strcpy(_nombre,n);}
 
-    Persona leerRegistro(int pos);
+    Tipo leerRegistro(int pos);
     int contarRegistros();
-    bool grabarRegistro(Persona obj);
+    bool grabarRegistro(Tipo obj);
     int buscarRegistro();
-    void modificarRegistro(Persona obj,int pos);
+    void modificarRegistro(Tipo obj,int pos);
     void listarArchivo();
 
 
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
-
 };
 
-Persona ArchivoPersona::leerRegistro(int pos)
+Tipo ArchivoTipo::leerRegistro(int pos)
 {
-    Persona obj;
+    Tipo obj;
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -37,7 +35,7 @@ Persona ArchivoPersona::leerRegistro(int pos)
     return obj;
 }
 
-int ArchivoPersona::contarRegistros(){
+int ArchivoTipo::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -45,12 +43,12 @@ int ArchivoPersona::contarRegistros(){
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
-    int cantRegistros = cantBytes / sizeof (Persona);
+    int cantRegistros = cantBytes / sizeof (Tipo);
     fclose(p);
     return cantRegistros;
 }
 
-bool ArchivoPersona::grabarRegistro(Persona obj){
+bool ArchivoTipo::grabarRegistro(Tipo obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -61,15 +59,15 @@ bool ArchivoPersona::grabarRegistro(Persona obj){
     return true;
 }
 
-int ArchivoPersona::buscarRegistro(){
-    int dni;
-    cout<<"INGRESE EL DNI : ";
-    cin>>dni;
+int ArchivoTipo::buscarRegistro(){
+    int id;
+    cout<<"INGRESE EL ID : ";
+    cin>>id;
     int cant = contarRegistros();
-    Persona obj;
+    Tipo obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getDni() == dni && obj.getEstado()){
+        if(obj.getID() == id && obj.getID()){
             return i;
         }
     }
@@ -77,7 +75,7 @@ int ArchivoPersona::buscarRegistro(){
     return -1;
 }
 
-void ArchivoPersona::modificarRegistro(Persona obj, int pos){
+void ArchivoTipo::modificarRegistro(Tipo obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -90,8 +88,8 @@ void ArchivoPersona::modificarRegistro(Persona obj, int pos){
     system("pause");
 }
 
-void ArchivoPersona::listarArchivo(){
-    Persona obj;
+void ArchivoTipo::listarArchivo(){
+    Tipo obj;
     int cantReg = contarRegistros();
     for(int i = 0; i < cantReg; i++){
         obj = leerRegistro(i);
@@ -103,7 +101,7 @@ void ArchivoPersona::listarArchivo(){
 
 }
 
-void ArchivoPersona::limpiarArchivo(){
+void ArchivoTipo::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -112,9 +110,9 @@ void ArchivoPersona::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoPersona::altaRegistro()
+void ArchivoTipo::altaRegistro()
 {
-    Persona obj;
+    Tipo obj;
     obj.Cargar();
     if(obj.getEstado())
     {
@@ -130,10 +128,10 @@ void ArchivoPersona::altaRegistro()
 }
 
 
-void ArchivoPersona::bajaRegistro()
+void ArchivoTipo::bajaRegistro()
 {
-    Persona obj;
-    ArchivoPersona arc;
+    Tipo obj;
+    ArchivoTipo arc;
     int aux;
     aux=arc.buscarRegistro();
     if(aux==-1)
@@ -155,4 +153,6 @@ void ArchivoPersona::bajaRegistro()
     system("pause");
 }
 
-#endif // ARCPERSONA_H_INCLUDED
+
+
+#endif // ARCTIPO_H_INCLUDED

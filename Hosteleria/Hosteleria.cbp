@@ -33,9 +33,11 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="arcPersona.h" />
+		<Unit filename="arcTipo.h" />
 		<Unit filename="clsEmpleado.h" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsPersona.h" />
+		<Unit filename="clsTipo.h" />
 		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

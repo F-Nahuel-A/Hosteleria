@@ -6,7 +6,7 @@ private:
     int _legajo;
     int _dni; ///Quedaria mejor composición o herencia
     int _turno;
-    int _tipo; ///Crear clase de tipo
+    Tipo _tipo;
     Fecha _ingreso;
     bool _estado;
 public:
@@ -20,7 +20,7 @@ public:
 
     int getLegajo(){return _legajo;}
     int getTurno(){return _turno;}
-    int getTipo(){return _tipo;}
+    Tipo getTipo(){return _tipo;}
     Fecha getFecha(){return _ingreso;}
     bool getEstado(){return _estado;}
 
@@ -77,22 +77,23 @@ public:
         int aux;
         cout<<"INGRESE EL LEGAJO";
         cin>>aux;
-
+        ///DNI
         cout<<"INGRESE EL TURNO";
         cin>>aux;
-
-        cout<<"INGRESE EL SECTOR DE TRABAJO";
+        setTurno(aux);
+        cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO";
         cin>>aux;
-        ///Esto podría hacerse una clase de trabajos, llamamos un objeto que contenga cada numero de ID del trabajo y el nombre.
-
+        _tipo.setID(aux);
+         ///Acá puede haber una función setID pero de la clase empleado, que vaya a el archivo a corroborar
+         ///que el ID exista y se le asigne automaticamente el nombre.
         _ingreso.Cargar();
     }
     void Mostrar()
     {
         cout<<"LEGAJO : "<<_legajo<<endl;
-
+        ///dni
         cout<<"TURNO : "<<_turno<<endl;
-        cout<<"SECTOR : "<<_tipo;
+        _tipo.Mostrar();
         cout<<"FECHA DE INGRESO"<<endl;
         _ingreso.Mostrar();
     }
