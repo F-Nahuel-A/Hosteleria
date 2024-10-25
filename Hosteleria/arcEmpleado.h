@@ -1,28 +1,32 @@
-#ifndef ARCTIPO_H_INCLUDED
-#define ARCTIPO_H_INCLUDED
-class ArchivoTipoEmpleado
+#ifndef ARCEMPLEADO_H_INCLUDED
+#define ARCEMPLEADO_H_INCLUDED
+class ArchivoEmpleado
 {
 private:
     char _nombre[30];
 public:
-    ArchivoTipoEmpleado(const char *n="tipoempleado.dat"){strcpy(_nombre,n);}
+    ArchivoEmpleado(const char *n="empleado")
+    {
+        strcpy(_nombre,n);
+    }
 
-    TipoEmpleado leerRegistro(int pos);
+    Empleado leerRegistro(int pos);
     int contarRegistros();
-    bool grabarRegistro(TipoEmpleado obj);
+    bool grabarRegistro(Empleado obj);
     int buscarRegistro();
-    void modificarRegistro(TipoEmpleado obj,int pos);
+    void modificarRegistro(Empleado obj,int pos);
     void listarArchivo();
 
 
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+
 };
 
-TipoEmpleado ArchivoTipoEmpleado::leerRegistro(int pos)
+Empleado ArchivoEmpleado::leerRegistro(int pos)
 {
-    TipoEmpleado obj;
+    Empleado obj;
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -35,7 +39,7 @@ TipoEmpleado ArchivoTipoEmpleado::leerRegistro(int pos)
     return obj;
 }
 
-int ArchivoTipoEmpleado::contarRegistros(){
+int ArchivoEmpleado::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -43,12 +47,12 @@ int ArchivoTipoEmpleado::contarRegistros(){
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
-    int cantRegistros = cantBytes / sizeof (TipoEmpleado);
+    int cantRegistros = cantBytes / sizeof (Empleado);
     fclose(p);
     return cantRegistros;
 }
 
-bool ArchivoTipoEmpleado::grabarRegistro(TipoEmpleado obj){
+bool ArchivoEmpleado::grabarRegistro(Empleado obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -59,15 +63,15 @@ bool ArchivoTipoEmpleado::grabarRegistro(TipoEmpleado obj){
     return true;
 }
 
-int ArchivoTipoEmpleado::buscarRegistro(){
-    int id;
-    cout<<"INGRESE EL ID : ";
-    cin>>id;
+int ArchivoEmpleado::buscarRegistro(){
+    int l;
+    cout<<"INGRESE EL LEGAJO : ";
+    cin>>l;
     int cant = contarRegistros();
-    TipoEmpleado obj;
+    Empleado obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getID() == id && obj.getID()){
+        if(obj.getLegajo() == l && obj.getLegajo()){
             return i;
         }
     }
@@ -75,7 +79,7 @@ int ArchivoTipoEmpleado::buscarRegistro(){
     return -1;
 }
 
-void ArchivoTipoEmpleado::modificarRegistro(TipoEmpleado obj, int pos){
+void ArchivoEmpleado::modificarRegistro(Empleado obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -88,8 +92,8 @@ void ArchivoTipoEmpleado::modificarRegistro(TipoEmpleado obj, int pos){
     system("pause");
 }
 
-void ArchivoTipoEmpleado::listarArchivo(){
-    TipoEmpleado obj;
+void ArchivoEmpleado::listarArchivo(){
+    Empleado obj;
     int cantReg = contarRegistros();
     for(int i = 0; i < cantReg; i++){
         obj = leerRegistro(i);
@@ -101,7 +105,7 @@ void ArchivoTipoEmpleado::listarArchivo(){
 
 }
 
-void ArchivoTipoEmpleado::limpiarArchivo(){
+void ArchivoEmpleado::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -110,9 +114,9 @@ void ArchivoTipoEmpleado::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoTipoEmpleado::altaRegistro()
+void ArchivoEmpleado::altaRegistro()
 {
-    TipoEmpleado obj;
+    Empleado obj;
     obj.Cargar();
     if(obj.getEstado())
     {
@@ -128,10 +132,10 @@ void ArchivoTipoEmpleado::altaRegistro()
 }
 
 
-void ArchivoTipoEmpleado::bajaRegistro()
+void ArchivoEmpleado::bajaRegistro()
 {
-    TipoEmpleado obj;
-    ArchivoTipoEmpleado arc;
+    Empleado obj;
+    ArchivoEmpleado arc;
     int aux;
     aux=arc.buscarRegistro();
     if(aux==-1)
@@ -154,5 +158,4 @@ void ArchivoTipoEmpleado::bajaRegistro()
 }
 
 
-
-#endif // ARCTIPO_H_INCLUDED
+#endif // ARCEMPLEADO_H_INCLUDED

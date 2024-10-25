@@ -32,12 +32,15 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="arcEmpleado.h" />
 		<Unit filename="arcPersona.h" />
 		<Unit filename="arcTipo.h" />
+		<Unit filename="arcTurno.h" />
 		<Unit filename="clsEmpleado.h" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsPersona.h" />
 		<Unit filename="clsTipo.h" />
+		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>

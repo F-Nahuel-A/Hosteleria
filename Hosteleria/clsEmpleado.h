@@ -4,23 +4,21 @@ class Empleado
 {
 private:
     int _legajo;
-    int _dni; ///Quedaria mejor composición o herencia
-    int _turno;
-    Tipo _tipo;
+    int _IDturno;
+    int _IDtipo;
     Fecha _ingreso;
     bool _estado;
 public:
-    Empleado(int l=0, int d=0, int t=0, int tipo=0)
+    Empleado(int l=0, int t=0, int tipo=0)
     {
         _legajo=l;
-        _dni=d;
-        _turno=t;
-        _tipo=tipo;
+        _IDturno=t;
+        _IDtipo=tipo;
     }
 
     int getLegajo(){return _legajo;}
-    int getTurno(){return _turno;}
-    Tipo getTipo(){return _tipo;}
+    int getIDturno(){return _IDturno;}
+    int getIDtipo(){return _IDtipo;}
     Fecha getFecha(){return _ingreso;}
     bool getEstado(){return _estado;}
 
@@ -59,15 +57,79 @@ public:
             _legajo=l;
         }
     }
-
-    void setTurno(int t)
+    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNOS" PARA VERIFICAR
+    void setIDturno(int t)
     {
+        char aux;
         if(t == 1 || t == 2 || t == 3)
         {
-            _turno=t;
+            _IDturno=t;
+        }
+          else
+        {
+            while(t != 1 || t != 2 || t != 3)
+                {
+
+            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                cin>>t;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _IDturno=t;
         }
     }
+    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNO" PARA VERIFICAR
 
+    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
+    void setIDtipo(int t)
+    {
+        char aux;
+        if(t == 1 || t == 2 || t == 3)
+        {
+            _IDtipo=t;
+        }
+          else
+        {
+            while(t != 1 || t != 2 || t != 3)
+                {
+
+            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                cin>>t;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _IDtipo=t;
+        }
+    }
+    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
     void setFecha(Fecha f){_ingreso=f;}
     void setEstado(bool e){_estado=e;}
 
@@ -77,25 +139,24 @@ public:
         int aux;
         cout<<"INGRESE EL LEGAJO";
         cin>>aux;
-        ///DNI
+        setLegajo(aux);
         cout<<"INGRESE EL TURNO";
         cin>>aux;
-        setTurno(aux);
+        setIDturno(aux);
         cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO";
         cin>>aux;
-        _tipo.setID(aux);
-         ///Acá puede haber una función setID pero de la clase empleado, que vaya a el archivo a corroborar
-         ///que el ID exista y se le asigne automaticamente el nombre.
+        setIDtipo(aux);
         _ingreso.Cargar();
     }
     void Mostrar()
     {
+        if(_estado){
         cout<<"LEGAJO : "<<_legajo<<endl;
-        ///dni
-        cout<<"TURNO : "<<_turno<<endl;
-        _tipo.Mostrar();
+        cout<<"TURNO : "<<_IDturno<<endl;
+        cout<<"TIPO : "<<_IDtipo<<endl;
         cout<<"FECHA DE INGRESO"<<endl;
         _ingreso.Mostrar();
+        }
     }
 };
 

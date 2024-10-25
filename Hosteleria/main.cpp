@@ -10,6 +10,9 @@ using namespace std;
 #include "clsTipo.h"
 #include "arcTipo.h"
 #include "clsEmpleado.h"
+#include "arcEmpleado.h"
+#include "clsTurno.h"
+#include "arcTurno.h"
 
 int main()
 {
