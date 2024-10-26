@@ -32,12 +32,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="arcCategoria.h" />
 		<Unit filename="arcEmpleado.h" />
+		<Unit filename="arcHabitacion.h" />
 		<Unit filename="arcPersona.h" />
 		<Unit filename="arcTipo.h" />
 		<Unit filename="arcTurno.h" />
+		<Unit filename="clsCategoria.h" />
 		<Unit filename="clsEmpleado.h" />
 		<Unit filename="clsFecha.h" />
+		<Unit filename="clsHabitacion.h" />
 		<Unit filename="clsPersona.h" />
 		<Unit filename="clsTipo.h" />
 		<Unit filename="clsTurno.h" />
