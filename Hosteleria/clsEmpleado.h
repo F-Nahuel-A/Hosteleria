@@ -58,58 +58,61 @@ public:
         }
     }
     ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNOS" PARA VERIFICAR
-    void setIDturno(int t)
-    {
-        char aux;
-        if(t == 1 || t == 2 || t == 3)
-        {
-            _IDturno=t;
-        }
-          else
-        {
-            while(t != 1 || t != 2 || t != 3)
-                {
-
-            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
-            cin>>aux;
-
-            if(aux=='S' || aux=='s')
-            {
-                cin>>t;
-            }
-
-            if(aux=='N' || aux=='n')
-            {
-                system("cls");
-                _estado=false;
-                return;
-            }
-
-            system("cls");
-
-                }
-
-            _IDturno=t;
-        }
-    }
+//    void setIDturno(int t)
+//    {
+//        char aux;
+//        if(t == 1 || t == 2 || t == 3)
+//        {
+//            _IDturno=t;
+//        }
+//          else
+//        {
+//            while(t != 1 || t != 2 || t != 3)
+//                {
+//
+//            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+//            cin>>aux;
+//
+//            if(aux=='S' || aux=='s')
+//            {
+//                cin>>t;
+//            }
+//
+//            if(aux=='N' || aux=='n')
+//            {
+//                system("cls");
+//                _estado=false;
+//                return;
+//            }
+//
+//            system("cls");
+//
+//                }
+//
+//            _IDturno=t;
+//        }
+//    }
     ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNO" PARA VERIFICAR
 
-    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
-    void setIDtipo(int t)
+    void setIDturno(int t)
     {
+        ArchivoTurnoEmpleado arc;
+        TurnoEmpleado obj;
+        int contReg=arc.contarRegistros();
         char aux;
-        if(t == 1 || t == 2 || t == 3)
-        {
-            _IDtipo=t;
-        }
-          else
-        {
-            while(t != 1 || t != 2 || t != 3)
+
+        while(_estado){
+        for (int i=0;i<contReg;i++)
+            {
+                obj=arc.leerRegistro(i);
+                if(t==obj.getID())
                 {
-
-            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+                    _IDturno=t;
+                    return;
+                }
+            }
+            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
             cin>>aux;
-
             if(aux=='S' || aux=='s')
             {
                 cin>>t;
@@ -121,14 +124,79 @@ public:
                 _estado=false;
                 return;
             }
-
-            system("cls");
-
-                }
-
-            _IDtipo=t;
         }
+
     }
+
+      void setIDtipo(int t)
+    {
+        ArchivoTipoEmpleado arc;
+        TipoEmpleado obj;
+        int contReg=arc.contarRegistros();
+        char aux;
+
+        while(_estado){
+        for (int i=0;i<contReg;i++)
+            {
+                obj=arc.leerRegistro(i);
+                if(t==obj.getID())
+                {
+                    _IDtipo=t;
+                    return;
+                }
+            }
+            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                cin>>t;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+        }
+
+    }
+
+    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
+//    void setIDtipo(int t)
+//    {
+//        char aux;
+//        if(t == 1 || t == 2 || t == 3)
+//        {
+//            _IDtipo=t;
+//        }
+//          else
+//        {
+//            while(t != 1 || t != 2 || t != 3)
+//                {
+//
+//            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+//            cin>>aux;
+//
+//            if(aux=='S' || aux=='s')
+//            {
+//                cin>>t;
+//            }
+//
+//            if(aux=='N' || aux=='n')
+//            {
+//                system("cls");
+//                _estado=false;
+//                return;
+//            }
+//
+//            system("cls");
+//
+//                }
+//
+//            _IDtipo=t;
+//        }
+//    }
     ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
     void setFecha(Fecha f){_ingreso=f;}
     void setEstado(bool e){_estado=e;}

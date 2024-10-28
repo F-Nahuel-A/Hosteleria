@@ -9,11 +9,11 @@ using namespace std;
 #include "arcPersona.h"
 #include "clsTipo.h"
 #include "arcTipo.h"
-#include "clsEmpleado.h"
-#include "arcEmpleado.h"
 #include "clsTurno.h"
 #include "arcTurno.h"
 #include "clsCategoria.h"
+#include "clsEmpleado.h"
+#include "arcEmpleado.h"
 
 #include "clsHabitacion.h"
 
