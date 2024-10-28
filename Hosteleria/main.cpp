@@ -14,9 +14,9 @@ using namespace std;
 #include "clsTurno.h"
 #include "arcTurno.h"
 #include "clsCategoria.h"
-#include "arcCategoria.h"
+
 #include "clsHabitacion.h"
-#include "arcHabitacion.h"
+
 
 int main()
 {

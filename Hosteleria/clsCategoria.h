@@ -9,41 +9,23 @@ private:
     bool _estado;
 
 public:
-    Categoria()
+    Categoria(int id=0,const char *desc="000", float precio=0)
     {
-      _id = 0;
-      _precio = 0.0f;
-      _estado = false;
-      _descripcion[0] = '\0';
+      _id=id;
+      _precio=precio;
+      strcpy(_descripcion,desc);
     }
 
-    Categoria(int id, char* desc, float precio)
-    {
-      _id = id;
-      _precio = precio;
-      _estado = false;
-      setDescripcion (desc);
-    }
+    int getId(){return _id;}
+    const char *getDescripcion(){return _descripcion;}
+    float getPrecio() {return _precio;}
+    bool getEstado() {return _estado;}
 
-    int getId() { return _id; }
-    char* getDescripcion() { return _descripcion; }
-    float getPrecio() { return _precio; }
-    bool getEstado() { return _estado; }
+    void setId(int id) {_id = id;}
+    void setDescripcion(const char *descripcion){strcpy(_descripcion,descripcion);}
+    void setPrecio(float precio){_precio=precio;}
+    void setEstado(bool e){_estado=e;}
 
-    void setId(int id) 
-    { _id = id; }
-    void setDescripcion(char* descripcion) 
-    {
-        int i;
-        for (i = 0; i < 99 && descripcion[i] != '\0'; i++) 
-        {
-            _descripcion[i] = descripcion[i];
-        }
-        _descripcion[i] = '\0';
-    }
-    void setPrecio(float precio) { _precio = precio; }
-    void setEstado(bool e) { _estado=e; }
-    
     void Cargar()
     {
         _estado=true;
@@ -51,25 +33,20 @@ public:
         cout<<"INGRESE EL ID: ";
         cin>>aux;
         setId(aux);
-        
-        cin.ignore();
-        char auxD[100];
         cout << "INGRESE UNA DESCRIPCION: ";
-        cin.getline(auxD, 100);
-        setDescripcion(auxD);
-        
+        cargarCadena(_descripcion,99);
         float auxF;
         cout<<"INGRESE PRECIO: ";
         cin>>auxF;
         setPrecio(auxF);
     }
-    
+
     void Mostrar()
     {
         if(_estado){
-        cout<<"ID: "<<getId()<<"\n";
-        cout<<"DESCRIPCION: "<<getDescripcion()<<"\n";
-        cout<<"PRECIO: "<<getPrecio()<<"\n";
+        cout<<"ID: "<<_id<<endl;
+        cout<<"DESCRIPCION: "<<_descripcion<<endl;
+        cout<<"PRECIO: "<<_precio<<endl;
         }
     }
 };
