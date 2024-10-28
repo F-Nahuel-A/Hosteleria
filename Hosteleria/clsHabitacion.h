@@ -13,7 +13,7 @@ private:
 public:
     Habitacion() : _numero(0), _idCategoria(0), _idRegimen(0), _disponibilidad(0), _capacidad(0) {}
 
-    Habitacion(int numero, int categoria, int regimen, int estado, int cap) 
+    Habitacion(int numero, int categoria, int regimen, int estado, int cap)
         : _numero(numero), _idCategoria(categoria), _idRegimen(regimen), _disponibilidad(estado), _capacidad(cap) {}
 
     int getNumero() { return _numero; }

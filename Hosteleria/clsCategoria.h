@@ -4,14 +4,14 @@
 class Categoria {
 private:
     int _id;
-    string _descripcion;
+    string _descripcion; ///Tiene que ser Char como está expresado en el diagrama
     float _precio;
     bool _estado;
 
 public:
     Categoria() : _id(0), _descripcion(""), _precio(0.0f) {}
 
-    Categoria(int id, string& desc, float precio) 
+    Categoria(int id, string& desc, float precio)
         : _id(id), _descripcion(desc), _precio(precio) {}
 
     int getId() { return _id; }
