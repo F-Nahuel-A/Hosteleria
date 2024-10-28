@@ -28,8 +28,8 @@ public:
     bool getEstado(){return _estado;}
 
     void setNumero(int numero) { _numHabitacion = numero; }
-    void setIdCategoria(int categoria) { _IDCategoria = categoria; }
-    void setIdRegimen(int regimen) { _IDRegimen = regimen; }
+    void setIdCategoria(int categoria) { _IDCategoria = categoria; } ///Se debe abrir el archivo "CATEGORIA" para verificar la existencia
+    void setIdRegimen(int regimen) { _IDRegimen = regimen; } ///Se debe abrir el archivo "REGIMEN" para verificar la existencia
     void setDisponibilidad(int estado) { _disponibilidad = estado; }
     void setCapacidad(int cap) { _capacidad = cap; }
     void setEstado(bool e){_estado=e;}
