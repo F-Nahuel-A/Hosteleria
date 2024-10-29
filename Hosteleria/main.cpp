@@ -17,6 +17,9 @@ using namespace std;
 
 #include "clsHabitacion.h"
 
+#include "clsRegimenComida.h"
+#include "arcRegimenComida.h"
+
 
 int main()
 {

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730156124 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730240930 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"funcionesGlobales.h"
@@ -14,6 +14,7 @@
 	"clsEmpleado.h"
 	"arcEmpleado.h"
 	"clsHabitacion.h"
+	"clsRegimenComida.h"
 
 1719880696 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
@@ -38,4 +39,6 @@
 1730153717 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
 
 1730154612 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
+
+1730241258 c:\users\admin\desktop\hosteleria\hosteleria\clsregimencomida.h
 

@@ -36,6 +36,7 @@
 		<Unit filename="arcEmpleado.h" />
 		<Unit filename="arcHabitacion.h" />
 		<Unit filename="arcPersona.h" />
+		<Unit filename="arcRegimenComida.h" />
 		<Unit filename="arcTipo.h" />
 		<Unit filename="arcTurno.h" />
 		<Unit filename="clsCategoria.h" />
@@ -43,6 +44,7 @@
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsHabitacion.h" />
 		<Unit filename="clsPersona.h" />
+		<Unit filename="clsRegimenComida.h" />
 		<Unit filename="clsTipo.h" />
 		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
