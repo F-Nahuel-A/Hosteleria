@@ -3,6 +3,7 @@
 
 using namespace std;
 
+#include "rlutil.h"
 #include "funcionesGlobales.h"
 #include "clsFecha.h"
 #include "clsPersona.h"
@@ -12,17 +13,18 @@ using namespace std;
 #include "clsTurno.h"
 #include "arcTurno.h"
 #include "clsCategoria.h"
+#include "arcCategoria.h"
 #include "clsEmpleado.h"
 #include "arcEmpleado.h"
-
 #include "clsHabitacion.h"
-
+#include "arcCategoria.h"
 #include "clsRegimenComida.h"
 #include "arcRegimenComida.h"
 
-
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+  int opcion = 0;
+  mostrarMenu();
+  mostrarCursor(opcion);
+  return 0;
 }

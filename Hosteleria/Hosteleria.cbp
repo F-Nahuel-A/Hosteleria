@@ -49,6 +49,7 @@
 		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
