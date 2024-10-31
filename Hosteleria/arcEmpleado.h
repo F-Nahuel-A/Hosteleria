@@ -13,7 +13,7 @@ public:
     Empleado leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(Empleado obj);
-    int buscarRegistro();
+    int buscarRegistro(int leg);
     void modificarRegistro(Empleado obj,int pos);
     void listarArchivo();
 
@@ -63,15 +63,12 @@ bool ArchivoEmpleado::grabarRegistro(Empleado obj){
     return true;
 }
 
-int ArchivoEmpleado::buscarRegistro(){
-    int l;
-    cout<<"INGRESE EL LEGAJO : ";
-    cin>>l;
+int ArchivoEmpleado::buscarRegistro(int leg){
     int cant = contarRegistros();
     Empleado obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getLegajo() == l && obj.getLegajo()){
+        if(obj.getLegajo() == leg && obj.getLegajo()){
             return i;
         }
     }
@@ -137,7 +134,9 @@ void ArchivoEmpleado::bajaRegistro()
     Empleado obj;
     ArchivoEmpleado arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE BORRAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

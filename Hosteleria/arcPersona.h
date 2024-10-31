@@ -11,7 +11,7 @@ public:
     Persona leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(Persona obj);
-    int buscarRegistro();
+    int buscarRegistro(int dni);
     void modificarRegistro(Persona obj,int pos);
     void listarArchivo();
 
@@ -61,10 +61,7 @@ bool ArchivoPersona::grabarRegistro(Persona obj){
     return true;
 }
 
-int ArchivoPersona::buscarRegistro(){
-    int dni;
-    cout<<"INGRESE EL DNI : ";
-    cin>>dni;
+int ArchivoPersona::buscarRegistro(int dni){
     int cant = contarRegistros();
     Persona obj;
     for(int  i=0; i < cant; i++){
@@ -135,7 +132,9 @@ void ArchivoPersona::bajaRegistro()
     Persona obj;
     ArchivoPersona arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL DNI DEL REGISTRO QUE DESEE ELIMINAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

@@ -10,7 +10,7 @@ public:
     TipoEmpleado leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(TipoEmpleado obj);
-    int buscarRegistro();
+    int buscarRegistro(int id);
     void modificarRegistro(TipoEmpleado obj,int pos);
     void listarArchivo();
 
@@ -59,10 +59,7 @@ bool ArchivoTipoEmpleado::grabarRegistro(TipoEmpleado obj){
     return true;
 }
 
-int ArchivoTipoEmpleado::buscarRegistro(){
-    int id;
-    cout<<"INGRESE EL ID : ";
-    cin>>id;
+int ArchivoTipoEmpleado::buscarRegistro(int id){
     int cant = contarRegistros();
     TipoEmpleado obj;
     for(int  i=0; i < cant; i++){
@@ -133,7 +130,9 @@ void ArchivoTipoEmpleado::bajaRegistro()
     TipoEmpleado obj;
     ArchivoTipoEmpleado arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL ID QUE DESEE ELIMINAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

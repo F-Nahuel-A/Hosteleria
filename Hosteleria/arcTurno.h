@@ -14,7 +14,7 @@ public:
     TurnoEmpleado leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(TurnoEmpleado obj);
-    int buscarRegistro();
+    int buscarRegistro(int id);
     void modificarRegistro(TurnoEmpleado obj,int pos);
     void listarArchivo();
 
@@ -63,10 +63,7 @@ bool ArchivoTurnoEmpleado::grabarRegistro(TurnoEmpleado obj){
     return true;
 }
 
-int ArchivoTurnoEmpleado::buscarRegistro(){
-    int id;
-    cout<<"INGRESE EL ID : ";
-    cin>>id;
+int ArchivoTurnoEmpleado::buscarRegistro(int id){
     int cant = contarRegistros();
     TurnoEmpleado obj;
     for(int  i=0; i < cant; i++){
@@ -137,7 +134,9 @@ void ArchivoTurnoEmpleado::bajaRegistro()
     TurnoEmpleado obj;
     ArchivoTurnoEmpleado arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL ID QUE DESEE ELIMINAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

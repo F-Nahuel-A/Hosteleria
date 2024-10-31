@@ -11,7 +11,7 @@ public:
     Habitacion leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(Habitacion obj);
-    int buscarRegistro();
+    int buscarRegistro(int id);
     void modificarRegistro(Habitacion obj, int pos);
     void listarArchivo();
     void limpiarArchivo();
@@ -57,15 +57,12 @@ bool ArchivoHabitacion::grabarRegistro(Habitacion obj){
     return true;
 }
 
-int ArchivoHabitacion::buscarRegistro(){
-    int l;
-    cout<<"INGRESE EL ID Habitacion: ";
-    cin>>l;
+int ArchivoHabitacion::buscarRegistro(int id){
     int cant = contarRegistros();
     Habitacion obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getNumero() == l && obj.getNumero()){
+        if(obj.getNumero() == id && obj.getNumero()){
             return i;
         }
     }
@@ -130,7 +127,9 @@ void ArchivoHabitacion::bajaRegistro()
     Habitacion obj;
     ArchivoHabitacion arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL ID DE LA HABITACION QUE DESEE BORRAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

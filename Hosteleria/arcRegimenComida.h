@@ -13,7 +13,7 @@ public:
     RegimenComida leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(RegimenComida obj);
-    int buscarRegistro();
+    int buscarRegistro(int id);
     void modificarRegistro(RegimenComida obj,int pos);
     void listarArchivo();
 
@@ -62,10 +62,7 @@ bool ArchivoRegimenComida::grabarRegistro(RegimenComida obj){
     return true;
 }
 
-int ArchivoRegimenComida::buscarRegistro(){
-    int id;
-    cout<<"INGRESE EL ID : ";
-    cin>>id;
+int ArchivoRegimenComida::buscarRegistro(int id){
     int cant = contarRegistros();
     RegimenComida obj;
     for(int  i=0; i < cant; i++){
@@ -136,7 +133,9 @@ void ArchivoRegimenComida::bajaRegistro()
     RegimenComida obj;
     ArchivoRegimenComida arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL ID DEL ARCHIVO QUE QUIERA ELIMINAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;

@@ -1,7 +1,8 @@
 # depslib dependency file v1.0
-1730240930 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730415758 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
+	"rlutil.h"
 	"funcionesGlobales.h"
 	"clsFecha.h"
 	"clsPersona.h"
@@ -11,34 +12,59 @@
 	"clsTurno.h"
 	"arcTurno.h"
 	"clsCategoria.h"
+	"arcCategoria.h"
 	"clsEmpleado.h"
 	"arcEmpleado.h"
-	"clsHabitacion.h"
+	"clsCategoria.h"
+	"arcCategoria.h"
 	"clsRegimenComida.h"
+	"arcRegimenComida.h"
+	"clsHabitacion.h"
+	"arcHabitacion.h"
 
-1719880696 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
+1730415758 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
 1728509939 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
-1714658592 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
+1730415758 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
-1728947612 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
+1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
-1730158214 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
+1730290483 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
 
 1729897631 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
 
-1729897596 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
+1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
 
 1729897660 c:\users\admin\desktop\hosteleria\hosteleria\clsturno.h
 
-1729898307 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
+1730416981 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
 
-1729897596 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
+1730416672 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
 
 1730153717 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
 
-1730154612 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
+1730415758 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
 
 1730241258 c:\users\admin\desktop\hosteleria\hosteleria\clsregimencomida.h
+
+1730415758 c:\users\admin\desktop\hosteleria\hosteleria\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1730416222 c:\users\admin\desktop\hosteleria\hosteleria\arccategoria.h
+
+1730416337 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
+
+1730416898 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 

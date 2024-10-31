@@ -4,14 +4,14 @@
 class ArchivoCategoria {
 private:
     char _nombre[30];
-    
+
 public:
     ArchivoCategoria(const char *n="categoria.dat") { strcpy(_nombre,n); }
 
     Categoria leerRegistro(int pos);
     int contarRegistros();
     bool grabarRegistro(Categoria obj);
-    int buscarRegistro();
+    int buscarRegistro(int id);
     void modificarRegistro(Categoria obj,int pos);
     void listarArchivo();
     void limpiarArchivo();
@@ -57,15 +57,12 @@ bool ArchivoCategoria::grabarRegistro(Categoria obj){
     return true;
 }
 
-int ArchivoCategoria::buscarRegistro(){
-    int l;
-    cout<<"INGRESE EL ID CATEGORIA: ";
-    cin>>l;
+int ArchivoCategoria::buscarRegistro(int id){
     int cant = contarRegistros();
     Categoria obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getId() == l && obj.getId()){
+        if(obj.getId() == id && obj.getId()){
             return i;
         }
     }
@@ -131,7 +128,9 @@ void ArchivoCategoria::bajaRegistro()
     Categoria obj;
     ArchivoCategoria arc;
     int aux;
-    aux=arc.buscarRegistro();
+    cout<<"INGRESE EL ID DEL REGISTRO QUE DESEE ELIMINAR";
+    cin>>aux;
+    aux=arc.buscarRegistro(aux);
     if(aux==-1)
     {
         cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
