@@ -58,46 +58,29 @@ void mostrarCursor(int&opcion)
 
         key=rlutil::getkey();
 
-        switch(key)
+        switch (key)
         {
-        case 14:
-            rlutil::locate(28, 11+y);
-            cout << " \n";
-            y--;
-            if(y<0)
-            {
-                y=4;
-            }
-            break;
-        case 15:
-            rlutil::locate(28, 11+y);
-            cout << " \n";
-            y++;
-            if(y>4)
-            {
-                y=0;
-            }
-            break;
-        case 1:
-            switch(y)
-            {
-            case 0:
-                opcion=1;
+            case 14:  ///Flecha arriba
+                rlutil::locate(28, 11 + y);
+                cout << " \n";  ///Borra el cursor en la posición actual
+                ///Cicla a la última opción si sube desde la primera
+                if(y - 1 < 0) {y = 4;} else {y = y - 1;}
                 break;
-            case 1:
-                opcion=2;
+
+            case 15:  ///Flecha abajo
+                rlutil::locate(28, 11 + y);
+                cout << " \n";  ///Borra el cursor en la posición actual
+                ///Cicla a la primera opción si baja desde la última
+                if(y + 1 > 4) {y = 0;} else {y = y + 1;}
                 break;
-            case 2:
-                opcion=3;
+
+            case 1:  ///Enter para elegir
+                ///Asigna 0 si selecciona "SALIR", o la opción correspondiente
+                if(y == 4) {opcion = 0;} else {opcion = y + 1;}
                 break;
-            case 3:
-                opcion=4;
+
+            default:
                 break;
-            case 4:
-                opcion=0;
-                break;
-            }
-            break;
         }
     }
     while(key!=1);
