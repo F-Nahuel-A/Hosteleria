@@ -28,8 +28,26 @@ public:
     bool getEstado(){return _estado;}
 
     void setNumero(int numero) { _numHabitacion = numero; }
-    void setIdCategoria(int categoria) { _IDCategoria = categoria; } ///Se debe abrir el archivo "CATEGORIA" para verificar la existencia
-    void setIdRegimen(int regimen) { _IDRegimen = regimen; } ///Se debe abrir el archivo "REGIMEN" para verificar la existencia
+    void setIdCategoria(int categoria)
+    {
+        ArchivoCategoria archivoCategoria;
+        int pos = archivoCategoria.buscarRegistro(categoria);
+        if (pos != -1) {
+            _IDCategoria = categoria;
+        } else {
+            cout << "ERROR: El ID de categoría no existe." << endl;
+        }
+    }
+    void setIdRegimen(int regimen)
+    {
+        ArchivoRegimenComida archivoRegimen;
+        int pos = archivoRegimen.buscarRegistro(regimen);
+        if (pos != -1) {
+            _IDRegimen = regimen;
+        } else {
+            cout << "ERROR: El ID de régimen no existe." << endl;
+        }
+    }
     void setDisponibilidad(int estado) { _disponibilidad = estado; }
     void setCapacidad(int cap) { _capacidad = cap; }
     void setEstado(bool e){_estado=e;}

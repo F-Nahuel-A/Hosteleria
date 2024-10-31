@@ -48,7 +48,7 @@ void Fecha::setMes(int mes)
 {   bool validar=false;
     if(mes>0&&mes<13)
     {
-       if(mes==1 || mes==3 || mes==5 || mes<9 && mes>6 || mes==10 || mes==12)
+       if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12)
        {
 
     if(getDia()>0&&getDia()<32)

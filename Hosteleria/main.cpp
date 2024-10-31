@@ -16,10 +16,12 @@ using namespace std;
 #include "arcCategoria.h"
 #include "clsEmpleado.h"
 #include "arcEmpleado.h"
-#include "clsHabitacion.h"
+#include "clsCategoria.h"
 #include "arcCategoria.h"
 #include "clsRegimenComida.h"
 #include "arcRegimenComida.h"
+#include "clsHabitacion.h"
+#include "arcHabitacion.h"
 
 int main()
 {
