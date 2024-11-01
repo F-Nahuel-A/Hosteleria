@@ -1,44 +1,44 @@
 #ifndef CLSPAGOS_H_INCLUDED
 #define CLSPAGOS_H_INCLUDED
 
-class Pagos
+class Pago
 {
 private:
-    int _numeroderecibo;
+    int _NumRecibo;
     int _dni;
-    Fecha _depago;
-    int _formadepago; /// 0: al contado y 1: deja seña y paga el resto en recepción
+    Fecha _FechadPago;
+    int _FormadPago; /// 0: al contado y 1: transferencia
     float _total;
     bool _estado;
 public:
-    Pagos(int recibo=0, int forma=0, float t=0){
-    _numeroderecibo=recibo;
-    _formadepago=forma;
+    Pago(int recibo=0, int forma=0, float t=0){
+    _NumRecibo=recibo;
+    _FormadPago=forma;
     _total=t;
     }
 
-    int getNumeroderecibo(){return _recibo;}
+    int getNumeroderecibo(){return _NumRecibo;}
     int getDNI(){return _dni;}
-    Fecha getFecha(){return _depago;}
-    int getFormadepago(){return _forma;}
+    Fecha getFecha(){return _FechadPago;}
+    int getFormadepago(){return _FormadPago;}
     float getTotal(){return _total;}
     bool getEstado(){return _estado;}
 
     void setNumero (int recibo){
 
-    if (recibo>0){_numeroderecibo=recibo} ///revisar la manera de que se genere automaticamente
+    if (recibo>0){_NumRecibo=recibo;} ///revisar la manera de que se genere automaticamente || LISTO
 
     }
 
-    void setFecha(Fecha f){_depago=f;}
+    void setFecha(Fecha f){_FechadPago=f;}
 
     void setPago(int forma){
-    if (forma == 1 || forma == 0) /// sea 1 o 0, lo va a mostrar al final
+    if (forma == 1 || forma == 0)
     {
-        _formadepago = forma;
+        _FormadPago = forma;
     }
 }
-    void setTotal (float t){_total=t} ///revisarlo, falta parte del codigo
+    void setTotal (float t){_total=t;} ///revisarlo, falta parte del codigo
     void setEstado(bool e){_estado=e;}
 
 
@@ -46,26 +46,33 @@ public:
     {
         _estado=true;
         int aux;
-        cout<<"INGRESE EL NUMERO DE RECIBO";
-        cin>>aux;
-        setRecibo(aux);
+         ///ASIGNACIÓN AUTOMATICA DEL NUMRECIBO
+        FILE *p=fopen("pago.dat","rb");
+        if(p == NULL){return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Pago);
+        fclose(p);
+        _NumRecibo=cantRegistros+1;
+        ///ASIGNACIÓN AUTOMATICA DEL NUMRECIBO
         cout<<"INGRESE LA FORMA DE PAGO";
         cin>>aux;
-        setFormadepago(aux);
+        setPago(aux);
         cout<<"INGRESE EL TOTAL";
         cin>>aux;
         setTotal(aux);
-        _ingreso.Cargar();
+        _FechadPago.Cargar();
     }
 
     void Mostrar()
     {
         if(_estado){
-        cout<<"NUMERO DE RECIBO : "<<_numeroderecibo<<endl;
-        cout<<"FORMA DE PAGO(0 AL CONTADO Y 1 DEJO SEÑA) :"<<_formadepago<<endl;
+        cout<<"NUMERO DE RECIBO : "<<_NumRecibo<<endl;
+        cout<<"FORMA DE PAGO(0 AL CONTADO Y 1 TRANSFERENCIA) :"<<_FormadPago<<endl;
         cout<<"TOTAL : "<<_total<<endl;
         /// cout<<"SEÑA "<<endl;
-        _ingreso.Mostrar();
+        _FechadPago.Mostrar();
         }
     }
 

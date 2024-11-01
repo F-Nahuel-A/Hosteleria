@@ -30,9 +30,16 @@ public:
     {
         _estado=true;
         int aux;
-        cout<<"INGRESE EL ID: ";
-        cin>>aux;
-        setId(aux);
+        ///ASIGNACIÓN AUTOMATICA DEL ID
+        FILE *p=fopen("pago.dat","rb");
+        if(p == NULL){return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Categoria);
+        fclose(p);
+        _id=cantRegistros+1;
+        ///ASIGNACIÓN AUTOMATICA DEL ID
         cout << "INGRESE UNA DESCRIPCION: ";
         cargarCadena(_descripcion,99);
         float auxF;

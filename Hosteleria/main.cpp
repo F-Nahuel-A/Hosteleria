@@ -22,6 +22,7 @@ using namespace std;
 #include "arcRegimenComida.h"
 #include "clsHabitacion.h"
 #include "arcHabitacion.h"
+#include "clsPagos.h"
 
 int main()
 {

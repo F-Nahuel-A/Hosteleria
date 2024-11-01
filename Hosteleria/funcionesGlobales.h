@@ -30,17 +30,17 @@ void mostrarMenu()
 {
   {
     rlutil::cls();
-    rlutil::locate(26, 9);
+    rlutil::locate(46, 11);
     cout << "-----GRUPO 25-----\n";
-    rlutil::locate(30, 11);
+    rlutil::locate(50, 12);
     cout << " SUBMENU 1 \n";
-    rlutil::locate(30, 12);
+    rlutil::locate(50, 13);
     cout << " SUBMENU 2 \n";
-    rlutil::locate(30, 13);
+    rlutil::locate(50, 14);
     cout << " SUBMENU 3 \n";
-    rlutil::locate(30, 14);
+    rlutil::locate(50, 15);
     cout << " SUBMENU 4 \n";
-    rlutil::locate(30, 15);
+    rlutil::locate(50, 16);
     cout << " SALIR \n";
   }
 }
@@ -53,7 +53,7 @@ void mostrarCursor(int&opcion)
 
     do
     {
-        rlutil::locate(28, 11+y);
+        rlutil::locate(48, 12+y);
         cout << char(175) << "\n";
 
         key=rlutil::getkey();
@@ -61,14 +61,14 @@ void mostrarCursor(int&opcion)
         switch (key)
         {
             case 14:  ///Flecha arriba
-                rlutil::locate(28, 11 + y);
+                rlutil::locate(48, 12 + y);
                 cout << " \n";  ///Borra el cursor en la posición actual
                 ///Cicla a la última opción si sube desde la primera
                 if(y - 1 < 0) {y = 4;} else {y = y - 1;}
                 break;
 
             case 15:  ///Flecha abajo
-                rlutil::locate(28, 11 + y);
+                rlutil::locate(48, 12 + y);
                 cout << " \n";  ///Borra el cursor en la posición actual
                 ///Cicla a la primera opción si baja desde la última
                 if(y + 1 > 4) {y = 0;} else {y = y + 1;}

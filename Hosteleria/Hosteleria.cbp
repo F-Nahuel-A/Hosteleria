@@ -43,6 +43,7 @@
 		<Unit filename="clsEmpleado.h" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsHabitacion.h" />
+		<Unit filename="clsPagos.h" />
 		<Unit filename="clsPersona.h" />
 		<Unit filename="clsRegimenComida.h" />
 		<Unit filename="clsTipo.h" />
