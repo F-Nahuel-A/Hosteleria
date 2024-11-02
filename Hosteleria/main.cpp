@@ -26,8 +26,8 @@ using namespace std;
 
 int main()
 {
-  int opcion = 0;
-  mostrarMenu();
-  mostrarCursor(opcion);
+//  int opcion = 0;
+//  mostrarMenu();
+//  mostrarCursor(opcion);
   return 0;
 }

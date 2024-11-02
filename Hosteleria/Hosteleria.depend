@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730501576 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730575479 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -23,15 +23,15 @@
 	"arcHabitacion.h"
 	"clsPagos.h"
 
-1730415758 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
+1730575423 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
-1728509939 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
+1730573552 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
 1730418155 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
 1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
-1730290483 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
+1730577369 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
 
 1729897631 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
 
@@ -69,5 +69,5 @@
 
 1730416898 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
-1730502290 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+1730502311 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 

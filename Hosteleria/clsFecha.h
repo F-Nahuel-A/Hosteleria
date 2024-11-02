@@ -6,6 +6,7 @@ private:
     int _d;
     int _m;
     int _a;
+    bool _estado;
 public:
     Fecha(int dia=0, int mes=0, int anio=0000)
     {
@@ -29,23 +30,46 @@ public:
 
 void Fecha::setAnio(int anio)
 {
-    if(anio>1900&&anio<2025)
-    {
-        _a=anio;
-    }
-    else
-    {
-        system("cls");
-        cout<<"FECHA INGRESADA INCORRECTA,VUELVA A INGRESAR :"<<endl;
-        cout<<"ANIO : ";
-        cin>>anio;
-        setAnio(anio);
+        char aux;
+        if(anio>1900 && anio<2025)
+        {
+            _a=anio;
+            return;
+        }
+        else
+        {
+            while(anio<1900 || anio>2025)
+                {
 
+            cout<<"ANIO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL ANIO : ";
+                cin>>anio;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _a=anio;
+        }
     }
-}
 
 void Fecha::setMes(int mes)
 {   bool validar=false;
+    char aux;
+    while(validar==false){
     if(mes>0&&mes<13)
     {
        if(mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12)
@@ -75,41 +99,78 @@ void Fecha::setMes(int mes)
     }
     if(validar==false)
     {   system("cls");
-        cout<<"FECHA INGRESADA INCORRECTA,VUELVA A INGRESAR :"<<endl;
-        cout<<"MES : ";
-        cin>>mes;
-        setMes(mes);
+        cout<<"MES NO VALIDO, QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+        cin>>aux;
+        if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL MES : ";
+                cin>>mes;
+            }
 
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+    }
     }
 }
 
 void Fecha::setDia(int dia)
 {
-   if(dia>0&&dia<32)
-   {
-       _d=dia;
-   }
-   else
-    {
-        system("cls");
-        cout<<"FECHA INGRESADA INCORRECTA,VUELVA A INGRESAR :"<<endl;
-        cout<<"DIA : ";
-        cin>>dia;
-        setDia(dia);
+        char aux;
+        if(dia>0 && dia<31)
+        {
+            _d=dia;
+            return;
+        }
+        else
+        {
+            while(dia<0 || dia>32)
+                {
+
+            cout<<"DIA NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL DIA : ";
+                cin>>dia;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _d=dia;
+        }
     }
-}
 
 void Fecha::Cargar()
 {   int aux;
-    cout<<"INGRESE UN DIA : ";
+    _estado=true;
+    cout<<"DIA : ";
     cin>>aux;
     setDia(aux);
-    cout<<"INGRESE UN MES : ";
+    if(_estado==false){return;}
+    cout<<"MES : ";
     cin>>aux;
     setMes(aux);
-    cout<<"INGRESE UN ANIO : ";
+    if(_estado==false){return;}
+    cout<<"ANIO : ";
     cin>>aux;
     setAnio(aux);
+    if(_estado==false){return;}
 }
 void Fecha::Mostrar()
 {

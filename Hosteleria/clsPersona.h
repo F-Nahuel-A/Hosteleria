@@ -36,11 +36,13 @@ public:
             while(dni<0)
                 {
 
-            cout<<"DNI NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+            cout<<"DNI NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
             cin>>aux;
 
             if(aux=='S' || aux=='s')
             {
+                system("cls");
+                cout<<"INGRESE EL DNI : ";
                 cin>>dni;
             }
 
@@ -72,16 +74,16 @@ public:
         _estado=true;
         int aux;
         Fecha auxF;
-        cout<<"INGRESE EL DNI";
+        cout<<"INGRESE EL DNI : ";
         cin>>aux;
         setDNI(aux);
-        cout<<"INGRESE EL NOMBRE";
+        cout<<"INGRESE EL NOMBRE : ";
         cargarCadena(_nombre,29);
-        cout<<"INGRESE EL APELLIDO";
+        cout<<"INGRESE EL APELLIDO : ";
         cargarCadena(_apellido,29);
-        cout<<"INGRESE EL NUMERO DE TELEFONO";
+        cout<<"INGRESE EL NUMERO DE TELEFONO : ";
         cargarCadena(_telefono,9);
-        cout<<"INGRESE LA FECHA DE NACIMIENTO"<<endl;
+        cout<<"INGRESE LA FECHA DE NACIMIENTO "<<endl;
         auxF.Cargar();
     }
 

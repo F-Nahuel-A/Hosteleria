@@ -1,6 +1,6 @@
 #ifndef CLSEMPLEADO_H_INCLUDED
 #define CLSEMPLEADO_H_INCLUDED
-class Empleado
+class Empleado : protected Persona
 {
 private:
     int _legajo;
@@ -35,11 +35,13 @@ public:
             while(l<0)
                 {
 
-            cout<<"LEGAJO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+            cout<<"LEGAJO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
             cin>>aux;
 
             if(aux=='S' || aux=='s')
             {
+                system("cls");
+                cout<<"INGRESE EL LEGAJO : ";
                 cin>>l;
             }
 
@@ -57,64 +59,23 @@ public:
             _legajo=l;
         }
     }
-    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNOS" PARA VERIFICAR
-//    void setIDturno(int t)
-//    {
-//        char aux;
-//        if(t == 1 || t == 2 || t == 3)
-//        {
-//            _IDturno=t;
-//        }
-//          else
-//        {
-//            while(t != 1 || t != 2 || t != 3)
-//                {
-//
-//            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
-//            cin>>aux;
-//
-//            if(aux=='S' || aux=='s')
-//            {
-//                cin>>t;
-//            }
-//
-//            if(aux=='N' || aux=='n')
-//            {
-//                system("cls");
-//                _estado=false;
-//                return;
-//            }
-//
-//            system("cls");
-//
-//                }
-//
-//            _IDturno=t;
-//        }
-//    }
-    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TURNO" PARA VERIFICAR
 
     void setIDturno(int t)
     {
         ArchivoTurnoEmpleado arc;
         TurnoEmpleado obj;
-        int contReg=arc.contarRegistros();
         char aux;
-
+        int pos;
         while(_estado){
-        for (int i=0;i<contReg;i++)
-            {
-                obj=arc.leerRegistro(i);
-                if(t==obj.getID())
-                {
-                    _IDturno=t;
-                    return;
-                }
-            }
-            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+        pos=arc.buscarRegistro(t);
+        if(pos==-1)
+        {
+            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
+                system("cls");
+                cout<<"INGRESE EL ID DEL TURNO DE TRABAJO : ";
                 cin>>t;
             }
 
@@ -125,30 +86,47 @@ public:
                 return;
             }
         }
-
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(t);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL TURNO : "<<obj.getHorario()<<endl<<"S/N"<<endl;
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                _IDturno=t;
+                return;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRO ? "<<endl<<"S/N"<<endl;
+                cin>>aux;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL ID DEL TURNO : ";
+                    cin>>t;
+                }
+            else{return;}
+            }
+        }
+        }
     }
 
-      void setIDtipo(int t)
+    void setIDtipo(int t)
     {
         ArchivoTipoEmpleado arc;
         TipoEmpleado obj;
-        int contReg=arc.contarRegistros();
         char aux;
-
+        int pos;
         while(_estado){
-        for (int i=0;i<contReg;i++)
-            {
-                obj=arc.leerRegistro(i);
-                if(t==obj.getID())
-                {
-                    _IDtipo=t;
-                    return;
-                }
-            }
-            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
+        pos=arc.buscarRegistro(t);
+        if(pos==-1)
+        {
+            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
+                system("cls");
+                cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO : ";
                 cin>>t;
             }
 
@@ -159,66 +137,62 @@ public:
                 return;
             }
         }
-
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(t);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL CARGO : "<<obj.getOcupacion()<<endl<<"S/N"<<endl;
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                _IDtipo=t;
+                return;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRO ? "<<endl<<"S/N"<<endl;
+                cin>>aux;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO : ";
+                    cin>>t;
+                }
+            else{return;}
+            }
+        }
+        }
     }
 
-    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
-//    void setIDtipo(int t)
-//    {
-//        char aux;
-//        if(t == 1 || t == 2 || t == 3)
-//        {
-//            _IDtipo=t;
-//        }
-//          else
-//        {
-//            while(t != 1 || t != 2 || t != 3)
-//                {
-//
-//            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N";
-//            cin>>aux;
-//
-//            if(aux=='S' || aux=='s')
-//            {
-//                cin>>t;
-//            }
-//
-//            if(aux=='N' || aux=='n')
-//            {
-//                system("cls");
-//                _estado=false;
-//                return;
-//            }
-//
-//            system("cls");
-//
-//                }
-//
-//            _IDtipo=t;
-//        }
-//    }
-    ///MOMENTANEO,DESPUES SE HACE UNA FUNCION QUE ABRA EL ARCHIVO "TIPO" PARA VERIFICAR
     void setFecha(Fecha f){_ingreso=f;}
     void setEstado(bool e){_estado=e;}
 
     void Cargar()
     {
         _estado=true;
+        Persona::Cargar();
+        cout<<"DATOS PERSONALES CARGADOS"<<endl;
+        system("pause");
+        system("cls");
+        cout<<"DATOS LABORALES"<<endl;
         int aux;
-        cout<<"INGRESE EL LEGAJO";
+        cout<<"INGRESE EL LEGAJO : ";
         cin>>aux;
         setLegajo(aux);
-        cout<<"INGRESE EL TURNO";
+        if(_estado==false){return;}
+        cout<<"INGRESE EL TURNO : ";
         cin>>aux;
         setIDturno(aux);
-        cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO";
+        if(_estado==false){return;}
+        cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO : ";
         cin>>aux;
         setIDtipo(aux);
+        if(_estado==false){return;}
+        cout<<"FEHCA DE INGRESO"<<endl;
         _ingreso.Cargar();
     }
     void Mostrar()
     {
         if(_estado){
+        Persona::Mostrar();
         cout<<"LEGAJO : "<<_legajo<<endl;
         cout<<"TURNO : "<<_IDturno<<endl;
         cout<<"TIPO : "<<_IDtipo<<endl;
