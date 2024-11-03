@@ -23,7 +23,44 @@ public:
 
     void setId(int id) {_id = id;}
     void setDescripcion(const char *descripcion){strcpy(_descripcion,descripcion);}
-    void setPrecio(float precio){_precio=precio;}
+
+    void setPrecio(float precio)
+    {
+        char aux;
+        if(precio>0)
+        {
+            _precio=precio;
+            return;
+        }
+        else
+        {
+            while(precio<0)
+                {
+
+            cout<<"PRECIO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL PRECIO : ";
+                cin>>precio;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _precio=precio;
+        }
+    }
     void setEstado(bool e){_estado=e;}
 
     void Cargar()

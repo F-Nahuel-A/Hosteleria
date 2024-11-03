@@ -32,13 +32,9 @@ public:
 
     void setFecha(Fecha f){_FechadPago=f;}
 
-    void setPago(int forma){
-    if (forma == 1 || forma == 0)
-    {
-        _FormadPago = forma;
-    }
-}
-    void setTotal (float t){_total=t;} ///revisarlo, falta parte del codigo
+    void setPago(int forma);
+    void setTotal (float t); ///revisarlo, falta parte del codigo || LISTO
+
     void setEstado(bool e){_estado=e;}
 
 
@@ -59,9 +55,11 @@ public:
         cout<<"INGRESE LA FORMA DE PAGO";
         cin>>aux;
         setPago(aux);
+        if(_estado=false){return;}
         cout<<"INGRESE EL TOTAL";
         cin>>aux;
         setTotal(aux);
+        if(_estado=false){return;}
         _FechadPago.Cargar();
     }
 
@@ -78,6 +76,79 @@ public:
 
 };
 
+void Pago::setTotal(float t)
+    {
+        char aux;
+        if(t>0)
+        {
+            _total=t;
+            return;
+        }
+        else
+        {
+            while(t<0)
+                {
 
+            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
 
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL TOTAL : ";
+                cin>>t;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _total=t;
+        }
+    }
+
+void Pago::setPago(int forma)
+    {
+        char aux;
+        if(forma>0)
+        {
+            _FormadPago=forma;
+            return;
+        }
+        else
+        {
+            while(forma<0)
+                {
+
+            cout<<"FORMA DE PAGO NO VALIDA,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE LA FORMA DE PAGO (0 AL CONTADO Y 1 TRANSFERENCIA) : ";
+                cin>>forma;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _FormadPago=forma;
+        }
+    }
 #endif // CLSPAGOS_H_INCLUDED

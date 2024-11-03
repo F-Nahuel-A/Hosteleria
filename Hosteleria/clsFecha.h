@@ -22,6 +22,7 @@ public:
     int getDia(){return _d;}
     int getMes(){return _m;}
     int getAnio(){return _a;}
+    bool getEstado(){return _estado;}
 
     void Cargar();
     void Mostrar();
@@ -174,6 +175,7 @@ void Fecha::Cargar()
 }
 void Fecha::Mostrar()
 {
+    if(_estado)
     cout<<"FECHA : "<<_d<<"/"<<_m<<"/"<<_a<<endl;
 }
 #endif // CLSFECHA_H_INCLUDED

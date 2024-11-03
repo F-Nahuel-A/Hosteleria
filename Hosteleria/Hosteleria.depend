@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730575479 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730591404 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -22,30 +22,31 @@
 	"clsHabitacion.h"
 	"arcHabitacion.h"
 	"clsPagos.h"
+	"clsHuesped.h"
 
-1730575423 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
+1730591790 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
-1730573552 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
+1730591934 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
 1730418155 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
 1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
-1730577369 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
+1730591934 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
 
-1729897631 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
+1730590565 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
 
 1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
 
-1729897660 c:\users\admin\desktop\hosteleria\hosteleria\clsturno.h
+1730590012 c:\users\admin\desktop\hosteleria\hosteleria\clsturno.h
 
-1730416981 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
+1730591505 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
 
 1730416672 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
 
-1730502152 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
+1730588263 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
 
-1730415758 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
+1730590780 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
 
 1730241258 c:\users\admin\desktop\hosteleria\hosteleria\clsregimencomida.h
 
@@ -69,5 +70,7 @@
 
 1730416898 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
-1730502311 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+1730589537 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+
+1730587883 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
 

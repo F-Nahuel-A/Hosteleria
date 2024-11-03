@@ -23,7 +23,49 @@ public:
     void setApellido(const char *a){strcpy(_apellido,a);}
     void setTelefono(const char *t){strcpy(_telefono,t);}
     void setNacimiento(Fecha f){_nacimiento=f;}
-    void setDNI(int dni)
+
+    void setDNI(int dni);
+
+    bool getEstado(){return _estado;}
+    const char *getNombre(){return _nombre;}
+    const char *getApellido(){return _apellido;}
+    const char *getTelefono(){return _telefono;}
+    Fecha getNacimiento(){return _nacimiento;}
+    int getDni(){return _dni;}
+
+
+    void Cargar()
+    {
+        _estado=true;
+        int aux;
+        cout<<"INGRESE EL DNI : ";
+        cin>>aux;
+        setDNI(aux);
+        if(_estado=false){return;}
+        cout<<"INGRESE EL NOMBRE : ";
+        cargarCadena(_nombre,29);
+        cout<<"INGRESE EL APELLIDO : ";
+        cargarCadena(_apellido,29);
+        cout<<"INGRESE EL NUMERO DE TELEFONO : ";
+        cargarCadena(_telefono,9);
+        cout<<"INGRESE LA FECHA DE NACIMIENTO "<<endl;
+        _nacimiento.Cargar();
+    }
+
+    void Mostrar()
+    {
+        if(_estado)
+        {
+        cout<<"DNI : "<<_dni<<endl;
+        cout<<"NOMBRE : "<<_nombre<<endl;
+        cout<<"APELLIDO : "<<_apellido<<endl;
+        cout<<"NUMERO DE TELEFONO : "<<_telefono<<endl;
+        _nacimiento.Mostrar();
+        }
+    }
+};
+
+void Persona::setDNI(int dni)
     {
         char aux;
         if(dni>0)
@@ -60,46 +102,6 @@ public:
             _dni=dni;
         }
     }
-
-    bool getEstado(){return _estado;}
-    const char *getNombre(){return _nombre;}
-    const char *getApellido(){return _apellido;}
-    const char *getTelefono(){return _telefono;}
-    Fecha getNacimiento(){return _nacimiento;}
-    int getDni(){return _dni;}
-
-
-    void Cargar()
-    {
-        _estado=true;
-        int aux;
-        Fecha auxF;
-        cout<<"INGRESE EL DNI : ";
-        cin>>aux;
-        setDNI(aux);
-        cout<<"INGRESE EL NOMBRE : ";
-        cargarCadena(_nombre,29);
-        cout<<"INGRESE EL APELLIDO : ";
-        cargarCadena(_apellido,29);
-        cout<<"INGRESE EL NUMERO DE TELEFONO : ";
-        cargarCadena(_telefono,9);
-        cout<<"INGRESE LA FECHA DE NACIMIENTO "<<endl;
-        auxF.Cargar();
-    }
-
-    void Mostrar()
-    {
-        if(_estado)
-        {
-        cout<<"DNI : "<<_dni<<endl;
-        cout<<"NOMBRE : "<<_nombre<<endl;
-        cout<<"APELLIDO : "<<_apellido<<endl;
-        cout<<"NUMERO DE TELEFONO : "<<_telefono<<endl;
-        _nacimiento.Mostrar();
-        }
-    }
-};
-
 
 
 #endif // CLSPERSONA_H_INCLUDED

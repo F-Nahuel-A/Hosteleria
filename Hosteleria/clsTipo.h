@@ -9,7 +9,7 @@ private:
     float _sueldo;
     bool _estado;
 public:
-    Tipo(int id=0,const char *o="000", float s=0)
+    TipoEmpleado(int id=0,const char *o="000", float s=0)
     {
         _ID=id;
         strcpy(_ocupacion,o);
@@ -26,11 +26,50 @@ public:
         strcpy(_ocupacion,o);
     }
     void setEstado(bool e){_estado=e;}
-    void setSueldo(float s){_sueldo=s;}
+
+    void setSueldo(float s)
+    {
+        char aux;
+        if(s>0)
+        {
+            _sueldo=s;
+            return;
+        }
+        else
+        {
+            while(s<0)
+                {
+
+            cout<<"SUELDO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL SUELDO : ";
+                cin>>s;
+            }
+
+            if(aux=='N' || aux=='n')
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _sueldo=s;
+        }
+    }
+
     void setID(int id){if(id>0)_ID=id;}
     void Cargar()
     {
         _estado=true;
+        float s;
         ///ASIGNACIÓN AUTOMATICA DEL ID
         FILE *p=fopen("tipoempleado.dat","rb");
         if(p == NULL){return;}
@@ -41,10 +80,10 @@ public:
         fclose(p);
         _ID=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
-        cout<<"INGRESE EL NOMBRE DE LA OCUPACION"<<endl;
+        cout<<"INGRESE EL NOMBRE DE LA OCUPACION : "<<endl;
         cargarCadena(_ocupacion,29);
-        cout<<"INGRESE EL SUELDO DEL SECTOR"<<endl;
-        cin>>_sueldo;
+        cout<<"INGRESE EL SUELDO DEL SECTOR : "<<endl;
+        setSueldo(s);
     }
 
     void Mostrar()

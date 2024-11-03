@@ -5,7 +5,7 @@ class ArchivoEmpleado
 private:
     char _nombre[30];
 public:
-    ArchivoEmpleado(const char *n="empleado")
+    ArchivoEmpleado(const char *n="empleado.dat")
     {
         strcpy(_nombre,n);
     }

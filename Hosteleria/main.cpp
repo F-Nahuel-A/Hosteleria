@@ -23,11 +23,24 @@ using namespace std;
 #include "clsHabitacion.h"
 #include "arcHabitacion.h"
 #include "clsPagos.h"
+#include "clsHuesped.h"
 
 int main()
 {
 //  int opcion = 0;
 //  mostrarMenu();
 //  mostrarCursor(opcion);
+    ArchivoTurnoEmpleado arc;
+    ArchivoTipoEmpleado arc2;
+//    FILE *p=fopen("tipoempleado.dat","wb");
+//    fclose(p);
+//    FILE *j=fopen("turnoempleado.dat","wb");
+//    fclose(j);
+//    arc.altaRegistro();
+//    arc2.altaRegistro();
+    ArchivoEmpleado obj;
+    obj.altaRegistro();
+    obj.listarArchivo();
+
   return 0;
 }

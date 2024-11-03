@@ -35,7 +35,7 @@ public:
         fclose(p);
         _ID=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
-        cout<<"INGRESE EL HORARIO DEL TURNO";
+        cout<<"INGRESE EL HORARIO DEL TURNO : ";
         cargarCadena(_horario,5);
     }
 
