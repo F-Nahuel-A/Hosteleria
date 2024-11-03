@@ -42,19 +42,19 @@ public:
         cout<<"INGRESE EL NUMERO HABITACION: ";
         cin>>aux;
         setNumero(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE LA CATEGORIA: ";
         cin>>aux;
         setIdCategoria(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE EL REGIMEN: ";
         cin>>aux;
         setIdRegimen(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE DISPONIBILIDAD: ";
         cin>>aux;
         setDisponibilidad(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE CAPACIDAD MAX: ";
         cin>>aux;
         setCapacidad(aux);

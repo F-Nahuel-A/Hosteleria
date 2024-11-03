@@ -30,17 +30,10 @@ int main()
 //  int opcion = 0;
 //  mostrarMenu();
 //  mostrarCursor(opcion);
-    ArchivoTurnoEmpleado arc;
-    ArchivoTipoEmpleado arc2;
-//    FILE *p=fopen("tipoempleado.dat","wb");
+//    FILE *p=fopen("habitacion.dat","wb");
 //    fclose(p);
-//    FILE *j=fopen("turnoempleado.dat","wb");
-//    fclose(j);
-//    arc.altaRegistro();
-//    arc2.altaRegistro();
-    ArchivoEmpleado obj;
-    obj.altaRegistro();
-    obj.listarArchivo();
+    ArchivoHabitacion arc;
+    arc.listarArchivo();
 
   return 0;
 }

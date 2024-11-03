@@ -31,6 +31,7 @@ public:
     {
         if(_estado)
         {
+        Persona::setEstado(true); ///No encontre otra forma de hacer que se vea.
         Persona::Mostrar();
         cout<<"EMAIL : "<<_email<<endl;
         }

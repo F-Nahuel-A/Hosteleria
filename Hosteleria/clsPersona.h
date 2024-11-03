@@ -41,7 +41,7 @@ public:
         cout<<"INGRESE EL DNI : ";
         cin>>aux;
         setDNI(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE EL NOMBRE : ";
         cargarCadena(_nombre,29);
         cout<<"INGRESE EL APELLIDO : ";

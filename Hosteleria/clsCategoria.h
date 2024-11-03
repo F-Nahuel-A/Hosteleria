@@ -68,7 +68,7 @@ public:
         _estado=true;
         int aux;
         ///ASIGNACIÓN AUTOMATICA DEL ID
-        FILE *p=fopen("pago.dat","rb");
+        FILE *p=fopen("categoria.dat","rb");
         if(p == NULL){return;}
         fseek(p,0,2);
         int cantBytes;

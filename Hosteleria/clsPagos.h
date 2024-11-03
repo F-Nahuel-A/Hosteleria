@@ -55,11 +55,11 @@ public:
         cout<<"INGRESE LA FORMA DE PAGO";
         cin>>aux;
         setPago(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         cout<<"INGRESE EL TOTAL";
         cin>>aux;
         setTotal(aux);
-        if(_estado=false){return;}
+        if(_estado==false){return;}
         _FechadPago.Cargar();
     }
 
@@ -69,7 +69,6 @@ public:
         cout<<"NUMERO DE RECIBO : "<<_NumRecibo<<endl;
         cout<<"FORMA DE PAGO(0 AL CONTADO Y 1 TRANSFERENCIA) :"<<_FormadPago<<endl;
         cout<<"TOTAL : "<<_total<<endl;
-        /// cout<<"SEÑA "<<endl;
         _FechadPago.Mostrar();
         }
     }
