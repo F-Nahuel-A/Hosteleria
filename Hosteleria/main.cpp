@@ -24,16 +24,22 @@ using namespace std;
 #include "arcHabitacion.h"
 #include "clsPagos.h"
 #include "clsHuesped.h"
+#include "menuHuesped.h"
+#include "menuEmpleado.h"
+#include "menuHabitacion.h"
+#include "menuTipoEmpleado.h"
+#include "menuTurnoEmpleado.h"
+#include "menuCategoria.h"
+#include "menuRegimen.h"
+#include "menuPagos.h"
+#include "menuDetallesdePagos.h"
+#include "PmenuServicios.h"
+#include "PmenuPersonal.h"
+#include "PmenuPagos.h"
 
 int main()
 {
-//  int opcion = 0;
-//  mostrarMenu();
-//  mostrarCursor(opcion);
-//    FILE *p=fopen("habitacion.dat","wb");
-//    fclose(p);
-    ArchivoHabitacion arc;
-    arc.listarArchivo();
 
+  mostrarMenu();
   return 0;
 }

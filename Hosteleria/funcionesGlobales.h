@@ -1,6 +1,19 @@
 #ifndef FUNCIONESGLOBALES_H_INCLUDED
 #define FUNCIONESGLOBALES_H_INCLUDED
-void mostrarCursor(int&opcion);
+
+void mostrarMenu();
+///MENúS PRINCIPALES
+void menuPersonal();
+void menuServicios();
+void menuPagosPrincipal();
+///MENúS PRINCIPALES
+void menuEmpleado();
+void menuHuesped();
+void menuHabitacion();
+void menuPagos();
+void menuRegimen();
+void menuTipoEmpleado();
+void menuTurnoEmpleado();
 
 void cargarCadena(char *palabra, int tamano){
 
@@ -26,63 +39,107 @@ void cargarCadena(char *palabra, int tamano){
 
 }
 
+    void showItem(const char* text, int posx, int posy,bool selected) {
+    if (selected)
+    {
+        rlutil::setBackgroundColor(rlutil::COLOR::BLUE);
+        rlutil::locate(posx,posy);
+        cout<<"  "<<text<<"  "<<endl;
+    }
+    else {
+        rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+        rlutil::locate(posx,posy);
+        cout<<"  "<<text<<"  "<<endl;
+
+    }
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    }
+
+
 void mostrarMenu()
 {
-  {
-    rlutil::cls();
-    rlutil::locate(46, 11);
-    cout << "-----GRUPO 25-----\n";
-    rlutil::locate(50, 12);
-    cout << " SUBMENU 1 \n";
-    rlutil::locate(50, 13);
-    cout << " SUBMENU 2 \n";
-    rlutil::locate(50, 14);
-    cout << " SUBMENU 3 \n";
-    rlutil::locate(50, 15);
-    cout << " SUBMENU 4 \n";
-    rlutil::locate(50, 16);
-    cout << " SALIR \n";
-  }
-}
+    int y=1,op=1;
 
-void mostrarCursor(int&opcion)
-{
-    int key=0, y=0;
-
-    rlutil::hidecursor();
 
     do
     {
-        rlutil::locate(48, 12+y);
-        cout << char(175) << "\n";
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::hidecursor();
+    rlutil::locate(1,29);
+    cout<<"https://github.com/F-Nahuel-A/Hosteleria"<<endl;
+    rlutil::locate(42,10);
+    cout<<"HOSTELERIA-GRUPO 25"<<endl;
+    showItem("HUESPED",45,12,y==1);
+    showItem("PERSONAL",45,13,y==2);
+    showItem("SERVICIOS",45,14,y==3);
+    showItem("PAGOS",46,15,y==4);
+    showItem("SALIR",46,16,y==5);
 
-        key=rlutil::getkey();
-
-        switch (key)
+        switch (rlutil::getkey())
         {
             case 14:  ///Flecha arriba
                 rlutil::locate(48, 12 + y);
-                cout << " \n";  ///Borra el cursor en la posición actual
+                cout << " ";  ///Borra el cursor en la posición actual
                 ///Cicla a la última opción si sube desde la primera
-                if(y - 1 < 0) {y = 4;} else {y = y - 1;}
+                y--;
+                if(y<1)
+                {
+                    y=1;
+                }
                 break;
 
             case 15:  ///Flecha abajo
                 rlutil::locate(48, 12 + y);
-                cout << " \n";  ///Borra el cursor en la posición actual
+                cout << " ";  ///Borra el cursor en la posición actual
                 ///Cicla a la primera opción si baja desde la última
-                if(y + 1 > 4) {y = 0;} else {y = y + 1;}
+                y++;
+                if(y>5)
+                {
+                    y=5;
+                }
                 break;
 
             case 1:  ///Enter para elegir
-                ///Asigna 0 si selecciona "SALIR", o la opción correspondiente
-                if(y == 4) {opcion = 0;} else {opcion = y + 1;}
+                switch (y)
+                {
+            case 1:
+                system("cls");
+                menuHuesped();
+                system("cls");
                 break;
+
+            case 2:
+                system("cls");
+                menuPersonal();
+                system("cls");
+                break;
+
+            case 3:
+                system("cls");
+                menuServicios();
+                system("cls");
+                break;
+
+            case 4:
+                system("cls");
+                menuPagosPrincipal();
+                system("cls");
+                break;
+
+            case 5:
+                op=0;
+                break;
+
+                default:
+                    break;
+                }
+
 
             default:
                 break;
         }
     }
-    while(key!=1);
+    while(op!=0);
 }
 #endif // FUNCIONESGLOBALES_H_INCLUDED

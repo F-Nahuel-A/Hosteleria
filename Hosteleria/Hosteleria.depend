@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730593385 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730662732 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -23,12 +23,24 @@
 	"arcHabitacion.h"
 	"clsPagos.h"
 	"clsHuesped.h"
+	"menuHuesped.h"
+	"menuEmpleado.h"
+	"menuHabitacion.h"
+	"menuTipoEmpleado.h"
+	"menuTurnoEmpleado.h"
+	"menuCategoria.h"
+	"menuRegimen.h"
+	"menuPagos.h"
+	"menuDetallesdePagos.h"
+	"PmenuServicios.h"
+	"PmenuPersonal.h"
+	"PmenuPagos.h"
 
 1730591790 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
 1730593762 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
-1730418155 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
 1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
@@ -73,4 +85,28 @@
 1730593762 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 
 1730592761 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menuempleado.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menuhuesped.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menuhabitacion.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menutipoempleado.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menuturnoempleado.h
+
+1730663180 c:\users\admin\desktop\hosteleria\hosteleria\menucategoria.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menuregimen.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\pmenuservicios.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\pmenupagos.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\pmenupersonal.h
+
+1730663146 c:\users\admin\desktop\hosteleria\hosteleria\menupagos.h
+
+1730663264 c:\users\admin\desktop\hosteleria\hosteleria\menudetallesdepagos.h
 
