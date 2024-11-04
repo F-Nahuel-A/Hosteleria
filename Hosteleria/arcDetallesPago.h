@@ -1,36 +1,38 @@
-#ifndef ARCREGIMENCOMIDA_H_INCLUDED
-#define ARCREGIMENCOMIDA_H_INCLUDED
-class ArchivoRegimenComida
+#ifndef ARCDETALLESPAGO_H_INCLUDED
+#define ARCDETALLESPAGO_H_INCLUDED
+
+class ArchivoDetalles
 {
 private:
     char _nombre[30];
+
 public:
-    ArchivoRegimenComida(const char *n="regimenComida.dat")
+    ArchivoDetalles(const char *n="detallePago")
     {
         strcpy(_nombre,n);
     }
 
-    RegimenComida leerRegistro(int pos);
+   DetallesPago leerRegistro(int pos);
     int contarRegistros();
-    bool grabarRegistro(RegimenComida obj);
+    bool grabarRegistro(DetallesPago obj);
     int buscarRegistro(int id);
-    void modificarRegistro(RegimenComida obj,int pos);
+    void modificarRegistro(DetallesPago obj, int pos);
     void listarArchivo();
-
 
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
-    void cambiarDescripcion();
-    void cambiarPrecio();
+    void cambiarNumRecibo();
+    void cambiarNumHabitacion();
+    void cambiarTotalAbonado();
 };
 
-RegimenComida ArchivoRegimenComida::leerRegistro(int pos)
-{
-    RegimenComida obj;
-    FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
+ DetallesPago ArchivoDetalles::leerRegistro(int pos)
+    {
+        DetallesPago obj;
+        FILE *p=fopen(_nombre, "rb");
+        if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
         system("pause");
         return obj;
@@ -39,9 +41,9 @@ RegimenComida ArchivoRegimenComida::leerRegistro(int pos)
     fread(&obj, sizeof obj, 1, p);
     fclose(p);
     return obj;
-}
+    }
 
-int ArchivoRegimenComida::contarRegistros(){
+    int ArchivoDetalles::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -49,12 +51,12 @@ int ArchivoRegimenComida::contarRegistros(){
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
-    int cantRegistros = cantBytes / sizeof (RegimenComida);
+    int cantRegistros = cantBytes / sizeof (DetallesPago);
     fclose(p);
     return cantRegistros;
 }
 
-bool ArchivoRegimenComida::grabarRegistro(RegimenComida obj){
+bool ArchivoDetalles::grabarRegistro(DetallesPago obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -65,9 +67,9 @@ bool ArchivoRegimenComida::grabarRegistro(RegimenComida obj){
     return true;
 }
 
-int ArchivoRegimenComida::buscarRegistro(int id){
+int ArchivoDetalles::buscarRegistro(int id){
     int cant = contarRegistros();
-    RegimenComida obj;
+    DetallesPago obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
         if(obj.getID() == id && obj.getEstado()){
@@ -78,7 +80,7 @@ int ArchivoRegimenComida::buscarRegistro(int id){
     return -1;
 }
 
-void ArchivoRegimenComida::modificarRegistro(RegimenComida obj, int pos){
+void ArchivoDetalles::modificarRegistro(DetallesPago obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -91,8 +93,8 @@ void ArchivoRegimenComida::modificarRegistro(RegimenComida obj, int pos){
     system("pause");
 }
 
-void ArchivoRegimenComida::listarArchivo(){
-    RegimenComida obj;
+void ArchivoDetalles::listarArchivo(){
+    DetallesPago obj;
     int cantReg = contarRegistros();
     for(int i = 0; i < cantReg; i++){
         obj = leerRegistro(i);
@@ -104,7 +106,7 @@ void ArchivoRegimenComida::listarArchivo(){
 
 }
 
-void ArchivoRegimenComida::limpiarArchivo(){
+void ArchivoDetalles::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -113,9 +115,9 @@ void ArchivoRegimenComida::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoRegimenComida::altaRegistro()
+void ArchivoDetalles::altaRegistro()
 {
-    RegimenComida obj;
+    DetallesPago obj;
     obj.Cargar();
     if(obj.getEstado())
     {
@@ -130,13 +132,12 @@ void ArchivoRegimenComida::altaRegistro()
     system("pause");
 }
 
-
-void ArchivoRegimenComida::bajaRegistro()
+    void ArchivoDetalles::bajaRegistro()
 {
-    RegimenComida obj;
-    ArchivoRegimenComida arc;
+    DetallesPago obj;
+    ArchivoDetalles arc;
     int aux;
-    cout<<"INGRESE EL ID DEL ARCHIVO QUE QUIERA ELIMINAR : ";
+    cout<<"INGRESE EL NUMERO DEL REGISTRO QUE DESEE ELIMINAR :";
     cin>>aux;
     aux=arc.buscarRegistro(aux);
     if(aux==-1)
@@ -158,57 +159,13 @@ void ArchivoRegimenComida::bajaRegistro()
     system("pause");
 }
 
-void ArchivoRegimenComida::cambiarDescripcion()
+void ArchivoDetalles::cambiarNumRecibo()
 {
-    int pos;
-    char aux,descripcion[100];
-    RegimenComida obj;
-    while(true){
-    cout<<"INGRESE EL ID DEl REGIMEN QUE DESEE CAMBIAR : "<<endl;
-    cin>>pos;
-    pos=buscarRegistro(pos);
-    if(pos!=-1)
-        {
-        obj=leerRegistro(pos);
-        if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
-        obj.Mostrar();
-        cout<<"S/N : ";
-        cin>>aux;
-        if(aux=='s' || aux=='S')
-            {
-           cout<<"INGRESE LA NUEVA DESCRIPCION : ";
-           cargarCadena(descripcion,99);
-           cout<<"ESTAS SEGURO QUE QUERES ACTUALIZAR LA DESCRIPCION A : "<<descripcion<<endl<<"S/N : ";
-           cin>>aux;
-           if(aux=='s' || aux=='S')
-                    {
-           obj.setDesc(descripcion);
-           modificarRegistro(obj,pos);
-           return;
-                    }
-                }
-            }
-                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
-           cin>>aux;
-           if(aux=='n' || aux=='N')
-           {
-               return;
-           }
-	system("cls");
-        }
-    }
-
-
-void ArchivoRegimenComida::cambiarPrecio()
-{
-    int pos;
-    float precio;
+    int pos,recibo;
     char aux;
-    RegimenComida obj;
+    DetallesPago obj;
     while(true){
-    cout<<"INGRESE EL ID DEL REGIMEN QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL ID DEL DETALLE QUE DESEE CAMBIAR :"<<endl;
     cin>>pos;
     pos=buscarRegistro(pos);
     if(pos!=-1)
@@ -221,13 +178,13 @@ void ArchivoRegimenComida::cambiarPrecio()
         cin>>aux;
         if(aux=='s' || aux=='S')
             {
-           cout<<"INGRESE EL NUEVO PRECIO : ";
-           cin>>precio;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL PRECIO DE : "<<"$"<<precio<<endl<<"S/N : ";
+           cout<<"INGRESE EL NUEVO NUMERO DE RECIBO : ";
+           cin>>recibo;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<recibo<<endl<<"S/N : ";
            cin>>aux;
            if(aux=='s' || aux=='S')
                     {
-           obj.setPrecio(precio);
+           obj.setIDrecibo(recibo);
            modificarRegistro(obj,pos);
            return;
                     }
@@ -245,4 +202,97 @@ void ArchivoRegimenComida::cambiarPrecio()
 
     }
 
-#endif // ARCREGIMENCOMIDA_H_INCLUDED
+void ArchivoDetalles::cambiarNumHabitacion()
+{
+    int pos,posHab,num;
+    char aux;
+    DetallesPago obj;
+    Habitacion objHab;
+    ArchivoHabitacion arcHab;
+    while(true){
+    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR :"<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO NUMERO DE HABITACION : ";
+           cin>>num;
+           posHab=arcHab.buscarRegistro(num);
+           if(posHab!=-1)
+                {
+           objHab=arcHab.leerRegistro(posHab);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE HABITACION : "<<objHab.getNumero()<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setNumHabitacion(num);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+        }
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+
+    system("cls");
+    }
+}
+void ArchivoDetalles::cambiarTotalAbonado()
+{
+    int pos;
+    float total;
+    char aux;
+    DetallesPago obj;
+    while(true){
+    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR :"<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO TOTAL ABONADO : ";
+           cin>>total;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setTotalabonado(total);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
+
+#endif // ARCDETALLESPAGO_H_INCLUDED

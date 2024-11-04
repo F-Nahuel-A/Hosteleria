@@ -22,6 +22,8 @@ public:
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+
+    void cambiarHorario();
 };
 
 TurnoEmpleado ArchivoTurnoEmpleado::leerRegistro(int pos)
@@ -68,7 +70,7 @@ int ArchivoTurnoEmpleado::buscarRegistro(int id){
     TurnoEmpleado obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getID() == id && obj.getID()){
+        if(obj.getID() == id && obj.getEstado()){
             return i;
         }
     }
@@ -134,7 +136,7 @@ void ArchivoTurnoEmpleado::bajaRegistro()
     TurnoEmpleado obj;
     ArchivoTurnoEmpleado arc;
     int aux;
-    cout<<"INGRESE EL ID QUE DESEE ELIMINAR";
+    cout<<"INGRESE EL ID QUE DESEE ELIMINAR : ";
     cin>>aux;
     aux=arc.buscarRegistro(aux);
     if(aux==-1)
@@ -156,5 +158,46 @@ void ArchivoTurnoEmpleado::bajaRegistro()
     system("pause");
 }
 
+void ArchivoTurnoEmpleado::cambiarHorario()
+{
+    int pos;
+    char aux,horario[6];
+    TurnoEmpleado obj;
+    while(true){
+    cout<<"INGRESE EL ID DEL TURNO QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO HORARIO : ";
+           cargarCadena(horario,5);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL HORARIO : "<<horario<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setHorario(horario);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+    }
 
 #endif // ARCTURNO_H_INCLUDED

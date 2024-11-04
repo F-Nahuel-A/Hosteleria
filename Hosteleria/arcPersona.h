@@ -132,7 +132,7 @@ void ArchivoPersona::bajaRegistro()
     Persona obj;
     ArchivoPersona arc;
     int aux;
-    cout<<"INGRESE EL DNI DEL REGISTRO QUE DESEE ELIMINAR";
+    cout<<"INGRESE EL DNI DEL REGISTRO QUE DESEE ELIMINAR : ";
     cin>>aux;
     aux=arc.buscarRegistro(aux);
     if(aux==-1)

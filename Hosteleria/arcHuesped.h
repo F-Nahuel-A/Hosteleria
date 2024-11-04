@@ -15,10 +15,17 @@ public:
     int buscarRegistro(int dni);
     void modificarRegistro(Huesped obj, int pos);
     void listarArchivo();
-    
+
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+
+    void cambiarDNI();
+    void cambiarNombre();
+    void cambiarApellido();
+    void cambiarFechaNacimiento();
+    void cambiarTelefono();
+    void cambiarEmail();
 };
 
 Huesped ArchivoHuesped::leerRegistro(int pos)
@@ -144,7 +151,7 @@ void ArchivoHuesped::bajaRegistro()
 {
     Huesped obj;
     int dni;
-    cout << "INGRESE EL DNI DEL HUESPED QUE DESEA BORRAR: ";
+    cout << "INGRESE EL DNI DEL HUESPED QUE DESEA BORRAR : ";
     cin >> dni;
     int pos = buscarRegistro(dni);
     if (pos == -1)
@@ -162,5 +169,269 @@ void ArchivoHuesped::bajaRegistro()
     modificarRegistro(obj, pos);
     cout << "EL REGISTRO SE BORRO CORRECTAMENTE." << endl;
 }
+
+void ArchivoHuesped::cambiarDNI()
+{
+    int pos,dni;
+    char aux;
+    Huesped obj;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO DNI : ";
+           cin>>dni;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setDNI(dni);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+    system("cls");
+        }
+
+    }
+
+void ArchivoHuesped::cambiarNombre()
+{
+    int pos;
+    char aux,nuevoNombre[30];
+    Huesped obj;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO NOMBRE : ";
+           cargarCadena(nuevoNombre,29);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NOMBRE : "<<nuevoNombre<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setNombre(nuevoNombre);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+    system("cls");
+        }
+
+    }
+
+void ArchivoHuesped::cambiarApellido()
+{
+    int pos;
+    char aux,nuevoApellido[30];
+    Huesped obj;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO APELLIDO : ";
+           cargarCadena(nuevoApellido,29);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL APELLIDO : "<<nuevoApellido<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setApellido(nuevoApellido);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+    system("cls");
+        }
+
+    }
+
+void ArchivoHuesped::cambiarFechaNacimiento()
+{
+    char aux;
+    Fecha f;
+    Huesped obj;
+    int pos;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : ";
+    pos=buscarRegistro(pos);
+     if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+            {
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N"<<endl;
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+        {
+           cout<<"INGRESE LA NUEVA FECHA DE NACIMIENTO"<<endl;
+           f.Cargar();
+           cout<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
+           f.Mostrar();
+           cout<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+           {
+               obj.setNacimiento(f);
+               modificarRegistro(obj,pos);
+               return;
+           }
+
+        }
+
+            }
+
+        }
+            cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+            cin>>aux;
+               if(aux=='n' || aux=='N')
+               {
+                   return;
+               }
+            system("cls");
+    }
+
+}
+
+void ArchivoHuesped::cambiarTelefono()
+{
+    int pos;
+    char aux,telefono[10];
+    Huesped obj;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO NUMERO DE TELEFONO : ";
+           cargarCadena(telefono,9);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE TELEFONO : "<<telefono<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setTelefono(telefono);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+    system("cls");
+        }
+
+    }
+
+void ArchivoHuesped::cambiarEmail()
+{
+    int pos;
+    char aux,email[50];
+    Huesped obj;
+    while(true){
+    cout<<"INGRESE EL DNI DEL HUESPED QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO EMAIL : ";
+           cargarCadena(email,49);
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL EMAIL : "<<email<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setEmail(email);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+    system("cls");
+        }
+
+    }
 
 #endif // ARCHUESPED_H_INCLUDED

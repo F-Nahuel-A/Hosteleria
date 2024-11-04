@@ -33,13 +33,17 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="arcCategoria.h" />
+		<Unit filename="arcDetallesPago.h" />
 		<Unit filename="arcEmpleado.h" />
 		<Unit filename="arcHabitacion.h" />
+		<Unit filename="arcHuesped.h" />
+		<Unit filename="arcPago.h" />
 		<Unit filename="arcPersona.h" />
 		<Unit filename="arcRegimenComida.h" />
 		<Unit filename="arcTipo.h" />
 		<Unit filename="arcTurno.h" />
 		<Unit filename="clsCategoria.h" />
+		<Unit filename="clsDetallesPagos.h" />
 		<Unit filename="clsEmpleado.h" />
 		<Unit filename="clsFecha.h" />
 		<Unit filename="clsHabitacion.h" />

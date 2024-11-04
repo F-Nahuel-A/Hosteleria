@@ -1,31 +1,36 @@
 #ifndef ARCPAGO_H_INCLUDED
 #define ARCPAGO_H_INCLUDED
 
-class ArchivoPagos
+class ArchivoPago
 {
 private:
     char _nombre[30];
 public:
-    ArchivoPagos(const char *n="Pagos.dat")
+    ArchivoPago(const char *n="Pago.dat")
     {
         strcpy(_nombre,n);
     }
 
-    Pagos leerRegistro(int pos);
+    Pago leerRegistro(int pos);
     int contarRegistros();
-    bool grabarRegistro(RegimenComida obj);
+    bool grabarRegistro(Pago obj);
     int buscarRegistro(int id);
-    void modificarRegistro(Pagos obj, int pos);
+    void modificarRegistro(Pago obj, int pos);
     void listarArchivo();
 
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
+    void cambiarDNI();
+    void cambiarFecha();
+    void cambiarFormadPago();
+    void cambiarTotal();
+};
 
-    Pagos ArchivoPagos::leerRegistro(int pos)
+    Pago ArchivoPago::leerRegistro(int pos)
     {
-        Pagos obj;
+        Pago obj;
         FILE *p=fopen(_nombre, "rb");
         if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -36,8 +41,9 @@ public:
     fread(&obj, sizeof obj, 1, p);
     fclose(p);
     return obj;
+    }
 
-    int ArchivoPagos::contarRegistros(){
+    int ArchivoPago::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -45,12 +51,12 @@ public:
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
-    int cantRegistros = cantBytes / sizeof (Pagos);
+    int cantRegistros = cantBytes / sizeof (Pago);
     fclose(p);
     return cantRegistros;
 }
 
-bool ArchivoPagos::grabarRegistro(Pagos obj){
+bool ArchivoPago::grabarRegistro(Pago obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -61,12 +67,12 @@ bool ArchivoPagos::grabarRegistro(Pagos obj){
     return true;
 }
 
-int ArchivoPagos::buscarRegistro(int recibo){
+int ArchivoPago::buscarRegistro(int recibo){
     int cant = contarRegistros();
-    Pagos obj;
+    Pago obj;
     for(int  i=0; i < cant; i++){
         obj = leerRegistro(i);
-        if(obj.getNumeroderecibo() == recibo && obj.getNumeroderecibo()){
+        if(obj.getNumeroderecibo() == recibo && obj.getEstado()){
             return i;
         }
     }
@@ -74,7 +80,7 @@ int ArchivoPagos::buscarRegistro(int recibo){
     return -1;
 }
 
-void ArchivoPagos::modificarRegistro(Pagos obj, int pos){
+void ArchivoPago::modificarRegistro(Pago obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -87,8 +93,8 @@ void ArchivoPagos::modificarRegistro(Pagos obj, int pos){
     system("pause");
 }
 
-void ArchivoPagos::listarArchivo(){
-    Pagos obj;
+void ArchivoPago::listarArchivo(){
+    Pago obj;
     int cantReg = contarRegistros();
     for(int i = 0; i < cantReg; i++){
         obj = leerRegistro(i);
@@ -100,7 +106,7 @@ void ArchivoPagos::listarArchivo(){
 
 }
 
-void ArchivoPagos::limpiarArchivo(){
+void ArchivoPago::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
     if(p == NULL){
         cout<<"ERROR EN LA APERTURA"<<endl;
@@ -109,9 +115,9 @@ void ArchivoPagos::limpiarArchivo(){
     fclose(p);
 }
 
-void ArchivoPagos::altaRegistro()
+void ArchivoPago::altaRegistro()
 {
-    Pagos obj;
+    Pago obj;
     obj.Cargar();
     if(obj.getEstado())
     {
@@ -126,12 +132,12 @@ void ArchivoPagos::altaRegistro()
     system("pause");
 }
 
-    void ArchivoCategoria::bajaRegistro()
+    void ArchivoPago::bajaRegistro()
 {
-    Pagos obj;
-    ArchivoPagos arc;
+    Pago obj;
+    ArchivoPago arc;
     int aux;
-    cout<<"INGRESE EL ID DEL REGISTRO QUE DESEE ELIMINAR";
+    cout<<"INGRESE EL NUMERO DEL REGISTRO QUE DESEE ELIMINAR : ";
     cin>>aux;
     aux=arc.buscarRegistro(aux);
     if(aux==-1)
@@ -152,6 +158,182 @@ void ArchivoPagos::altaRegistro()
     cout<<"EL REGISTRO SE BORRO CORRECTAMENTE."<<endl;
     system("pause");
 }
+
+void ArchivoPago::cambiarDNI()
+    {
+    int pos,dni;
+    char aux;
+    Pago obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO DNI : ";
+           cin>>dni;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setDNI(dni);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
+void ArchivoPago::cambiarFecha()
+{
+    char aux;
+    Fecha f;
+    Pago obj;
+    int pos;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE MODIFICAR : ";
+    pos=buscarRegistro(pos);
+     if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+            {
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N"<<endl;
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+        {
+           cout<<"INGRESE LA NUEVA FECHA DE PAGO"<<endl;
+           f.Cargar();
+           cout<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
+           f.Mostrar();
+           cout<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+           {
+               obj.setFecha(f);
+               modificarRegistro(obj,pos);
+               return;
+           }
+
+        }
+
+            }
+
+        }
+            cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+            cin>>aux;
+               if(aux=='n' || aux=='N')
+               {
+                   return;
+               }
+            system("cls");
+    }
+
+}
+void ArchivoPago::cambiarFormadPago()
+{
+    int pos,forma;
+    char aux;
+    Pago obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE MODIFICAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE LA NUEVA FORMA DE PAGO : ";
+           cin>>forma;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR LA FORMA : "<<forma<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setPago(forma);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
+void ArchivoPago::cambiarTotal()
+{
+    int pos;
+    float total;
+    char aux;
+    Pago obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : "<<endl;
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        obj.Mostrar();
+        cout<<"S/N : ";
+        cin>>aux;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO TOTAL : ";
+           cin>>total;
+           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setTotal(total);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
 
 
 #endif // ARCPAGO_H_INCLUDED

@@ -34,6 +34,7 @@ public:
 
     void setPago(int forma);
     void setTotal (float t); ///revisarlo, falta parte del codigo || LISTO
+    void setDNI(int dni);
 
     void setEstado(bool e){_estado=e;}
 
@@ -148,6 +149,44 @@ void Pago::setPago(int forma)
                 }
 
             _FormadPago=forma;
+        }
+    }
+
+void Pago::setDNI(int dni)
+{
+        char aux;
+        if(dni>0)
+        {
+            _dni=dni;
+            return;
+        }
+        else
+        {
+            while(dni<0)
+                {
+
+            cout<<"DNI NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL DNI : ";
+                cin>>dni;
+            }
+
+            else
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _dni=dni;
         }
     }
 #endif // CLSPAGOS_H_INCLUDED

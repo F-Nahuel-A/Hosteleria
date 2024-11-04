@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730678545 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730695382 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -15,49 +15,40 @@
 	"arcCategoria.h"
 	"clsEmpleado.h"
 	"arcEmpleado.h"
-	"clsCategoria.h"
-	"arcCategoria.h"
 	"clsRegimenComida.h"
 	"arcRegimenComida.h"
 	"clsHabitacion.h"
 	"arcHabitacion.h"
 	"clsPagos.h"
+	"arcPago.h"
 	"clsHuesped.h"
-	"menuHuesped.h"
-	"menuEmpleado.h"
-	"menuHabitacion.h"
-	"menuTipoEmpleado.h"
-	"menuTurnoEmpleado.h"
-	"menuCategoria.h"
-	"menuRegimen.h"
-	"menuPagos.h"
-	"menuDetallesdePagos.h"
-	"PmenuServicios.h"
-	"PmenuPersonal.h"
-	"PmenuPagos.h"
+	"arcHuesped.h"
+	"clsDetallesPagos.h"
+	"arcDetallesPago.h"
+	"menus.h"
 	"modificaciones.h"
 
 1730591790 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
 1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
-1730663146 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
+1730683024 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
-1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\arcpersona.h
 
 1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clsempleado.h
 
 1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clstipo.h
 
-1730416661 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\arctipo.h
 
 1730590012 c:\users\admin\desktop\hosteleria\hosteleria\clsturno.h
 
-1730681357 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
+1730696014 c:\users\admin\desktop\hosteleria\hosteleria\arcempleado.h
 
-1730416672 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
 
-1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
+1730690007 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
 
 1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
 
@@ -77,13 +68,13 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730416222 c:\users\admin\desktop\hosteleria\hosteleria\arccategoria.h
+1730695727 c:\users\admin\desktop\hosteleria\hosteleria\arccategoria.h
 
-1730416337 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
 
-1730416898 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
-1730679516 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+1730693290 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 
 1730592761 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
 
@@ -111,5 +102,15 @@
 
 1730663264 c:\users\admin\desktop\hosteleria\hosteleria\menudetallesdepagos.h
 
-1730681642 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
+1730695334 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
+
+1730682908 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
+
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\arcpago.h
+
+1730696317 c:\users\admin\desktop\hosteleria\hosteleria\archuesped.h
+
+1730695474 c:\users\admin\desktop\hosteleria\hosteleria\clsdetallespagos.h
+
+1730696014 c:\users\admin\desktop\hosteleria\hosteleria\arcdetallespago.h
 

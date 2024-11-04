@@ -1,7 +1,7 @@
 #ifndef CLSDETALLESPAGOS_H_INCLUDED
 #define CLSDETALLESPAGOS_H_INCLUDED
 
-class Detalles
+class DetallesPago
 {
 private:
     int _IDdetalle;
@@ -10,22 +10,24 @@ private:
     float _totalabonado;
     bool _estado;
 public:
-    Pago(int detalle=0, float tabonado=0){
+    DetallesPago(int detalle=0,int numrecibo=0,int numHab=0, float tabonado=0){
     _IDdetalle=detalle;
+    _NumRecibo=numrecibo;
+    _NumHabitacion=numHab;
     _totalabonado=tabonado;
     }
 
+    int getID(){return _IDdetalle;}
     int getNumeroderecibo(){return _NumRecibo;}
     int getNumdehabitacion(){return _NumHabitacion;}
     float getTotalabonado(){return _totalabonado;}
     bool getEstado(){return _estado;}
 
 
-    void setID (int detalle){
-    if (detalle>0){return _IDdetalle;}
-    }
-
-    void setTotalabonado (float tabonado;)
+    void setIDrecibo(int recibo){if(recibo>0){_NumRecibo=recibo;}}
+    void setIDdetalle (int detalle){if(detalle>0){_IDdetalle=detalle;}}
+    void setNumHabitacion(int numHab){if(numHab>0){_NumHabitacion=numHab;} }
+    void setTotalabonado(float tabonado);
 
     void setEstado(bool e){_estado=e;}
 
@@ -61,7 +63,7 @@ public:
 
 };
 
-void DetallesPagos::setTotalabonado(float tabonado)
+void DetallesPago::setTotalabonado(float tabonado)
     {
     char aux;
     if (tabonado > 0)

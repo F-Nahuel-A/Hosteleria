@@ -5,36 +5,36 @@ class Categoria {
 private:
     int _id;
     char _descripcion[100];
-    float _precio;
+    float _precioXpersona;
     bool _estado;
 
 public:
-    Categoria(int id=0,const char *desc="000", float precio=0)
+    Categoria(int id=0,const char *desc="000", float precioXpersona=0)
     {
       _id=id;
-      _precio=precio;
+      _precioXpersona=precioXpersona;
       strcpy(_descripcion,desc);
     }
 
     int getId(){return _id;}
     const char *getDescripcion(){return _descripcion;}
-    float getPrecio() {return _precio;}
+    float getPrecioXpersona() {return _precioXpersona;}
     bool getEstado() {return _estado;}
 
     void setId(int id) {_id = id;}
     void setDescripcion(const char *descripcion){strcpy(_descripcion,descripcion);}
 
-    void setPrecio(float precio)
+    void setPrecioXpersona(float precioXpersona)
     {
         char aux;
-        if(precio>0)
+        if(precioXpersona>0)
         {
-            _precio=precio;
+            _precioXpersona=precioXpersona;
             return;
         }
         else
         {
-            while(precio<0)
+            while(precioXpersona<0)
                 {
 
             cout<<"PRECIO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
@@ -44,7 +44,7 @@ public:
             {
                 system("cls");
                 cout<<"INGRESE EL PRECIO : ";
-                cin>>precio;
+                cin>>precioXpersona;
             }
 
             else
@@ -58,7 +58,7 @@ public:
 
                 }
 
-            _precio=precio;
+            _precioXpersona=precioXpersona;
         }
     }
     void setEstado(bool e){_estado=e;}
@@ -82,7 +82,7 @@ public:
         float auxF;
         cout<<"INGRESE PRECIO: ";
         cin>>auxF;
-        setPrecio(auxF);
+        setPrecioXpersona(auxF);
     }
 
     void Mostrar()
@@ -90,7 +90,7 @@ public:
         if(_estado){
         cout<<"ID: "<<_id<<endl;
         cout<<"DESCRIPCION: "<<_descripcion<<endl;
-        cout<<"PRECIO: "<<_precio<<endl;
+        cout<<"PRECIO: "<<_precioXpersona<<endl;
         }
     }
 };
