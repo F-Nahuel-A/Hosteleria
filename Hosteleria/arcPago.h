@@ -28,6 +28,7 @@ public:
     void cambiarTotal();
 };
 
+
     Pago ArchivoPago::leerRegistro(int pos)
     {
         Pago obj;
@@ -92,6 +93,7 @@ void ArchivoPago::modificarRegistro(Pago obj, int pos){
     cout<<"MODIFICACION HECHA"<<endl;
     system("pause");
 }
+
 
 void ArchivoPago::listarArchivo(){
     Pago obj;

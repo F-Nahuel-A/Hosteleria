@@ -32,6 +32,7 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="Configuraciones.h" />
 		<Unit filename="arcCategoria.h" />
 		<Unit filename="arcDetallesPago.h" />
 		<Unit filename="arcEmpleado.h" />
@@ -55,6 +56,7 @@
 		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="menuConfiguraciones.h" />
 		<Unit filename="menus.h" />
 		<Unit filename="modificaciones.h" />
 		<Unit filename="rlutil.h" />

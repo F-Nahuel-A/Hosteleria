@@ -28,6 +28,8 @@ using namespace std;
 #include "arcDetallesPago.h"
 #include "menus.h"
 #include "modificaciones.h"
+#include "Configuraciones.h"
+#include "menuConfiguraciones.h"
 
 int main()
 {
