@@ -21,13 +21,13 @@ void modificacionesEmpleado()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(36,10);
     cout<<"MENU DE MODIFICACIONES EMPLEADO"<<endl;
-    showItem("DNI",41,12,y==1);
-    showItem("NOMBRE",41,13,y==2);
-    showItem("APELLIDO",41,14,y==3);
-    showItem("FECHA DE NACIMIENTO",41,15,y==4);
-    showItem("TELEFONO",41,16,y==5);
+    showItem("DNI",48,12,y==1);
+    showItem("NOMBRE",47,13,y==2);
+    showItem("APELLIDO",46,14,y==3);
+    showItem("FECHA DE NACIMIENTO",40,15,y==4);
+    showItem("TELEFONO",46,16,y==5);
     showItem("ID SECTOR LABORAL",41,17,y==6);
     showItem("ID HORARIO LABORAL",41,18,y==7);
     showItem("FECHA DE INGRESO",42,19,y==8);
@@ -134,12 +134,12 @@ void modificacionesHuesped()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES HUESPED"<<endl;
-    showItem("DNI",41,12,y==1);
-    showItem("NOMBRE",41,13,y==2);
-    showItem("APELLIDO",41,14,y==3);
-    showItem("FECHA DE NACIMIENTO",41,15,y==4);
-    showItem("TELEFONO",41,16,y==5);
-    showItem("EMAIL",41,17,y==6);
+    showItem("DNI",48,12,y==1);
+    showItem("NOMBRE",47,13,y==2);
+    showItem("APELLIDO",46,14,y==3);
+    showItem("FECHA DE NACIMIENTO",40,15,y==4);
+    showItem("TELEFONO",46,16,y==5);
+    showItem("EMAIL",47,17,y==6);
     showItem("SALIR",47,18,y==7);
 
         switch (rlutil::getkey())
@@ -229,10 +229,10 @@ void modificacionesTipoEmpleado()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(38,10);
     cout<<"MENU DE MODIFICACIONES SECTOR"<<endl;
-    showItem("OCUPACION",41,12,y==1);
-    showItem("SUELDO",41,13,y==2);
+    showItem("OCUPACION",46,12,y==1);
+    showItem("SUELDO",47,13,y==2);
     showItem("SALIR",47,14,y==3);
 
         switch (rlutil::getkey())
@@ -298,10 +298,10 @@ void modificacionesTurnoEmpleado()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(38,10);
     cout<<"MENU DE MODIFICACIONES TURNOS"<<endl;
-    showItem("HORARIO",41,12,y==1);
-    showItem("SALIR",47,14,y==2);
+    showItem("HORARIO",46,12,y==1);
+    showItem("SALIR",47,13,y==2);
 
         switch (rlutil::getkey())
         {
@@ -360,9 +360,9 @@ void modificacionesCategoria()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(35,10);
     cout<<"MENU DE MODIFICACIONES CATEGORIA"<<endl;
-    showItem("DESCRIPCION",41,12,y==1);
+    showItem("DESCRIPCION",44,12,y==1);
     showItem("PRECIO POR PERSONA",41,13,y==2);
     showItem("SALIR",47,14,y==3);
 
@@ -429,12 +429,12 @@ void modificacionesHabitacion()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(36,10);
     cout<<"MENU DE MODIFICACIONES CATEGORIA"<<endl;
-    showItem("ID REGIMEN",41,12,y==1);
-    showItem("ID CATEGORIA",41,13,y==2);
-    showItem("DISPONIBILIDAD",41,14,y==3);
-    showItem("CAPACIDAD",41,15,y==4);
+    showItem("ID REGIMEN",44,12,y==1);
+    showItem("ID CATEGORIA",43,13,y==2);
+    showItem("DISPONIBILIDAD",43,14,y==3);
+    showItem("CAPACIDAD",45,15,y==4);
     showItem("SALIR",47,16,y==5);
 
         switch (rlutil::getkey())
@@ -512,10 +512,10 @@ void modificacionesRegimen()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(36,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("DESCRIPCION",41,12,y==1);
-    showItem("PRECIO",41,13,y==2);
+    showItem("DESCRIPCION",44,12,y==1);
+    showItem("PRECIO",46,13,y==2);
     showItem("SALIR",47,14,y==3);
 
         switch (rlutil::getkey())
@@ -583,10 +583,10 @@ void modificacionesPago()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("DNI",41,12,y==1);
-    showItem("FECHA DE PAGO",41,13,y==2);
-    showItem("FORMA DE PAGO",41,14,y==3);
-    showItem("TOTAL",41,15,y==4);
+    showItem("DNI",48,12,y==1);
+    showItem("FECHA DE PAGO",43,13,y==2);
+    showItem("FORMA DE PAGO",43,14,y==3);
+    showItem("TOTAL",47,15,y==4);
     showItem("SALIR",47,16,y==5);
 
         switch (rlutil::getkey())
@@ -666,9 +666,9 @@ void modificacionesDetallesdePago()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("NUMERO DE RECIBO",41,12,y==1);
-    showItem("NUMERO DE HABITACION",41,13,y==2);
-    showItem("TOTAL ABONADO",41,14,y==3);
+    showItem("NUMERO DE RECIBO",42,12,y==1);
+    showItem("NUMERO DE HABITACION",40,13,y==2);
+    showItem("TOTAL ABONADO",43,14,y==3);
     showItem("SALIR",47,15,y==4);
 
         switch (rlutil::getkey())

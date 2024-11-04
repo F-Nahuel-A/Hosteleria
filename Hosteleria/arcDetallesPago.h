@@ -7,7 +7,7 @@ private:
     char _nombre[30];
 
 public:
-    ArchivoDetalles(const char *n="detallePago")
+    ArchivoDetalles(const char *n="detallePago.dat")
     {
         strcpy(_nombre,n);
     }

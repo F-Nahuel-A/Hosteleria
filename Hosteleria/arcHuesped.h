@@ -7,7 +7,7 @@ private:
     char _nombre[30];
 
 public:
-    ArchivoHuesped(const char *n = "huesped") { strcpy(_nombre, n); }
+    ArchivoHuesped(const char *n = "huesped.dat") { strcpy(_nombre, n); }
 
     Huesped leerRegistro(int pos);
     int contarRegistros();

@@ -26,15 +26,15 @@ using namespace std;
 #include "arcHuesped.h"
 #include "clsDetallesPagos.h"
 #include "arcDetallesPago.h"
-#include "menus.h"
 #include "modificaciones.h"
+#include "menus.h"
 #include "Configuraciones.h"
 #include "menuConfiguraciones.h"
 
 int main()
 {
 
-//  mostrarMenu();
   mostrarMenu();
+
   return 0;
 }

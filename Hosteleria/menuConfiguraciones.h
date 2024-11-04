@@ -20,12 +20,12 @@ void menuCategoriaConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(35, 10);
         cout << "MENU DE CATEGORIA CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -87,12 +87,12 @@ void menuDetallesPagoConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(33, 10);
         cout << "MENU DE DETALLES DE PAGO CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -154,12 +154,12 @@ void menuEmpleadoConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(35, 10);
         cout << "MENU DE EMPLEADO CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -221,12 +221,12 @@ void menuHuespedConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(36, 10);
         cout << "MENU DE HUESPED CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -290,10 +290,10 @@ void menuPagoConfig()
         rlutil::hidecursor();
         rlutil::locate(37, 10);
         cout << "MENU DE PAGO CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -355,12 +355,12 @@ void menuRegimenComidaConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(31, 10);
         cout << "MENU DE REGIMEN DE COMIDA CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -422,12 +422,12 @@ void menuTipoEmpleadoConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(32, 10);
         cout << "MENU DE TIPO DE EMPLEADO CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -489,12 +489,12 @@ void menuTurnoEmpleadoConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(32, 10);
         cout << "MENU DE TURNO DE EMPLEADO CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())
@@ -556,12 +556,12 @@ void menuHabitacionConfig()
         rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
         rlutil::setColor(rlutil::COLOR::WHITE);
         rlutil::hidecursor();
-        rlutil::locate(37, 10);
+        rlutil::locate(34, 10);
         cout << "MENU DE HABITACION CONFIGURACIONES" << endl;
-        showItem("COPIAR", 41, 12, y == 1);
-        showItem("RESTABLECER", 41, 13, y == 2);
-        showItem("ESTABLECER DATOS .INI", 41, 14, y == 3);
-        showItem("RESTABLECER DATOS .INI", 41, 15, y == 4);
+        showItem("COPIAR", 46, 12, y == 1);
+        showItem("RESTABLECER", 44, 13, y == 2);
+        showItem("ESTABLECER DATOS .INI", 38, 14, y == 3);
+        showItem("RESTABLECER DATOS .INI", 38, 15, y == 4);
         showItem("SALIR", 47, 16, y == 5);
 
         switch (rlutil::getkey())

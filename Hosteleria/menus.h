@@ -29,11 +29,11 @@ void mostrarMenu()
     rlutil::hidecursor();
     rlutil::locate(1,29);
     cout<<"https://github.com/F-Nahuel-A/Hosteleria"<<endl;
-    rlutil::locate(42,10);
+    rlutil::locate(41,10);
     cout<<"HOSTELERIA-GRUPO 25"<<endl;
     showItem("HUESPED",45,12,y==1);
     showItem("PERSONAL",45,13,y==2);
-    showItem("SERVICIOS",45,14,y==3);
+    showItem("SERVICIOS",44,14,y==3);
     showItem("PAGOS",46,15,y==4);
     showItem("SALIR",46,16,y==5);
 
@@ -390,7 +390,7 @@ void menuEmpleado()
 
             case 3:
                 system("cls");
-                cout<<"prueba"<<endl;
+                modificacionesEmpleado();
                 system("cls");
                 break;
 
@@ -482,7 +482,7 @@ void menuHuesped()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesHuesped();
                 system("cls");
                 break;
 
@@ -575,7 +575,7 @@ void menuHabitacion()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesHabitacion();
                 system("cls");
                 break;
 
@@ -645,9 +645,9 @@ void menuPagos()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>4)
+                if(y>7)
                 {
-                    y=4;
+                    y=7;
                 }
                 break;
 
@@ -668,7 +668,7 @@ void menuPagos()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesPago();
                 system("cls");
                 break;
 
@@ -685,6 +685,12 @@ void menuPagos()
                 break;
 
             case 6:
+                system("cls");
+                cout<<"ola"<<endl;
+                system("cls");
+                break;
+
+            case 7:
                 op=0;
                 break;
 
@@ -760,7 +766,7 @@ void menuRegimen()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesRegimen();
                 system("cls");
                 break;
 
@@ -851,7 +857,7 @@ void menuTipoEmpleado()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesTipoEmpleado();
                 system("cls");
                 break;
 
@@ -944,7 +950,7 @@ void menuTurnoEmpleado()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesTurnoEmpleado();
                 system("cls");
                 break;
 
@@ -1036,7 +1042,7 @@ void menuCategoria()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesCategoria();
                 system("cls");
                 break;
 
@@ -1129,7 +1135,7 @@ void menuDetalles()
 
             case 3:
                 system("cls");
-                cout<<"ola"<<endl;
+                modificacionesDetallesdePago();
                 system("cls");
                 break;
 
