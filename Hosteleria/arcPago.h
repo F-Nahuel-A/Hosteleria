@@ -15,12 +15,14 @@ public:
     int contarRegistros();
     bool grabarRegistro(Pago obj);
     int buscarRegistro(int id);
-    void modificarRegistro(Pago obj, int pos);
+    void modificarRegistro(Pago obj, int pos); ///Doble mensaje
     void listarArchivo();
+    void listarPorID(); ///Doble mensaje
+    void listarPorDNI(); ///Doble mensaje
 
     void limpiarArchivo();
     void altaRegistro();
-    void bajaRegistro();
+    void bajaRegistro(); ///Doble mensaje
 
     void cambiarDNI();
     void cambiarFecha();
@@ -105,7 +107,7 @@ void ArchivoPago::listarArchivo(){
             cout<<endl;
         }
     }
-
+    system("pause");
 }
 
 void ArchivoPago::limpiarArchivo(){
@@ -337,5 +339,47 @@ void ArchivoPago::cambiarTotal()
 
     }
 
+void ArchivoPago::listarPorID()
+{
+    int id,pos;
+    Pago obj;
+    cout<<"INGRESE EL ID ";
+    cin>>id;
+    pos=buscarRegistro(id);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
+    }
+}
 
+void ArchivoPago::listarPorDNI()
+{
+    int dni,pos;
+    Pago obj;
+    cout<<"INGRESE EL DNI : ";
+    cin>>dni;
+    pos=buscarRegistro(dni);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
+    }
+}
 #endif // ARCPAGO_H_INCLUDED

@@ -18,6 +18,7 @@ public:
     int buscarRegistro(int id);
     void modificarRegistro(DetallesPago obj, int pos);
     void listarArchivo();
+    void listarPorID();
 
     void limpiarArchivo();
     void altaRegistro();
@@ -103,7 +104,7 @@ void ArchivoDetalles::listarArchivo(){
             cout<<endl;
         }
     }
-
+    system("pause");
 }
 
 void ArchivoDetalles::limpiarArchivo(){
@@ -295,4 +296,25 @@ void ArchivoDetalles::cambiarTotalAbonado()
 
     }
 
+void ArchivoDetalles::listarPorID()
+{
+    int id,pos;
+    DetallesPago obj;
+    cout<<"INGRESE EL ID ";
+    cin>>id;
+    pos=buscarRegistro(id);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
+    }
+}
 #endif // ARCDETALLESPAGO_H_INCLUDED

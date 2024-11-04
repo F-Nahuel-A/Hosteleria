@@ -15,6 +15,7 @@ public:
     int buscarRegistro(int dni);
     void modificarRegistro(Huesped obj, int pos);
     void listarArchivo();
+    void listarPorDNI();
 
     void limpiarArchivo();
     void altaRegistro();
@@ -98,6 +99,7 @@ void ArchivoHuesped::modificarRegistro(Huesped obj, int pos)
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
     cout << "MODIFICACION HECHA" << endl;
+    system("pause");
 }
 
 void ArchivoHuesped::listarArchivo()
@@ -113,6 +115,7 @@ void ArchivoHuesped::listarArchivo()
             cout << endl;
         }
     }
+    system("pause");
 }
 
 void ArchivoHuesped::limpiarArchivo()
@@ -145,6 +148,7 @@ void ArchivoHuesped::altaRegistro()
     {
         cout << "NO SE PUDO CARGAR CORRECTAMENTE EL ARCHIVO" << endl;
     }
+    system("pause");
 }
 
 void ArchivoHuesped::bajaRegistro()
@@ -158,16 +162,19 @@ void ArchivoHuesped::bajaRegistro()
     {
         cout << "NO SE ENCONTRO EL REGISTRO" << endl;
         return;
+        system("pause");
     }
     obj = leerRegistro(pos);
     if (!obj.getEstado())
     {
         cout << "EL REGISTRO YA HABIA SIDO BORRADO." << endl;
+        system("pause");
         return;
     }
     obj.setEstado(false);
     modificarRegistro(obj, pos);
     cout << "EL REGISTRO SE BORRO CORRECTAMENTE." << endl;
+    system("pause");
 }
 
 void ArchivoHuesped::cambiarDNI()
@@ -432,6 +439,28 @@ void ArchivoHuesped::cambiarEmail()
     system("cls");
         }
 
+
     }
 
+void ArchivoHuesped::listarPorDNI()
+{
+    int dni,pos;
+    Huesped obj;
+    cout<<"INGRESE EL DNI : ";
+    cin>>dni;
+    pos=buscarRegistro(dni);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
+    }
+}
 #endif // ARCHUESPED_H_INCLUDED

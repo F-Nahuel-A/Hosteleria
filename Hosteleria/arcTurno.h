@@ -17,7 +17,7 @@ public:
     int buscarRegistro(int id);
     void modificarRegistro(TurnoEmpleado obj,int pos);
     void listarArchivo();
-
+    void listarPorID();
 
     void limpiarArchivo();
     void altaRegistro();
@@ -101,6 +101,7 @@ void ArchivoTurnoEmpleado::listarArchivo(){
             cout<<endl;
         }
     }
+    system("pause");
 
 }
 
@@ -200,4 +201,25 @@ void ArchivoTurnoEmpleado::cambiarHorario()
         }
     }
 
+void ArchivoTurnoEmpleado::listarPorID()
+{
+    int id,pos;
+    TurnoEmpleado obj;
+    cout<<"INGRESE EL ID ";
+    cin>>id;
+    pos=buscarRegistro(id);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
+    }
+}
 #endif // ARCTURNO_H_INCLUDED

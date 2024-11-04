@@ -335,6 +335,7 @@ void menuPagosPrincipal()
 void menuEmpleado()
 {
     int y=1,op=1;
+    ArchivoEmpleado arc;
 
 
     do
@@ -378,13 +379,13 @@ void menuEmpleado()
                 {
             case 1:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -396,13 +397,13 @@ void menuEmpleado()
 
             case 4:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
@@ -427,7 +428,7 @@ void menuEmpleado()
 void menuHuesped()
 {
     int y=1,op=1;
-
+    ArchivoHuesped arc;
 
     do
     {
@@ -470,13 +471,13 @@ void menuHuesped()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -488,13 +489,13 @@ void menuHuesped()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorDNI();
                 system("cls");
                 break;
 
@@ -520,6 +521,7 @@ void menuHuesped()
 void menuHabitacion()
 {
     int y=1,op=1;
+    ArchivoHabitacion arc;
 
 
     do
@@ -563,13 +565,13 @@ void menuHabitacion()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -581,13 +583,13 @@ void menuHabitacion()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorNumero();
                 system("cls");
                 break;
 
@@ -612,7 +614,7 @@ void menuHabitacion()
 void menuPagos()
 {
     int y=1,op=1;
-
+    ArchivoPago arc;
 
     do
     {
@@ -656,13 +658,13 @@ void menuPagos()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -674,19 +676,19 @@ void menuPagos()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
             case 6:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorDNI();
                 system("cls");
                 break;
 
@@ -711,6 +713,7 @@ void menuPagos()
 void menuRegimen()
 {
     int y=1,op=1;
+    ArchivoRegimenComida arc;
 
 
     do
@@ -754,13 +757,13 @@ void menuRegimen()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -772,13 +775,13 @@ void menuRegimen()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
@@ -803,7 +806,7 @@ void menuRegimen()
 void menuTipoEmpleado()
 {
     int y=1,op=1;
-
+    ArchivoTipoEmpleado arc;
 
     do
     {
@@ -845,13 +848,13 @@ void menuTipoEmpleado()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -863,13 +866,13 @@ void menuTipoEmpleado()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
@@ -895,7 +898,7 @@ void menuTipoEmpleado()
 void menuTurnoEmpleado()
 {
     int y=1,op=1;
-
+    ArchivoTurnoEmpleado arc;
 
     do
     {
@@ -938,13 +941,13 @@ void menuTurnoEmpleado()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -956,13 +959,13 @@ void menuTurnoEmpleado()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
@@ -987,7 +990,7 @@ void menuTurnoEmpleado()
 void menuCategoria()
 {
     int y=1,op=1;
-
+    ArchivoCategoria arc;
 
     do
     {
@@ -1030,13 +1033,13 @@ void menuCategoria()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -1048,13 +1051,13 @@ void menuCategoria()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 
@@ -1079,7 +1082,7 @@ void menuCategoria()
 void menuDetalles()
 {
     int y=1,op=1;
-
+    ArchivoDetalles arc;
 
     do
     {
@@ -1123,13 +1126,13 @@ void menuDetalles()
                 {
             case 1:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.altaRegistro();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.bajaRegistro();
                 system("cls");
                 break;
 
@@ -1141,7 +1144,7 @@ void menuDetalles()
 
             case 4:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarArchivo();
                 system("cls");
                 break;
 
@@ -1153,7 +1156,7 @@ void menuDetalles()
 
             case 6:
                 system("cls");
-                cout<<"ola"<<endl;
+                arc.listarPorID();
                 system("cls");
                 break;
 

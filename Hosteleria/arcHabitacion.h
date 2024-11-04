@@ -13,8 +13,9 @@ public:
     bool grabarRegistro(Habitacion obj);
     int buscarRegistro(int id);
     void modificarRegistro(Habitacion obj, int pos);
-
     void listarArchivo();
+    void listarPorNumero();
+
     void limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
@@ -100,7 +101,7 @@ void ArchivoHabitacion::listarArchivo(){
             cout<<endl;
         }
     }
-
+    system("pause");
 }
 
 void ArchivoHabitacion::limpiarArchivo(){
@@ -383,4 +384,25 @@ void ArchivoHabitacion::cambiarCapacidad()
 
     }
 
+void ArchivoHabitacion::listarPorNumero()
+{
+    int num,pos;
+    Habitacion obj;
+    cout<<"INGRESE EL NUMERO DE LA HABITACION : ";
+    cin>>num;
+    pos=buscarRegistro(num);
+    if(pos!=-1)
+    {
+        obj=leerRegistro(pos);
+        if(obj.getEstado())
+        {
+            obj.Mostrar();
+            system("pause");
+        }
+    }
+    else
+    {
+        cout<<"NO SE ENCONTRO EL REGISTRO."<<endl;system("pause");
+    }
+}
 #endif // ARCHABITACION_H_INCLUDED
