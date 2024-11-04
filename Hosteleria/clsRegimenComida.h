@@ -19,7 +19,7 @@ public:
 
     void setDesc(const char *d){strcpy(_descripcion,d);}
 
-    void setPrecio(float p){if(p>0){_precio=p;}}
+    void setPrecio(float p);
 
     void setEstado(bool e){_estado=e;}
 
@@ -59,6 +59,42 @@ public:
     }
 };
 
+void RegimenComida::setPrecio(float p)
+    {
+        char aux;
+        if(p>0)
+        {
+            _precio=p;
+            return;
+        }
+        else
+        {
+            while(p<0)
+                {
 
+            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL TOTAL : ";
+                cin>>p;
+            }
+
+            else
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+
+            system("cls");
+
+                }
+
+            _precio=p;
+        }
+    }
 
 #endif // CLSREGIMENCOMIDA_H_INCLUDED

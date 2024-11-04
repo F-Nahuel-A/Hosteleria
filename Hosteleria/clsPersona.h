@@ -88,7 +88,7 @@ void Persona::setDNI(int dni)
                 cin>>dni;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;

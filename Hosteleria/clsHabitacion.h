@@ -91,7 +91,7 @@ void Habitacion::setIdCategoria(int categoria)
                 cin>>categoria;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -142,7 +142,7 @@ void Habitacion::setIdRegimen(int regimen)
                 cin>>regimen;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -197,7 +197,7 @@ void Habitacion::setNumero(int numero)
                 cin>>numero;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -235,7 +235,7 @@ void Habitacion::setDisponibilidad(int estado)
                 cin>>estado;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -273,7 +273,7 @@ void Habitacion::setCapacidad(int cap)
                 cin>>cap;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;

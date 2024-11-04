@@ -50,7 +50,7 @@ public:
                 cin>>s;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;

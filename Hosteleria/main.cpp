@@ -36,10 +36,12 @@ using namespace std;
 #include "PmenuServicios.h"
 #include "PmenuPersonal.h"
 #include "PmenuPagos.h"
+#include "modificaciones.h"
 
 int main()
 {
 
-  mostrarMenu();
+//  mostrarMenu();
+  modificacionesEmpleado();
   return 0;
 }

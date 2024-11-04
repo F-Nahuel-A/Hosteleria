@@ -47,7 +47,7 @@ public:
                 cin>>precio;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;

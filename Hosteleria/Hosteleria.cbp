@@ -63,6 +63,7 @@
 		<Unit filename="menuRegimen.h" />
 		<Unit filename="menuTipoEmpleado.h" />
 		<Unit filename="menuTurnoEmpleado.h" />
+		<Unit filename="modificaciones.h" />
 		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

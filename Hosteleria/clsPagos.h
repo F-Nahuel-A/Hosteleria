@@ -98,7 +98,7 @@ void Pago::setTotal(float t)
                 cin>>t;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -136,7 +136,7 @@ void Pago::setPago(int forma)
                 cin>>forma;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;

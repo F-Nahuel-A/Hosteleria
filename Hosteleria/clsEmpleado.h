@@ -85,7 +85,7 @@ void Empleado::setIDtipo(int t)
                 cin>>t;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -136,7 +136,7 @@ void Empleado::setIDturno(int t)
                 cin>>t;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
@@ -191,7 +191,7 @@ void Empleado::setLegajo(int l)
                 cin>>l;
             }
 
-            if(aux=='N' || aux=='n')
+            else
             {
                 system("cls");
                 _estado=false;
