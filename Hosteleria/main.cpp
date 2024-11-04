@@ -24,24 +24,13 @@ using namespace std;
 #include "arcHabitacion.h"
 #include "clsPagos.h"
 #include "clsHuesped.h"
-#include "menuHuesped.h"
-#include "menuEmpleado.h"
-#include "menuHabitacion.h"
-#include "menuTipoEmpleado.h"
-#include "menuTurnoEmpleado.h"
-#include "menuCategoria.h"
-#include "menuRegimen.h"
-#include "menuPagos.h"
-#include "menuDetallesdePagos.h"
-#include "PmenuServicios.h"
-#include "PmenuPersonal.h"
-#include "PmenuPagos.h"
+#include "menus.h"
 #include "modificaciones.h"
 
 int main()
 {
 
 //  mostrarMenu();
-  modificacionesEmpleado();
+  mostrarMenu();
   return 0;
 }

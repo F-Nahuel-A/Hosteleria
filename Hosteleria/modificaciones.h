@@ -14,7 +14,7 @@ void modificacionesDetallesdePago();
 void modificacionesEmpleado()
 {
     int y=1,op=1;
-
+    ArchivoEmpleado arc;
 
     do
     {
@@ -56,19 +56,19 @@ void modificacionesEmpleado()
                 {
             case 1:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.cambiarTipoEmpleado();
                 system("cls");
                 break;
 
             case 2:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.cambiarTurnoEmpleado();
                 system("cls");
                 break;
 
             case 3:
                 system("cls");
-                cout<<"prueba"<<endl;
+                arc.cambiarFechaIngreso();
                 system("cls");
                 break;
 

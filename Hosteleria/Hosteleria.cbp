@@ -32,9 +32,6 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="PmenuPagos.h" />
-		<Unit filename="PmenuPersonal.h" />
-		<Unit filename="PmenuServicios.h" />
 		<Unit filename="arcCategoria.h" />
 		<Unit filename="arcEmpleado.h" />
 		<Unit filename="arcHabitacion.h" />
@@ -54,15 +51,7 @@
 		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="menuCategoria.h" />
-		<Unit filename="menuDetallesdePagos.h" />
-		<Unit filename="menuEmpleado.h" />
-		<Unit filename="menuHabitacion.h" />
-		<Unit filename="menuHuesped.h" />
-		<Unit filename="menuPagos.h" />
-		<Unit filename="menuRegimen.h" />
-		<Unit filename="menuTipoEmpleado.h" />
-		<Unit filename="menuTurnoEmpleado.h" />
+		<Unit filename="menus.h" />
 		<Unit filename="modificaciones.h" />
 		<Unit filename="rlutil.h" />
 		<Extensions>
