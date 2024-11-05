@@ -34,13 +34,6 @@ using namespace std;
 
 int main()
 {
-    ArchivoEmpleado arc;
-    ArchivoTurnoEmpleado arc2;
-    ArchivoTipoEmpleado arc3;
-    arc.limpiarArchivo();
-    arc2.limpiarArchivo();
-    arc3.limpiarArchivo();
-
   mostrarMenu();
   return 0;
 }

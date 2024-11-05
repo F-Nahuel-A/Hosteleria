@@ -109,17 +109,18 @@ void recaudacionHabitacion()
     ArchivoHabitacion archivoHabitacion;
     ArchivoCategoria archivoCategoria;
 
+    Categoria categoria;
+
     int contarHabitaciones = archivoHabitacion.contarRegistros();
-    int contarCategorias = archivoCategoria.contarRegistros();
-    if (contarHabitaciones < 0 || contarCategorias < 0) 
+    if (contarHabitaciones < 0)
     {
         cout << "ERROR AL ABRIR EL ARCHIVO\n";
         return;
     }
 
     Habitacion* habitaciones = new Habitacion[contarHabitaciones];
-    
-    for (int i = 0; i < contarHabitaciones; i++) 
+
+    for (int i = 0; i < contarHabitaciones; i++)
     {
         habitaciones[i] = archivoHabitacion.leerRegistro(i);
     }
@@ -128,25 +129,21 @@ void recaudacionHabitacion()
     cout << "| NUM HABITACION | RECAUDACION         |\n";
     cout << "----------------------------------------\n";
 
-    for (int i = 0; i < contarHabitaciones; i++) 
+    for (int i = 0; i < contarHabitaciones; i++)
     {
         Habitacion habitacion = habitaciones[i];
-        if (habitacion.getEstado()) 
+        if (habitacion.getEstado())
         {
-            int idCategoria = habitacion.getIdCategoria();
-            int capacidad = habitacion.getCapacidad();
-            float precioPorPersona = 0.0f;
 
-            int posCategoria = archivoCategoria.buscarRegistro(idCategoria);
-            if (posCategoria != -1) 
+            int posCategoria = archivoCategoria.buscarRegistro(habitacion.getIdCategoria());
+            if (posCategoria != -1)
             {
-                Categoria categoria = archivoCategoria.leerRegistro(posCategoria);
-                precioPorPersona = categoria.getPrecioXpersona();
+                categoria = archivoCategoria.leerRegistro(posCategoria);
             }
 
-            if (habitacion.getDisponibilidad() == 1) 
+            if (habitacion.getDisponibilidad() == 1)
             {
-                float recaudacion = capacidad * precioPorPersona;
+                float recaudacion = habitacion.getCapacidad() * categoria.getPrecioXpersona();
                 rlutil::locate(1, 4+i*2);
                 cout << "| " << habitacion.getNumero();
                 rlutil::locate(18, 4+i*2);
@@ -155,8 +152,8 @@ void recaudacionHabitacion()
                 cout << "|\n";
                 cout << "-----------------+----------------------\n";
                 cout << "|                |                     |\n";
-            } 
-            else 
+            }
+            else
             {
                 cout << "| " << habitacion.getNumero() << "| NO TIENE RECAUDACION " << "\n";
                 cout << "-----------------+----------------------\n";
