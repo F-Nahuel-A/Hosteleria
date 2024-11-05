@@ -60,7 +60,7 @@ void menuInforme()
 
             case 3:
                 system("cls");
-//                gananciaAnual();
+                gananciaAnual();
                 system("pause");
                 break;
 
@@ -109,11 +109,9 @@ void recaudacionHabitacion()
     ArchivoHabitacion archivoHabitacion;
     ArchivoCategoria archivoCategoria;
 
-    Categoria categoria;
-    int posCategoria;
-
     int contarHabitaciones = archivoHabitacion.contarRegistros();
-    if (contarHabitaciones < 0)
+    int contarCategorias = archivoCategoria.contarRegistros();
+    if (contarHabitaciones < 0 || contarCategorias < 0)
     {
         cout << "ERROR AL ABRIR EL ARCHIVO\n";
         return;
@@ -135,13 +133,20 @@ void recaudacionHabitacion()
         Habitacion habitacion = habitaciones[i];
         if (habitacion.getEstado())
         {
+            int idCategoria = habitacion.getIdCategoria();
+            int capacidad = habitacion.getCapacidad();
+            float precioPorPersona = 0.0f;
 
-            posCategoria = archivoCategoria.buscarRegistro(habitacion.getIdCategoria());
-            categoria = archivoCategoria.leerRegistro(posCategoria);
-
-            if (habitacion.getDisponibilidad() == 1 || habitacion.getDisponibilidad() == 2)
+            int posCategoria = archivoCategoria.buscarRegistro(idCategoria);
+            if (posCategoria != -1)
             {
-                float recaudacion = habitacion.getCapacidad() * categoria.getPrecioXpersona();
+                Categoria categoria = archivoCategoria.leerRegistro(posCategoria);
+                precioPorPersona = categoria.getPrecioXpersona();
+            }
+
+            if (habitacion.getDisponibilidad() == 1)
+            {
+                float recaudacion = capacidad * precioPorPersona;
                 rlutil::locate(1, 4+i*2);
                 cout << "| " << habitacion.getNumero();
                 rlutil::locate(18, 4+i*2);
@@ -157,13 +162,63 @@ void recaudacionHabitacion()
                 cout << "-----------------+----------------------\n";
                 cout << "|                |                     |\n";
             }
-
-
         }
     }
     cout << "----------------------------------------\n";
 
     delete[] habitaciones;
+}
+
+void gananciaAnual() {
+    ArchivoDetalles archivoDetalles;
+    ArchivoHabitacion archivoHabitacion;
+
+    int cantHabitaciones = archivoHabitacion.contarRegistros();
+    int cantDetalles = archivoDetalles.contarRegistros();
+
+    if (cantHabitaciones <= 0 || cantDetalles <= 0) {
+        cout << "NO HAY DATOS SUFICIENTES PARA CALCULAR LA MAXIMA GANANCIA." << endl;
+        return;
+    }
+
+    float *gananciasPorHabitacion = new float[cantHabitaciones]();
+
+    /// ACUMULA LAS GANANCIAS POR HABITACION
+    for (int i = 0; i < cantDetalles; i++) {
+        DetallesPago detalle = archivoDetalles.leerRegistro(i);
+
+        if (detalle.getEstado()) {
+            int numdeHabitacion = detalle.getNumdehabitacion();
+            float totalAbonado = detalle.getTotalabonado();
+
+            int posHabitacion = archivoHabitacion.buscarRegistro(numdeHabitacion);
+            if (posHabitacion != -1) {
+                gananciasPorHabitacion[posHabitacion] += totalAbonado;
+            }
+        }
+    }
+
+    // BUSCA LA HABITACION CON MAYOR GANANCIA
+    float maxGanancia = 0;
+    int habitacionMaxGanancia = -1;
+
+    for (int j = 0; j < cantHabitaciones; j++) {
+        if (gananciasPorHabitacion[j] > maxGanancia) {
+            maxGanancia = gananciasPorHabitacion[j];
+            habitacionMaxGanancia = j;
+        }
+    }
+
+    /// DEBERIA MOSTRAR LA HABITACION CON MAYOR GANANCIA
+    if (habitacionMaxGanancia != -1) {
+        Habitacion habitacion = archivoHabitacion.leerRegistro(habitacionMaxGanancia);
+        cout << "LA HABITACION CON MAYOR GANANCIA ES LA: " << habitacion.getNumero() << endl;
+        cout << "CON UNA GANANCIA DE: $" << maxGanancia << endl;
+    } else {
+        cout << "NO SE REGISTRO LA MAYOR GANANCIA" << endl;
+    }
+
+    delete[] gananciasPorHabitacion;
 }
 
 #endif // INFORME_H_INCLUDED
