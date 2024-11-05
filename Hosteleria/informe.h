@@ -110,6 +110,7 @@ void recaudacionHabitacion()
     ArchivoCategoria archivoCategoria;
 
     Categoria categoria;
+    int posCategoria;
 
     int contarHabitaciones = archivoHabitacion.contarRegistros();
     if (contarHabitaciones < 0)
@@ -135,10 +136,8 @@ void recaudacionHabitacion()
         if (habitacion.getEstado())
         {
 
-            int posCategoria = archivoCategoria.buscarRegistro(habitacion.getIdCategoria());
-            if (posCategoria != -1)
-            {
-                categoria = archivoCategoria.leerRegistro(posCategoria);
+            posCategoria = archivoCategoria.buscarRegistro(habitacion.getIdCategoria());
+            categoria = archivoCategoria.leerRegistro(posCategoria);
 
             if (habitacion.getDisponibilidad() == 1 || habitacion.getDisponibilidad() == 2)
             {
@@ -158,7 +157,7 @@ void recaudacionHabitacion()
                 cout << "-----------------+----------------------\n";
                 cout << "|                |                     |\n";
             }
-            }
+
 
         }
     }
