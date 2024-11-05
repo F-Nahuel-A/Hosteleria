@@ -34,6 +34,8 @@ using namespace std;
 
 int main()
 {
+    ArchivoHuesped a;
+    a.limpiarArchivo();
   mostrarMenu();
   return 0;
 }
