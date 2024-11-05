@@ -382,4 +382,5 @@ void ArchivoPago::listarPorDNI()
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
 }
+
 #endif // ARCPAGO_H_INCLUDED

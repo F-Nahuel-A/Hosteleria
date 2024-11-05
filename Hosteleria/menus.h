@@ -1095,9 +1095,8 @@ void menuDetalles()
     showItem("ELIMINAR DETALLE",42,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR DETALLES",42,15,y==4);
-    showItem("LISTAR DEUDAS",43,16,y==5);
-    showItem("LISTAR POR ID",43,17,y==6);
-    showItem("SALIR",47,18,y==7);
+    showItem("LISTAR POR ID",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -1115,9 +1114,9 @@ void menuDetalles()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>7)
+                if(y>6)
                 {
-                    y=7;
+                    y=6;
                 }
                 break;
 
@@ -1150,17 +1149,11 @@ void menuDetalles()
 
             case 5:
                 system("cls");
-                cout<<"ola"<<endl;
-                system("cls");
-                break;
-
-            case 6:
-                system("cls");
                 arc.listarPorID();
                 system("cls");
                 break;
 
-            case 7:
+            case 6:
                 op=0;
                 break;
 
