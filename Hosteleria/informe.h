@@ -48,19 +48,19 @@ void menuInforme()
             case 1:
                 system("cls");
                 tipoDpago();
-                system("cls");
+                system("pause");
                 break;
 
             case 2:
                 system("cls");
-//                recaudacionHabitacion();
-                system("cls");
+                recaudacionHabitacion();
+                system("pause");
                 break;
 
             case 3:
                 system("cls");
 //                gananciaAnual();
-                system("cls");
+                system("pause");
                 break;
 
             case 4:
@@ -101,6 +101,53 @@ void tipoDpago()
         cout<<"TIPO DE PAGO 1"<<"CON UN PORCENTAJE DE : "<<porcentaje1<<"%"<<endl;
     }
     else{cout<<"TIPO DE PAGO 2"<<"CON UN PORCENTAJE DE : "<<porcentaje2<<"%"<<endl;}
+}
+
+void recaudacionHabitacion()
+{
+  ArchivoHabitacion archivoHabitacion;
+  ArchivoCategoria archivoCategoria;
+  
+  int contarHabitaciones = archivoHabitacion.contarRegistros();
+    int contarCategorias = archivoCategoria.contarRegistros();
+
+    if (contarHabitaciones < 0 || contarCategorias < 0) 
+      {
+        cout << "ERROR AL ABRIR EL ARCHIVO\n";
+        return;
+      }
+
+    cout << "-------RECAUDACION POR HABITACION-------\n";
+    cout << "| NUM HABITACION | RECAUDACION         |\n";
+
+    for (int i = 0; i < contarHabitaciones; i++) 
+      {
+        Habitacion habitacion = archivoHabitacion.leerRegistro(i);
+
+        if (habitacion.getEstado()) {
+            int idCategoria = habitacion.getIdCategoria();
+            int capacidad = habitacion.getCapacidad();
+            float precioPorPersona = 0.0f;
+
+            for (int j = 0; j < contarCategorias; j++) {
+                Categoria categoria = archivoCategoria.leerRegistro(j);
+                if (categoria.getId() == idCategoria && categoria.getEstado()) {
+                    precioPorPersona = categoria.getPrecioXpersona();
+                    break;
+                }
+            }
+            
+            if (habitacion.getDisponibilidad() == 1) {
+                float recaudacion = capacidad * precioPorPersona;
+                cout << "" << habitacion.getNumero() << ": $" << recaudacion << "\n";
+                cout << "|                |                     |\n";
+            } else {
+                cout << "" << habitacion.getNumero() << " NO TIENE RECAUDACION " << "\n";
+                cout << "|                |                     |\n";
+            }
+        }
+      }
+    cout << "----------------------------------------\n";
 }
 
 #endif // INFORME_H_INCLUDED

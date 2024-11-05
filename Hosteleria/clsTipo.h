@@ -69,7 +69,7 @@ public:
     void Cargar()
     {
         _estado=true;
-        float s;
+        float s=0.0f;
         ///ASIGNACIÓN AUTOMATICA DEL ID
         FILE *p=fopen("tipoempleado.dat","rb");
         if(p == NULL){return;}
