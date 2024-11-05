@@ -10,6 +10,7 @@ void menuInforme()
 
     do
     {
+    system("cls");
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
@@ -105,82 +106,67 @@ void tipoDpago()
 
 void recaudacionHabitacion()
 {
-  ArchivoHabitacion archivoHabitacion;
-  ArchivoCategoria archivoCategoria;
-  ArchivoRegimenComida archivoRegimenComida;
-  ArchivoPago archivoPago;
-  ArchivoDetalles archivoDetalles;
-  
-  int contarHabitaciones = archivoHabitacion.contarRegistros();
-  int contarCategorias = archivoCategoria.contarRegistros();
-  int contarRegimen = archivoRegimenComida.contarRegistros();
-  int contarPago = archivoPago.contarRegistros();
-  int contarDetalle = archivoDetalles.contarRegistros();
+    ArchivoHabitacion archivoHabitacion;
+    ArchivoCategoria archivoCategoria;
 
-  if (contarHabitaciones < 0 || contarCategorias < 0 || contarRegimen < 0 || contarPago < 0 || contarDetalle < 0)
+    int contarHabitaciones = archivoHabitacion.contarRegistros();
+    int contarCategorias = archivoCategoria.contarRegistros();
+    if (contarHabitaciones < 0 || contarCategorias < 0) 
     {
-      cout << "ERROR AL ABRIR EL ARCHIVO\n";
-      return;
+        cout << "ERROR AL ABRIR EL ARCHIVO\n";
+        return;
     }
 
-  cout << "-------RECAUDACION POR HABITACION-------\n";
-  cout << "| NUM HABITACION | RECAUDACION         |\n";
-
-  for (int i = 0; i < contarHabitaciones; i++)
+    Habitacion* habitaciones = new Habitacion[contarHabitaciones];
+    
+    for (int i = 0; i < contarHabitaciones; i++) 
     {
-      Habitacion habitacion = archivoHabitacion.leerRegistro(i);
+        habitaciones[i] = archivoHabitacion.leerRegistro(i);
+    }
 
-      if (habitacion.getEstado()) 
+    cout << "-------RECAUDACION POR HABITACION-------\n";
+    cout << "| NUM HABITACION | RECAUDACION         |\n";
+    cout << "----------------------------------------\n";
+
+    for (int i = 0; i < contarHabitaciones; i++) 
+    {
+        Habitacion habitacion = habitaciones[i];
+        if (habitacion.getEstado()) 
         {
             int idCategoria = habitacion.getIdCategoria();
-            int idRegimen = habitacion.getIdRegimen();
+            int capacidad = habitacion.getCapacidad();
             float precioPorPersona = 0.0f;
-            float regimenCosto = 0.0f;
-            float recaudacionTotal = 0.0f;
 
-
-          for (int j = 0; j < contarCategorias; j++) 
+            int posCategoria = archivoCategoria.buscarRegistro(idCategoria);
+            if (posCategoria != -1) 
             {
-              Categoria categoria = archivoCategoria.leerRegistro(j);
-              if (categoria.getId() == idCategoria && categoria.getEstado()) 
-                {
-                  precioPorPersona = categoria.getPrecioXpersona();
-                  break;
-                }
+                Categoria categoria = archivoCategoria.leerRegistro(posCategoria);
+                precioPorPersona = categoria.getPrecioXpersona();
             }
-          
-          for (int k = 0; k < contarRegimen; k++) {
-              RegimenComida regimen = archivoRegimenComida.leerRegistro(k);
-              if (regimen.getID() == idRegimen && regimen.getEstado()) 
-                {
-                  regimenCosto = regimen.getPrecio();
-                  break;
-                }
-          }
-          
-          for (int l = 0; l < contarPago; l++) 
+
+            if (habitacion.getDisponibilidad() == 1) 
             {
-              Categoria categoria = archivoCategoria.leerRegistro(l);
-
-              /*if ()
-                {
-                  DetallesPago detalles = archivoDetalles.leerRegistro(pos);
-
-                  Fecha checkIn = ;
-                  Fecha checkOut = ;
-                  int diasEstadia = ;
-                  int numeroHuespedes = ;
-
-                  float recaudacionEstadia = ((precioPorPersona * numeroHuespedes) * diasEstadia) + regimenCosto;
-                  recaudacionTotal += recaudacionEstadia;
-                  
-                }*/
+                float recaudacion = capacidad * precioPorPersona;
+                rlutil::locate(1, 4+i*2);
+                cout << "| " << habitacion.getNumero();
+                rlutil::locate(18, 4+i*2);
+                cout << "| $" << recaudacion << "\n";
+                rlutil::locate(40, 4+i*2);
+                cout << "|\n";
+                cout << "-----------------+----------------------\n";
+                cout << "|                |                     |\n";
+            } 
+            else 
+            {
+                cout << "| " << habitacion.getNumero() << "| NO TIENE RECAUDACION " << "\n";
+                cout << "-----------------+----------------------\n";
+                cout << "|                |                     |\n";
             }
-          cout << "| " << habitacion.getNumero() << "| $" << recaudacionTotal << "\n";
-          cout << "+------------------+-------------------+\n";
         }
     }
-  cout << "----------------------------------------\n";
+    cout << "----------------------------------------\n";
+
+    delete[] habitaciones;
 }
 
 #endif // INFORME_H_INCLUDED
