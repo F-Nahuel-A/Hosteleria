@@ -13,10 +13,10 @@ void menuInforme()
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
-    rlutil::locate(37,10);
+    rlutil::locate(44,10);
     cout<<"MENU DE INFORMES"<<endl;
-    showItem("TIPO DE PAGO",42,12,y==1);
-    showItem("HABITACIONES CON MAS RECAUDACION",40,13,y==2);
+    showItem("TIPO DE PAGO",44,12,y==1);
+    showItem("HABITACIONES CON MAS RECAUDACION",35,13,y==2);
     showItem("GANANCIA ANUAL",43,14,y==3);
     showItem("SALIR",47,15,y==4);
 

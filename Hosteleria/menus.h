@@ -35,7 +35,7 @@ void mostrarMenu()
     showItem("PERSONAL",45,13,y==2);
     showItem("SERVICIOS",44,14,y==3);
     showItem("PAGOS",46,15,y==4);
-    showItem("INFORMES",46,16,y==5);
+    showItem("INFORMES",45,16,y==5);
     showItem("SALIR",46,17,y==6);
 
         switch (rlutil::getkey())
@@ -56,9 +56,9 @@ void mostrarMenu()
                 cout << " ";  ///Borra el cursor en la posición actual
                 ///Cicla a la primera opción si baja desde la última
                 y++;
-                if(y>5)
+                if(y>6)
                 {
-                    y=5;
+                    y=6;
                 }
                 break;
 
