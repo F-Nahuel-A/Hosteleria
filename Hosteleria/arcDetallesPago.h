@@ -166,23 +166,26 @@ void ArchivoDetalles::cambiarNumRecibo()
     char aux;
     DetallesPago obj;
     while(true){
-    cout<<"INGRESE EL ID DEL DETALLE QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL ID DEL DETALLE QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO NUMERO DE RECIBO : ";
            cin>>recibo;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<recibo<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<recibo<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setIDrecibo(recibo);
@@ -192,7 +195,7 @@ void ArchivoDetalles::cambiarNumRecibo()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO DETALLE DE PAGO ? "<<endl<<"S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -211,27 +214,31 @@ void ArchivoDetalles::cambiarNumHabitacion()
     Habitacion objHab;
     ArchivoHabitacion arcHab;
     while(true){
-    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR : "<<endl;
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO NUMERO DE HABITACION : ";
            cin>>num;
+           cout<<endl;
            posHab=arcHab.buscarRegistro(num);
            if(posHab!=-1)
                 {
            objHab=arcHab.leerRegistro(posHab);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE HABITACION : "<<objHab.getNumero()<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE HABITACION : "<<objHab.getNumero()<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setNumHabitacion(num);
@@ -242,7 +249,7 @@ void ArchivoDetalles::cambiarNumHabitacion()
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
         }
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO DETALLE DE PAGO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -259,23 +266,25 @@ void ArchivoDetalles::cambiarTotalAbonado()
     char aux;
     DetallesPago obj;
     while(true){
-    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL ID DE DETALLE QUE DESEE CAMBIAR : ";
     cin>>pos;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO TOTAL ABONADO : ";
            cin>>total;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setTotalabonado(total);
@@ -285,7 +294,7 @@ void ArchivoDetalles::cambiarTotalAbonado()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO DETALLE DE PAGO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {

@@ -66,6 +66,7 @@ public:
     void Cargar()
     {
         _estado=true;
+        int aux;
         ///ASIGNACIÓN AUTOMATICA DEL ID
         FILE *p=fopen("categoria.dat","rb");
         if(p == NULL){return;}

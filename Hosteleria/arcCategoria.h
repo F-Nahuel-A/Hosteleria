@@ -161,23 +161,25 @@ void ArchivoCategoria::cambiarDescripcion()
     char aux,descripcion[100];
     Categoria obj;
     while(true){
-    cout<<"INGRESE EL ID DE LA CATEGORIA QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL ID DE LA CATEGORIA QUE DESEE CAMBIAR : ";
     cin>>pos;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA DESCRIPCION : ";
            cargarCadena(descripcion,99);
-           cout<<"ESTAS SEGURO QUE QUERES ACTUALIZAR LA DESCRIPCION A : "<<descripcion<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ACTUALIZAR LA DESCRIPCION A : "<<descripcion<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setDescripcion(descripcion);
@@ -187,7 +189,7 @@ void ArchivoCategoria::cambiarDescripcion()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA CATEGORIA ? "<<endl<<"S/N :"<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -204,23 +206,24 @@ void ArchivoCategoria::cambiarPrecioXpersona()
     char aux;
     Categoria obj;
     while(true){
-    cout<<"INGRESE EL ID DE LA CATEGORIA QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL ID DE LA CATEGORIA QUE DESEE CAMBIAR : ";
     cin>>pos;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO PRECIO : ";
            cin>>precioXpersona;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL PRECIO DE : "<<"$"<<precioXpersona<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL PRECIO DE : "<<"$"<<precioXpersona<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setPrecioXpersona(precioXpersona);
@@ -230,7 +233,7 @@ void ArchivoCategoria::cambiarPrecioXpersona()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA CATEGORIA ?"<<endl<<"S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -246,7 +249,7 @@ void ArchivoCategoria::listarPorID()
 {
     int id,pos;
     Categoria obj;
-    cout<<"INGRESE EL ID ";
+    cout<<"INGRESE EL ID :";
     cin>>id;
     pos=buscarRegistro(id);
     if(pos!=-1)

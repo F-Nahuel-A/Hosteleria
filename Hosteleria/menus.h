@@ -834,6 +834,7 @@ void menuTipoEmpleado()
             case 14:
                 rlutil::locate(48, 12 + y);
                 cout << " ";
+                y--;
                 if(y<1)
                 {
                     y=1;

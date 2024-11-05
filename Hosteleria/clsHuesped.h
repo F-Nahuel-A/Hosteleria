@@ -24,7 +24,7 @@ public:
         _estado=true;
         Persona::Cargar();
         cout<<"INGRESE EL EMAIL : ";
-        cin>>_email;
+        cargarCadena(_email,49);
     }
 
     void Mostrar()

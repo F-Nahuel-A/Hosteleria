@@ -69,7 +69,7 @@ public:
     void Cargar()
     {
         _estado=true;
-        float s=0.0f;
+        float s;
         ///ASIGNACIÓN AUTOMATICA DEL ID
         FILE *p=fopen("tipoempleado.dat","rb");
         if(p == NULL){return;}
@@ -80,9 +80,10 @@ public:
         fclose(p);
         _ID=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
-        cout<<"INGRESE EL NOMBRE DE LA OCUPACION : "<<endl;
+        cout<<"INGRESE EL NOMBRE DE LA OCUPACION : ";
         cargarCadena(_ocupacion,29);
-        cout<<"INGRESE EL SUELDO DEL SECTOR : "<<endl;
+        cout<<"INGRESE EL SUELDO DEL SECTOR : ";
+        cin>>s;
         setSueldo(s);
     }
 

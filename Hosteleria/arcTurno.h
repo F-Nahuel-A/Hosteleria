@@ -165,22 +165,24 @@ void ArchivoTurnoEmpleado::cambiarHorario()
     char aux,horario[6];
     TurnoEmpleado obj;
     while(true){
-    cout<<"INGRESE EL ID DEL TURNO QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL ID DEL TURNO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO HORARIO : ";
-           cargarCadena(horario,5);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL HORARIO : "<<horario<<endl<<"S/N : ";
+           cargarCadena(horario,14);
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL HORARIO : "<<horario<<endl<<"S/N : ";
            cin>>aux;
            if(aux=='s' || aux=='S')
                     {
@@ -191,7 +193,7 @@ void ArchivoTurnoEmpleado::cambiarHorario()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA OCUPACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {

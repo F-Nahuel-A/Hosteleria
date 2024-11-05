@@ -161,22 +161,24 @@ void ArchivoTipoEmpleado::cambiarOcupacion()
     char aux,ocupacion[30];
     TipoEmpleado obj;
     while(true){
-    cout<<"INGRESE EL ID DEL SECTOR QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL ID DEL SECTOR QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA OCUPACION : ";
            cargarCadena(ocupacion,29);
-           cout<<"ESTAS SEGURO QUE QUERES ACTUALIZAR LA OCUPACION A : "<<ocupacion<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ACTUALIZAR LA OCUPACION A : "<<ocupacion<<endl<<"S/N : ";
            cin>>aux;
            if(aux=='s' || aux=='S')
                     {
@@ -187,7 +189,7 @@ void ArchivoTipoEmpleado::cambiarOcupacion()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA OCUPACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -203,23 +205,26 @@ void ArchivoTipoEmpleado::cambiarSueldo()
     char aux;
     TipoEmpleado obj;
     while(true){
-    cout<<"INGRESE EL ID DEL SECTOR QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL ID DEL SECTOR QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO SUELDO : ";
            cin>>sueldo;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL SUELDO DE : "<<"$"<<sueldo<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL SUELDO DE : "<<"$"<<sueldo<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setSueldo(sueldo);
@@ -229,7 +234,7 @@ void ArchivoTipoEmpleado::cambiarSueldo()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA OCUPACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {

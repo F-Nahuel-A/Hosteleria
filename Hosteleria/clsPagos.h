@@ -43,6 +43,7 @@ public:
     {
         _estado=true;
         int aux;
+        float auxF;
          ///ASIGNACIÓN AUTOMATICA DEL NUMRECIBO
         FILE *p=fopen("pago.dat","rb");
         if(p == NULL){return;}
@@ -58,8 +59,8 @@ public:
         setPago(aux);
         if(_estado==false){return;}
         cout<<"INGRESE EL TOTAL";
-        cin>>aux;
-        setTotal(aux);
+        cin>>auxF;
+        setTotal(auxF);
         if(_estado==false){return;}
         _FechadPago.Cargar();
     }

@@ -164,23 +164,26 @@ void ArchivoHabitacion::cambiarNumHabitacion()
     char aux;
     Habitacion obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO NUMERO DE HABITACION : ";
            cin>>numHab;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE HABITACION : "<<numHab<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE HABITACION : "<<numHab<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setNumero(numHab);
@@ -190,8 +193,9 @@ void ArchivoHabitacion::cambiarNumHabitacion()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
+           cout<<endl;
            if(aux=='n' || aux=='N')
            {
                return;
@@ -208,17 +212,19 @@ void ArchivoHabitacion::cambiarIDcategoria()
     Categoria objCat;
     ArchivoCategoria arcCat;
     while(true){
-    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA ID DE CATEGORIA : ";
@@ -227,8 +233,9 @@ void ArchivoHabitacion::cambiarIDcategoria()
            if(posCat!=-1)
                 {
            objCat=arcCat.leerRegistro(posCat);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR LA CATEGORIA : "<<objCat.getDescripcion()<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA CATEGORIA : "<<objCat.getDescripcion()<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setIdCategoria(id);
@@ -239,8 +246,9 @@ void ArchivoHabitacion::cambiarIDcategoria()
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
         }
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
+           cout<<endl;
            if(aux=='n' || aux=='N')
            {
                return;
@@ -257,17 +265,19 @@ void ArchivoHabitacion::cambiarIDregimen()
     RegimenComida objRegimen;
     ArchivoRegimenComida arcRegimen;
     while(true){
-    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA ID DE REGIMEN : ";
@@ -276,8 +286,9 @@ void ArchivoHabitacion::cambiarIDregimen()
            if(posRegimen!=-1)
                 {
            objRegimen=arcRegimen.leerRegistro(posRegimen);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL REGIMEN : "<<objRegimen.getDesc()<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL REGIMEN : "<<objRegimen.getDesc()<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setIdRegimen(id);
@@ -288,8 +299,9 @@ void ArchivoHabitacion::cambiarIDregimen()
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
         }
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
+           cout<<endl;
            if(aux=='n' || aux=='N')
            {
                return;
@@ -304,23 +316,26 @@ void ArchivoHabitacion::cambiarDisponibilidad()
     char aux;
     Habitacion obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA DISPONIBILIDAD : ";
            cin>>disp;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR LA DISPONIBILIDAD : "<<disp<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA DISPONIBILIDAD : "<<disp<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setDisponibilidad(disp);
@@ -330,8 +345,9 @@ void ArchivoHabitacion::cambiarDisponibilidad()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
+           cout<<endl;
            if(aux=='n' || aux=='N')
            {
                return;
@@ -347,23 +363,26 @@ void ArchivoHabitacion::cambiarCapacidad()
     char aux;
     Habitacion obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA CAPACIDAD : ";
            cin>>cap;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR LA CAPACIDAD : "<<cap<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA CAPACIDAD : "<<cap<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setCapacidad(cap);
@@ -373,8 +392,9 @@ void ArchivoHabitacion::cambiarCapacidad()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
+           cout<<endl;
            if(aux=='n' || aux=='N')
            {
                return;

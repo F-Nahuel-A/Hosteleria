@@ -42,9 +42,9 @@ public:
         fclose(p);
         _ID=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
-        cout<<"INGRESE LA DESCRIPCION ";
+        cout<<"INGRESE LA DESCRIPCION : ";
         cargarCadena(_descripcion,99);
-        cout<<"INGRESE EL PRECIO ";
+        cout<<"INGRESE EL PRECIO : ";
         cin>>aux;
         setPrecio(aux);
     }

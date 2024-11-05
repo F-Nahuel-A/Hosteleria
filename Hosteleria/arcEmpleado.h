@@ -173,23 +173,26 @@ void ArchivoEmpleado::cambiarDNI()
     char aux;
     Empleado obj;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO DNI : ";
            cin>>dni;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setDNI(dni);
@@ -199,7 +202,7 @@ void ArchivoEmpleado::cambiarDNI()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -216,23 +219,26 @@ void ArchivoEmpleado::cambiarNombre()
     char aux,nuevoNombre[30];
     Empleado obj;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO NOMBRE : ";
            cargarCadena(nuevoNombre,29);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NOMBRE : "<<nuevoNombre<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NOMBRE : "<<nuevoNombre<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setNombre(nuevoNombre);
@@ -242,7 +248,7 @@ void ArchivoEmpleado::cambiarNombre()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -259,23 +265,26 @@ void ArchivoEmpleado::cambiarApellido()
     char aux,nuevoApellido[30];
     Empleado obj;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : "<<endl;
+    cout<<endl<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO APELLIDO : ";
            cargarCadena(nuevoApellido,29);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL APELLIDO : "<<nuevoApellido<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL APELLIDO : "<<nuevoApellido<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setApellido(nuevoApellido);
@@ -285,7 +294,7 @@ void ArchivoEmpleado::cambiarApellido()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -303,22 +312,25 @@ void ArchivoEmpleado::cambiarFechaNacimiento()
     Empleado obj;
     int pos;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO : ";
+    cout<<endl<<"INGRESE EL LEGAJO DEL EMPLEADO : ";
+    cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
      if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado())
             {
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N"<<endl;
+        cout<<endl<<"S/N : "<<endl;
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
         {
            cout<<"INGRESE LA NUEVA FECHA DE NACIMIENTO"<<endl;
            f.Cargar();
-           cout<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
+           cout<<endl<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
            f.Mostrar();
            cout<<"S/N : ";
            cin>>aux;
@@ -334,7 +346,7 @@ void ArchivoEmpleado::cambiarFechaNacimiento()
             }
 
         }
-            cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+            cout<<"DESEA BUSCAR OTRO EMPLEADO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
             cin>>aux;
                if(aux=='n' || aux=='N')
                {
@@ -351,23 +363,26 @@ void ArchivoEmpleado::cambiarTelefono()
     char aux,telefono[10];
     Empleado obj;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO NUMERO DE TELEFONO : ";
            cargarCadena(telefono,9);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE TELEFONO : "<<telefono<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE TELEFONO : "<<telefono<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setTelefono(telefono);
@@ -377,7 +392,7 @@ void ArchivoEmpleado::cambiarTelefono()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -396,8 +411,9 @@ void ArchivoEmpleado::cambiarTipoEmpleado()
     TipoEmpleado objTipo;
     ArchivoTipoEmpleado arcTipo;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR :"<<endl;
+    cout<<endl<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : "<<endl<<endl;
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
@@ -405,18 +421,21 @@ void ArchivoEmpleado::cambiarTipoEmpleado()
         if(obj.getEstado()){
         cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA ID : ";
            cin>>id;
+           cout<<endl;
            posTipo=arcTipo.buscarRegistro(id);
            if(posTipo!=-1)
                 {
            objTipo=arcTipo.leerRegistro(posTipo);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL SECTOR : "<<objTipo.getOcupacion()<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL SECTOR : "<<objTipo.getOcupacion()<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setIDtipo(id);
@@ -427,7 +446,7 @@ void ArchivoEmpleado::cambiarTipoEmpleado()
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
         }
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -446,17 +465,19 @@ void ArchivoEmpleado::cambiarTurnoEmpleado()
     TurnoEmpleado objTurno;
     ArchivoTurnoEmpleado arcTurno;
     while(true){
-    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR :"<<endl;
+    cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : "<<endl<<endl;
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<endl<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA ID : ";
@@ -465,8 +486,9 @@ void ArchivoEmpleado::cambiarTurnoEmpleado()
            if(posTurno!=-1)
                 {
            objTurno=arcTurno.leerRegistro(posTurno);
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TURNO : "<<objTurno.getHorario()<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TURNO : "<<objTurno.getHorario()<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setIDtipo(id);
@@ -477,7 +499,7 @@ void ArchivoEmpleado::cambiarTurnoEmpleado()
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
         }
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -496,24 +518,28 @@ void ArchivoEmpleado::cambiarFechaIngreso()
     int pos;
     while(true){
     cout<<"INGRESE EL LEGAJO DEL EMPLEADO QUE DESEE CAMBIAR : ";
+    cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
      if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado())
             {
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N"<<endl;
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
         {
            cout<<"INGRESE LA NUEVA FECHA"<<endl;
            f.Cargar();
-           cout<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
+           cout<<endl<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
            f.Mostrar();
            cout<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
            {
                obj.setFecha(f);
@@ -526,7 +552,7 @@ void ArchivoEmpleado::cambiarFechaIngreso()
             }
 
         }
-            cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+            cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
             cin>>aux;
                if(aux=='n' || aux=='N')
                {

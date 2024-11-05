@@ -5,7 +5,7 @@ class TurnoEmpleado
 {
 private:
     int _ID;
-    char _horario[6];
+    char _horario[15];
     bool _estado;
 public:
     TurnoEmpleado(int i=0,const char *h="00")
@@ -36,7 +36,7 @@ public:
         _ID=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
         cout<<"INGRESE EL HORARIO DEL TURNO : ";
-        cargarCadena(_horario,5);
+        cargarCadena(_horario,14);
     }
 
     void Mostrar()

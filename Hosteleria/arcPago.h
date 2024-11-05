@@ -169,23 +169,26 @@ void ArchivoPago::cambiarDNI()
     char aux;
     Pago obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO DNI : ";
            cin>>dni;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL DNI : "<<dni<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setDNI(dni);
@@ -195,7 +198,7 @@ void ArchivoPago::cambiarDNI()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO PAGO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -213,24 +216,28 @@ void ArchivoPago::cambiarFecha()
     int pos;
     while(true){
     cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE MODIFICAR : ";
+    cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
      if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado())
             {
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N"<<endl;
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
         {
            cout<<"INGRESE LA NUEVA FECHA DE PAGO"<<endl;
            f.Cargar();
-           cout<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
+           cout<<endl<<"ESTAS SEGURO QUE DESEA INGRESAR LA FECHA : ";
            f.Mostrar();
            cout<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
            {
                obj.setFecha(f);
@@ -243,7 +250,7 @@ void ArchivoPago::cambiarFecha()
             }
 
         }
-            cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+            cout<<"DESEA BUSCAR OTRO PAGO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
             cin>>aux;
                if(aux=='n' || aux=='N')
                {
@@ -259,23 +266,26 @@ void ArchivoPago::cambiarFormadPago()
     char aux;
     Pago obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE MODIFICAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE MODIFICAR : ";
     cin>>pos;
+    cout<<endl;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE LA NUEVA FORMA DE PAGO : ";
            cin>>forma;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR LA FORMA : "<<forma<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA FORMA : "<<forma<<endl<<"S/N : ";
            cin>>aux;
+           cout<<endl;
            if(aux=='s' || aux=='S')
                     {
            obj.setPago(forma);
@@ -285,7 +295,7 @@ void ArchivoPago::cambiarFormadPago()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO PAGO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
@@ -302,22 +312,23 @@ void ArchivoPago::cambiarTotal()
     char aux;
     Pago obj;
     while(true){
-    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : "<<endl;
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : ";
     cin>>pos;
     pos=buscarRegistro(pos);
     if(pos!=-1)
         {
         obj=leerRegistro(pos);
         if(obj.getEstado()){
-        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl;
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
         obj.Mostrar();
-        cout<<"S/N : ";
+        cout<<endl<<"S/N : ";
         cin>>aux;
+        cout<<endl;
         if(aux=='s' || aux=='S')
             {
            cout<<"INGRESE EL NUEVO TOTAL : ";
            cin>>total;
-           cout<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
            cin>>aux;
            if(aux=='s' || aux=='S')
                     {
@@ -328,7 +339,7 @@ void ArchivoPago::cambiarTotal()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? S/N "<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO PAGO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
