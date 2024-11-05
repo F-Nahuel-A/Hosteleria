@@ -107,47 +107,80 @@ void recaudacionHabitacion()
 {
   ArchivoHabitacion archivoHabitacion;
   ArchivoCategoria archivoCategoria;
+  ArchivoRegimenComida archivoRegimenComida;
+  ArchivoPago archivoPago;
+  ArchivoDetalles archivoDetalles;
   
   int contarHabitaciones = archivoHabitacion.contarRegistros();
-    int contarCategorias = archivoCategoria.contarRegistros();
+  int contarCategorias = archivoCategoria.contarRegistros();
+  int contarRegimen = archivoRegimenComida.contarRegistros();
+  int contarPago = archivoPago.contarRegistros();
+  int contarDetalle = archivoDetalles.contarRegistros();
 
-    if (contarHabitaciones < 0 || contarCategorias < 0) 
-      {
-        cout << "ERROR AL ABRIR EL ARCHIVO\n";
-        return;
-      }
+  if (contarHabitaciones < 0 || contarCategorias < 0 || contarRegimen < 0 || contarPago < 0 || contarDetalle < 0)
+    {
+      cout << "ERROR AL ABRIR EL ARCHIVO\n";
+      return;
+    }
 
-    cout << "-------RECAUDACION POR HABITACION-------\n";
-    cout << "| NUM HABITACION | RECAUDACION         |\n";
+  cout << "-------RECAUDACION POR HABITACION-------\n";
+  cout << "| NUM HABITACION | RECAUDACION         |\n";
 
-    for (int i = 0; i < contarHabitaciones; i++) 
-      {
-        Habitacion habitacion = archivoHabitacion.leerRegistro(i);
+  for (int i = 0; i < contarHabitaciones; i++)
+    {
+      Habitacion habitacion = archivoHabitacion.leerRegistro(i);
 
-        if (habitacion.getEstado()) {
+      if (habitacion.getEstado()) 
+        {
             int idCategoria = habitacion.getIdCategoria();
-            int capacidad = habitacion.getCapacidad();
+            int idRegimen = habitacion.getIdRegimen();
             float precioPorPersona = 0.0f;
+            float regimenCosto = 0.0f;
+            float recaudacionTotal = 0.0f;
 
-            for (int j = 0; j < contarCategorias; j++) {
-                Categoria categoria = archivoCategoria.leerRegistro(j);
-                if (categoria.getId() == idCategoria && categoria.getEstado()) {
-                    precioPorPersona = categoria.getPrecioXpersona();
-                    break;
+
+          for (int j = 0; j < contarCategorias; j++) 
+            {
+              Categoria categoria = archivoCategoria.leerRegistro(j);
+              if (categoria.getId() == idCategoria && categoria.getEstado()) 
+                {
+                  precioPorPersona = categoria.getPrecioXpersona();
+                  break;
                 }
             }
-            
-            if (habitacion.getDisponibilidad() == 1) {
-                float recaudacion = capacidad * precioPorPersona;
-                cout << "" << habitacion.getNumero() << ": $" << recaudacion << "\n";
-                cout << "|                |                     |\n";
-            } else {
-                cout << "" << habitacion.getNumero() << " NO TIENE RECAUDACION " << "\n";
-                cout << "|                |                     |\n";
+          
+          for (int k = 0; k < contarRegimen; k++) {
+              RegimenComida regimen = archivoRegimenComida.leerRegistro(k);
+              if (regimen.getID() == idRegimen && regimen.getEstado()) 
+                {
+                  regimenCosto = regimen.getPrecio();
+                  break;
+                }
+          }
+          
+          for (int l = 0; l < contarPago; l++) 
+            {
+              Categoria categoria = archivoCategoria.leerRegistro(l);
+
+              /*if ()
+                {
+                  DetallesPago detalles = archivoDetalles.leerRegistro(pos);
+
+                  Fecha checkIn = ;
+                  Fecha checkOut = ;
+                  int diasEstadia = ;
+                  int numeroHuespedes = ;
+
+                  float recaudacionEstadia = ((precioPorPersona * numeroHuespedes) * diasEstadia) + regimenCosto;
+                  recaudacionTotal += recaudacionEstadia;
+                  
+                }*/
             }
+          cout << "| " << habitacion.getNumero() << "| $" << recaudacionTotal << "\n";
+          cout << "+------------------+-------------------+\n";
         }
-      }
-    cout << "----------------------------------------\n";
+    }
+  cout << "----------------------------------------\n";
 }
 
 #endif // INFORME_H_INCLUDED
