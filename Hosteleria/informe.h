@@ -139,9 +139,8 @@ void recaudacionHabitacion()
             if (posCategoria != -1)
             {
                 categoria = archivoCategoria.leerRegistro(posCategoria);
-            }
 
-            if (habitacion.getDisponibilidad() == 1)
+            if (habitacion.getDisponibilidad() == 1 || habitacion.getDisponibilidad() == 2)
             {
                 float recaudacion = habitacion.getCapacidad() * categoria.getPrecioXpersona();
                 rlutil::locate(1, 4+i*2);
@@ -159,6 +158,8 @@ void recaudacionHabitacion()
                 cout << "-----------------+----------------------\n";
                 cout << "|                |                     |\n";
             }
+            }
+
         }
     }
     cout << "----------------------------------------\n";
