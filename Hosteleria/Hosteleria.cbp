@@ -55,6 +55,7 @@
 		<Unit filename="clsTipo.h" />
 		<Unit filename="clsTurno.h" />
 		<Unit filename="funcionesGlobales.h" />
+		<Unit filename="informe.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="menuConfiguraciones.h" />
 		<Unit filename="menus.h" />

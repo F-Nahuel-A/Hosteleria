@@ -35,7 +35,8 @@ void mostrarMenu()
     showItem("PERSONAL",45,13,y==2);
     showItem("SERVICIOS",44,14,y==3);
     showItem("PAGOS",46,15,y==4);
-    showItem("SALIR",46,16,y==5);
+    showItem("INFORMES",46,16,y==5);
+    showItem("SALIR",46,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -89,6 +90,12 @@ void mostrarMenu()
                 break;
 
             case 5:
+                system("cls");
+                menuInforme();
+                system("cls");
+                break;
+
+            case 6:
                 op=0;
                 break;
 
@@ -1168,7 +1175,5 @@ void menuDetalles()
     }
     while(op!=0);
 }
-
-
 
 #endif // MENUS_H_INCLUDED

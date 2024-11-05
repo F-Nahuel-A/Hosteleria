@@ -27,6 +27,7 @@ using namespace std;
 #include "clsHuesped.h"
 #include "arcHuesped.h"
 #include "modificaciones.h"
+#include "informe.h"
 #include "menus.h"
 #include "Configuraciones.h"
 #include "menuConfiguraciones.h"
