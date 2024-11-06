@@ -627,7 +627,7 @@ void menuHabitacion()
 
             case 6:
                 system("cls");
-                arc.listarPorNumero();
+                menuHabitacionConfig();
                 system("cls");
                 break;
 
@@ -772,7 +772,8 @@ void menuRegimen()
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR REGIMEN",43,15,y==4);
     showItem("LISTAR POR ID",43,16,y==5);
-    showItem("SALIR",47,17,y==6);
+    showItem("CONFIGURACIONES",42,17,y==6);
+    showItem("SALIR",47,18,y==7);
 
         switch (rlutil::getkey())
         {
@@ -790,9 +791,9 @@ void menuRegimen()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>6)
+                if(y>7)
                 {
-                    y=6;
+                    y=7;
                 }
                 break;
 
@@ -828,8 +829,13 @@ void menuRegimen()
                 arc.listarPorID();
                 system("cls");
                 break;
-
             case 6:
+                system("cls");
+                menuRegimenComidaConfig();
+                system("cls");
+                break;
+
+            case 7:
                 op=0;
                 break;
 

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730850287 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730854891 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -19,6 +19,8 @@
 	"arcRegimenComida.h"
 	"clsHabitacion.h"
 	"arcHabitacion.h"
+	"clsDetallesPagos.h"
+	"arcDetallesPago.h"
 	"clsPagos.h"
 	"arcPago.h"
 	"clsDetallesPagos.h"
@@ -77,7 +79,7 @@
 
 1730817352 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
-1730854865 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+1730864725 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 
 1730818233 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
 
@@ -105,15 +107,15 @@
 
 1730663264 c:\users\admin\desktop\hosteleria\hosteleria\menudetallesdepagos.h
 
-1730756621 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
+1730863436 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
 
-1730852436 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
+1730867459 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
 
-1730817550 c:\users\admin\desktop\hosteleria\hosteleria\arcpago.h
+1730863245 c:\users\admin\desktop\hosteleria\hosteleria\arcpago.h
 
 1730817352 c:\users\admin\desktop\hosteleria\hosteleria\archuesped.h
 
-1730854825 c:\users\admin\desktop\hosteleria\hosteleria\clsdetallespagos.h
+1730864343 c:\users\admin\desktop\hosteleria\hosteleria\clsdetallespagos.h
 
 1730854242 c:\users\admin\desktop\hosteleria\hosteleria\arcdetallespago.h
 
@@ -121,7 +123,7 @@
 
 1730852790 c:\users\admin\desktop\hosteleria\hosteleria\menuconfiguraciones.h
 
-1730851400 c:\users\admin\desktop\hosteleria\hosteleria\informe.h
+1730867613 c:\users\admin\desktop\hosteleria\hosteleria\informe.h
 
 1730781910 source:c:\users\familia\desktop\hosteleria\main.cpp
 	<iostream>

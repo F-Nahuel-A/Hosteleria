@@ -56,7 +56,7 @@ public:
         if(_estado==false){return;}
         cout<<"INGRESE EL TOTAL : ";
         cin>>auxF;
-        setTotalabonado(aux);
+        setTotalabonado(auxF);
         if(_estado==false){return;}
     }
 

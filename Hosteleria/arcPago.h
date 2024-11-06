@@ -24,6 +24,7 @@ public:
     void altaRegistro();
     void bajaRegistro(); ///Doble mensaje
 
+    void cambiarNumeroderecibo();
     void cambiarDNI();
     void cambiarFecha();
     void cambiarFormadPago();
@@ -393,5 +394,49 @@ void ArchivoPago::listarPorDNI()
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
 }
+
+void ArchivoPago::cambiarNumeroderecibo()
+{
+    int pos,numRecibo;
+    char aux;
+    Pago obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE RECIBO QUE DESEE CAMBIAR : ";
+    cin>>pos;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
+        obj.Mostrar();
+        cout<<endl<<"S/N : ";
+        cin>>aux;
+        cout<<endl;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE EL NUEVO NUMERO DE RECIBO : ";
+           cin>>numRecibo;
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<numRecibo<<endl<<"S/N : ";
+           cin>>aux;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setNumeroderecibo(numRecibo);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRO PAGO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
 
 #endif // ARCPAGO_H_INCLUDED

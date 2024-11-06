@@ -10,7 +10,6 @@ void menuInforme()
 
     do
     {
-    system("cls");
     rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
     rlutil::setColor(rlutil::COLOR::WHITE);
     rlutil::hidecursor();
@@ -49,19 +48,19 @@ void menuInforme()
             case 1:
                 system("cls");
                 tipoDpago();
-                system("pause");
+                system("cls");
                 break;
 
             case 2:
                 system("cls");
                 recaudacionHabitacion();
-                system("pause");
+                system("cls");
                 break;
 
             case 3:
                 system("cls");
                 gananciaAnual();
-                system("pause");
+                system("cls");
                 break;
 
             case 4:
@@ -96,77 +95,50 @@ void tipoDpago()
     float porcentaje1 = (float(tipoPago[0]) / float(contReg)) * 100;
     float porcentaje2 = (float(tipoPago[1]) / float(contReg)) * 100;
 
-        cout<<"EL METODO CON MAS USOS FUE EL : ";
+        cout<<"EL METODO CON MAS USOS FUE EL ";
     if(porcentaje1>porcentaje2)
     {
-        cout<<"TIPO DE PAGO 1"<<"CON UN PORCENTAJE DE : "<<porcentaje1<<"%"<<endl;
+        cout<<"TIPO DE PAGO 1"<<endl<<"CON UN PORCENTAJE DE : "<<porcentaje1<<"%"<<endl;
     }
-    else{cout<<"TIPO DE PAGO 2"<<"CON UN PORCENTAJE DE : "<<porcentaje2<<"%"<<endl;}
+    else{cout<<"TIPO DE PAGO 2"<<endl<<"CON UN PORCENTAJE DE : "<<porcentaje2<<"%"<<endl;}
+    system("pause");
 }
 
 void recaudacionHabitacion()
 {
-    ArchivoHabitacion archivoHabitacion;
-    ArchivoCategoria archivoCategoria;
+    ArchivoDetalles arcD;
+    DetallesPago objD;
+    float habitaciones[6]={};
+    int contReg=arcD.contarRegistros();
 
-    int contarHabitaciones = archivoHabitacion.contarRegistros();
-    int contarCategorias = archivoCategoria.contarRegistros();
-    if (contarHabitaciones < 0 || contarCategorias < 0)
+    for (int i=0;i<contReg;i++)
     {
-        cout << "ERROR AL ABRIR EL ARCHIVO\n";
-        return;
-    }
-
-    Habitacion* habitaciones = new Habitacion[contarHabitaciones];
-
-    for (int i = 0; i < contarHabitaciones; i++)
-    {
-        habitaciones[i] = archivoHabitacion.leerRegistro(i);
-    }
-
-    cout << "-------RECAUDACION POR HABITACION-------\n";
-    cout << "| NUM HABITACION | RECAUDACION         |\n";
-    cout << "----------------------------------------\n";
-
-    for (int i = 0; i < contarHabitaciones; i++)
-    {
-        Habitacion habitacion = habitaciones[i];
-        if (habitacion.getEstado())
+        objD=arcD.leerRegistro(i);
+        if(objD.getEstado())
         {
-            int idCategoria = habitacion.getIdCategoria();
-            int capacidad = habitacion.getCapacidad();
-            float precioPorPersona = 0.0f;
-
-            int posCategoria = archivoCategoria.buscarRegistro(idCategoria);
-            if (posCategoria != -1)
-            {
-                Categoria categoria = archivoCategoria.leerRegistro(posCategoria);
-                precioPorPersona = categoria.getPrecioXpersona();
-            }
-
-            if (habitacion.getDisponibilidad() == 1)
-            {
-                float recaudacion = capacidad * precioPorPersona;
-                rlutil::locate(1, 4+i*2);
-                cout << "| " << habitacion.getNumero();
-                rlutil::locate(18, 4+i*2);
-                cout << "| $" << recaudacion << "\n";
-                rlutil::locate(40, 4+i*2);
-                cout << "|\n";
-                cout << "-----------------+----------------------\n";
-                cout << "|                |                     |\n";
-            }
-            else
-            {
-                cout << "| " << habitacion.getNumero() << "| NO TIENE RECAUDACION " << "\n";
-                cout << "-----------------+----------------------\n";
-                cout << "|                |                     |\n";
-            }
+            habitaciones[objD.getNumdehabitacion()-1]+=objD.getTotalabonado();
         }
     }
-    cout << "----------------------------------------\n";
+cout<<"RECAUDACION DE HABITACIONES"<<endl<<endl;
 
-    delete[] habitaciones;
+    for (int i=0;i<6;i++) {
+        float maxRecaudado=0;
+        int pos=0;
+
+        for (int j=0;j<6;j++) {
+            if(habitaciones[j] > maxRecaudado)
+            {
+                maxRecaudado = habitaciones[j];
+                pos=j;
+            }
+        }
+
+        cout<<"HABITACION : "<<pos<<endl;
+        cout<<"RECAUDACION : "<<maxRecaudado<<endl<<endl;
+        habitaciones[pos]=0;
+
+    }
+    system("pause");
 }
 
 void gananciaAnual() {
@@ -189,6 +161,7 @@ void gananciaAnual() {
         }
     }
     cout<<"LA RECAUDACION DEL 2024 ES DE : "<<recaudadoAnual<<"$"<<endl;
+    system("pause");
 }
 
 #endif // INFORME_H_INCLUDED

@@ -11,8 +11,9 @@ private:
     float _total;
     bool _estado;
 public:
-    Pago(int recibo=0, int forma=0, float t=0){
+    Pago(int recibo=0, int forma=0, float t=0,int dni=0){
     _NumRecibo=recibo;
+    _dni=dni;
     _FormadPago=forma;
     _total=t;
     }
@@ -47,6 +48,9 @@ public:
         cout<<"INGRESE EL NUMERO DE RECIBO : ";
         cin>>auxF;
         setNumeroderecibo(auxF);
+        cout<<"INGRESE EL DNI : ";
+        cin>>aux;
+        setDNI(aux);
         cout<<"INGRESE LA FORMA DE PAGO : ";
         cin>>aux;
         setPago(aux);
@@ -62,6 +66,7 @@ public:
     {
         if(_estado){
         cout<<"NUMERO DE RECIBO : "<<_NumRecibo<<endl;
+        cout<<"DNI : "<<_dni<<endl;
         cout<<"FORMA DE PAGO(0 AL CONTADO Y 1 TRANSFERENCIA) :"<<_FormadPago<<endl;
         cout<<"TOTAL : "<<_total<<endl;
         _FechadPago.Mostrar();
