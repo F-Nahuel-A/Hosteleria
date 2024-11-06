@@ -133,7 +133,7 @@ cout<<"RECAUDACION DE HABITACIONES"<<endl<<endl;
             }
         }
 
-        cout<<"HABITACION : "<<pos<<endl;
+        cout<<"HABITACION : "<<pos+1<<endl;
         cout<<"RECAUDACION : "<<maxRecaudado<<endl<<endl;
         habitaciones[pos]=0;
 

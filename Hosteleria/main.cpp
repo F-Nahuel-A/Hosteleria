@@ -34,8 +34,33 @@ using namespace std;
 #include "Configuraciones.h"
 #include "menuConfiguraciones.h"
 
+void limpiar();
+
 int main()
 {
   mostrarMenu();
   return 0;
+}
+
+void limpiar()
+{
+    ArchivoCategoria a;
+    ArchivoDetalles b;
+    ArchivoEmpleado c;
+    ArchivoHabitacion d;
+    ArchivoHuesped e;
+    ArchivoPago f;
+    ArchivoRegimenComida g;
+    ArchivoTipoEmpleado h;
+    ArchivoTurnoEmpleado i;
+
+    a.limpiarArchivo();
+    b.limpiarArchivo();
+    c.limpiarArchivo();
+    d.limpiarArchivo();
+    e.limpiarArchivo();
+    f.limpiarArchivo();
+    g.limpiarArchivo();
+    h.limpiarArchivo();
+    i.limpiarArchivo();
 }

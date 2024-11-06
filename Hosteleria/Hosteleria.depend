@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730854891 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730892150 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
