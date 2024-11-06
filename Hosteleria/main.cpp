@@ -20,6 +20,8 @@ using namespace std;
 #include "arcRegimenComida.h"
 #include "clsHabitacion.h"
 #include "arcHabitacion.h"
+#include "clsDetallesPagos.h"
+#include "arcDetallesPago.h"
 #include "clsPagos.h"
 #include "arcPago.h"
 #include "clsDetallesPagos.h"

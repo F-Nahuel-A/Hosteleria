@@ -31,7 +31,7 @@ public:
     }
 
     void setFecha(Fecha f){_FechadPago=f;}
-
+    void setNumeroderecibo(float n);
     void setPago(int forma);
     void setTotal (float t); ///revisarlo, falta parte del codigo || LISTO
     void setDNI(int dni);
@@ -44,21 +44,14 @@ public:
         _estado=true;
         int aux;
         float auxF;
-         ///ASIGNACIÓN AUTOMATICA DEL NUMRECIBO
-        FILE *p=fopen("pago.dat","rb");
-        if(p == NULL){return;}
-        fseek(p,0,2);
-        int cantBytes;
-        cantBytes = ftell(p);
-        int cantRegistros = cantBytes / sizeof (Pago);
-        fclose(p);
-        _NumRecibo=cantRegistros+1;
-        ///ASIGNACIÓN AUTOMATICA DEL NUMRECIBO
-        cout<<"INGRESE LA FORMA DE PAGO";
+        cout<<"INGRESE EL NUMERO DE RECIBO : ";
+        cin>>auxF;
+        setNumeroderecibo(auxF);
+        cout<<"INGRESE LA FORMA DE PAGO : ";
         cin>>aux;
         setPago(aux);
         if(_estado==false){return;}
-        cout<<"INGRESE EL TOTAL";
+        cout<<"INGRESE EL TOTAL : ";
         cin>>auxF;
         setTotal(auxF);
         if(_estado==false){return;}
@@ -190,4 +183,58 @@ void Pago::setDNI(int dni)
             _dni=dni;
         }
     }
+
+void Pago::setNumeroderecibo(float recibo)
+    {
+        ArchivoDetalles arc;
+        DetallesPago obj;
+        char aux;
+        int pos;
+        while(_estado){
+        pos=arc.buscarRegistro(recibo);
+        if(pos==-1)
+        {
+            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
+            cin>>aux;
+            cout<<endl;
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL NUMERO DE RECIBO : ";
+                cin>>recibo;
+            }
+
+            else
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+        }
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(pos);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL NUMERO DE RECIBO : "<<obj.getNumeroderecibo()<<endl<<"S/N : ";
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                _NumRecibo=recibo;
+                return;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRO NUMERO DE RECIBO ? "<<endl<<"S/N : ";
+                cin>>aux;
+                cout<<endl;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL NUMERO DE RECIBO : ";
+                    cin>>recibo;
+                }
+            else{return;}
+            }
+        }
+        }
+    }
+
 #endif // CLSPAGOS_H_INCLUDED

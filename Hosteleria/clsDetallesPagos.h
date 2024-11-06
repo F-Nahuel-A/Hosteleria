@@ -42,7 +42,7 @@ public:
         fseek(p,0,2);
         int cantBytes;
         cantBytes = ftell(p);
-        int cantRegistros = cantBytes / sizeof (Pago);
+        int cantRegistros = cantBytes / sizeof (DetallesPago);
         fclose(p);
         _IDdetalle=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID DETALLE
@@ -74,54 +74,58 @@ public:
 
 void DetallesPago::setTotalabonado(float tabonado)
     {
-    char aux;
-    if (tabonado > 0)
-    {
-        _totalabonado = tabonado;
-        return;
-    }
-    else
-    {
-        while (tabonado <= 0)
+        char aux;
+        if(tabonado>0)
         {
-            cout << "MONTO NO VALIDO, ¿QUIERE VOLVER A INTENTAR? S/N" << endl;
-            cin >> aux;
+            _totalabonado=tabonado;
+            return;
+        }
+        else
+        {
+            while(tabonado<0)
+                {
 
-            if (aux == 'S' || aux == 's')
+            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cin>>aux;
+
+            if(aux=='S' || aux=='s')
             {
                 system("cls");
-                cout << "INGRESE EL TOTAL ABONADO: ";
-                cin >> tabonado;
+                cout<<"INGRESE EL MONTO : ";
+                cin>>tabonado;
             }
-            else if (aux == 'N' || aux == 'n')
-            {
-                system("cls");
-                _estado = false;
-                return;
-            }
+
             else
             {
-                cout << "OPCIÓN NO VÁLIDA. INTENTE DE NUEVO." << endl;
+                system("cls");
+                _estado=false;
+                return;
             }
-        }
 
-        _totalabonado = tabonado;
+            system("cls");
+
+                }
+
+            _totalabonado=tabonado;
+        }
     }
-}
 
 void DetallesPago::setNumrecibo(int recibo)
-    {
-        ArchivoPago arc;
-        Pago obj;
+       {
         char aux;
-        int pos;
-        while(_estado){
-        pos=arc.buscarRegistro(recibo);
-        if(pos==-1)
+        if(recibo>0)
         {
-            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
+            _NumRecibo=recibo;
+            return;
+        }
+        else
+        {
+            while(recibo<0)
+                {
+
+            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
             cin>>aux;
-            cout<<endl;
+
             if(aux=='S' || aux=='s')
             {
                 system("cls");
@@ -135,32 +139,15 @@ void DetallesPago::setNumrecibo(int recibo)
                 _estado=false;
                 return;
             }
-        }
-        if(pos!=-1)
-        {
-            obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL NUMERO DE RECIBO : "<<obj.getNumeroderecibo()<<endl<<"S/N : ";
-            cin>>aux;
-            if(aux=='S' || aux=='s')
-            {
-                _NumRecibo=recibo;
-                return;
-            }
-            else
-            {
-                cout<<"QUIERE INGRESAR OTRO NUMERO DE RECIBO ? "<<endl<<"S/N : ";
-                cin>>aux;
-                cout<<endl;
-                if(aux=='S' || aux=='s')
-                {
-                    cout<<"INGRESE EL NUMERO DE RECIBO : ";
-                    cin>>recibo;
+
+            system("cls");
+
                 }
-            else{return;}
-            }
-        }
+
+            _NumRecibo=recibo;
         }
     }
+
 void DetallesPago::setNumHabitacion(int numHab)
     {
         ArchivoHabitacion arc;
