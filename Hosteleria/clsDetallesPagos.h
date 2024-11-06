@@ -24,9 +24,9 @@ public:
     bool getEstado(){return _estado;}
 
 
-    void setIDrecibo(int recibo){if(recibo>0){_NumRecibo=recibo;}}
+    void setNumrecibo(int recibo);
     void setIDdetalle (int detalle){if(detalle>0){_IDdetalle=detalle;}}
-    void setNumHabitacion(int numHab){if(numHab>0){_NumHabitacion=numHab;} }
+    void setNumHabitacion(int numHab);
     void setTotalabonado(float tabonado);
 
     void setEstado(bool e){_estado=e;}
@@ -35,6 +35,7 @@ public:
     {
         _estado=true;
         int aux;
+        float auxF;
          ///ASIGNACIÓN AUTOMATICA DEL ID DETALLE
         FILE *p=fopen("detallepago.dat","rb");
         if(p == NULL){return;}
@@ -45,8 +46,16 @@ public:
         fclose(p);
         _IDdetalle=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID DETALLE
-        cout<<"INGRESE EL TOTAL ABONADO";
+        cout<<"INGRESE EL NUMERO DE RECIBO : ";
         cin>>aux;
+        setNumrecibo(aux);
+        if(_estado==false){return;}
+        cout<<"INGRESE EL NUMERO DE HABITACION : ";
+        cin>>aux;
+        setNumHabitacion(aux);
+        if(_estado==false){return;}
+        cout<<"INGRESE EL TOTAL : ";
+        cin>>auxF;
         setTotalabonado(aux);
         if(_estado==false){return;}
     }
@@ -100,5 +109,108 @@ void DetallesPago::setTotalabonado(float tabonado)
     }
 }
 
+void DetallesPago::setNumrecibo(int recibo)
+    {
+        ArchivoPago arc;
+        Pago obj;
+        char aux;
+        int pos;
+        while(_estado){
+        pos=arc.buscarRegistro(recibo);
+        if(pos==-1)
+        {
+            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
+            cin>>aux;
+            cout<<endl;
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL NUMERO DE RECIBO : ";
+                cin>>recibo;
+            }
 
+            else
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+        }
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(pos);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL NUMERO DE RECIBO : "<<obj.getNumeroderecibo()<<endl<<"S/N : ";
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                _NumRecibo=recibo;
+                return;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRO NUMERO DE RECIBO ? "<<endl<<"S/N : ";
+                cin>>aux;
+                cout<<endl;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL NUMERO DE RECIBO : ";
+                    cin>>recibo;
+                }
+            else{return;}
+            }
+        }
+        }
+    }
+void DetallesPago::setNumHabitacion(int numHab)
+    {
+        ArchivoHabitacion arc;
+        Habitacion obj;
+        char aux;
+        int pos;
+        while(_estado){
+        pos=arc.buscarRegistro(numHab);
+        if(pos==-1)
+        {
+            cout<<"NUMERO DE HABITACION NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
+            cin>>aux;
+            cout<<endl;
+            if(aux=='S' || aux=='s')
+            {
+                system("cls");
+                cout<<"INGRESE EL NUMERO DE HABITACION : ";
+                cin>>numHab;
+            }
+
+            else
+            {
+                system("cls");
+                _estado=false;
+                return;
+            }
+        }
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(pos);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL NUMERO DE HABITACION : "<<obj.getNumero()<<endl<<"S/N : ";
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                _NumHabitacion=numHab;
+                return;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRO NUMERO DE HABITACION ? "<<endl<<"S/N : ";
+                cin>>aux;
+                cout<<endl;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL NUMERO DE HABITACION : ";
+                    cin>>numHab;
+                }
+            else{return;}
+            }
+        }
+        }
+    }
 #endif // CLSDETALLESPAGOS_H_INCLUDED

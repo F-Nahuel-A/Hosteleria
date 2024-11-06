@@ -188,7 +188,7 @@ void ArchivoDetalles::cambiarNumRecibo()
            cout<<endl;
            if(aux=='s' || aux=='S')
                     {
-           obj.setIDrecibo(recibo);
+           obj.setNumrecibo(recibo);
            modificarRegistro(obj,pos);
            return;
                     }
