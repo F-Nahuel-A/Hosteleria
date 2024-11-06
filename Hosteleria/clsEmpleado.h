@@ -111,7 +111,11 @@ void Empleado::setIDtipo(int t)
                     cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO : ";
                     cin>>t;
                 }
-            else{return;}
+            else
+                {
+                _estado=false;
+                return;
+                }
             }
         }
         }
@@ -162,7 +166,11 @@ void Empleado::setIDturno(int t)
                     cout<<"INGRESE EL ID DEL TURNO : ";
                     cin>>t;
                 }
-            else{return;}
+            else
+            {
+                _estado=false;
+                return;
+            }
             }
         }
         }

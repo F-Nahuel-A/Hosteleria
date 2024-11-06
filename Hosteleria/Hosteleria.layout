@@ -2,131 +2,27 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="clsTipo.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="modificaciones.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1933" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="clsHabitacion.h" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="7152" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="arcHabitacion.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="11734" topLine="394" />
-		</Cursor>
-	</File>
-	<File name="informe.h" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="5423" topLine="157" />
-		</Cursor>
-	</File>
-	<File name="Configuraciones.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="0" topLine="392" />
-		</Cursor>
-	</File>
-	<File name="main.cpp" open="1" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="549" topLine="2" />
-		</Cursor>
-	</File>
-	<File name="clsCategoria.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="136" topLine="55" />
-		</Cursor>
-	</File>
-	<File name="funcionesGlobales.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="345" topLine="11" />
-		</Cursor>
-	</File>
-	<File name="arcTurno.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4508" topLine="163" />
-		</Cursor>
-	</File>
-	<File name="arcTipo.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="6436" topLine="194" />
-		</Cursor>
-	</File>
-	<File name="arcEmpleado.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9137" topLine="353" />
-		</Cursor>
-	</File>
-	<File name="arcPersona.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="3132" topLine="123" />
-		</Cursor>
-	</File>
-	<File name="arcDetallesPago.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4793" topLine="161" />
-		</Cursor>
-	</File>
-	<File name="clsEmpleado.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4544" topLine="166" />
-		</Cursor>
-	</File>
-	<File name="clsDetallesPagos.h" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="2595" topLine="15" />
-		</Cursor>
-	</File>
-	<File name="menus.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="28535" topLine="148" />
+			<Cursor1 position="13631" topLine="34" />
 		</Cursor>
 		<Folding>
-			<Collapse line="30" />
-			<Collapse line="125" />
-			<Collapse line="203" />
-			<Collapse line="281" />
-			<Collapse line="352" />
-			<Collapse line="452" />
-			<Collapse line="552" />
-			<Collapse line="652" />
-			<Collapse line="757" />
-			<Collapse line="850" />
-			<Collapse line="950" />
-			<Collapse line="1049" />
-		</Folding>
-	</File>
-	<File name="clsPersona.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1810" topLine="31" />
-		</Cursor>
-	</File>
-	<File name="arcPago.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="9053" topLine="330" />
-		</Cursor>
-	</File>
-	<File name="arcCategoria.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4377" topLine="157" />
-		</Cursor>
-	</File>
-	<File name="modificaciones.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1574" topLine="30" />
-		</Cursor>
-		<Folding>
+			<Collapse line="14" />
 			<Collapse line="125" />
 			<Collapse line="222" />
 			<Collapse line="291" />
 			<Collapse line="353" />
 			<Collapse line="422" />
 			<Collapse line="505" />
-			<Collapse line="574" />
-			<Collapse line="657" />
+			<Collapse line="665" />
 		</Folding>
 	</File>
-	<File name="menuConfiguraciones.h" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arcEmpleado.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="9137" topLine="353" />
+		</Cursor>
+	</File>
+	<File name="menuConfiguraciones.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="7686" topLine="0" />
 		</Cursor>
@@ -142,19 +38,14 @@
 			<Collapse line="566" />
 		</Folding>
 	</File>
-	<File name="clsHuesped.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="arcDetallesPago.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="602" topLine="0" />
+			<Cursor1 position="4793" topLine="161" />
 		</Cursor>
 	</File>
-	<File name="clsFecha.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="informe.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="3178" topLine="147" />
-		</Cursor>
-	</File>
-	<File name="clsPagos.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="4069" topLine="174" />
+			<Cursor1 position="2911" topLine="108" />
 		</Cursor>
 	</File>
 	<File name="arcHuesped.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -162,24 +53,133 @@
 			<Cursor1 position="12468" topLine="451" />
 		</Cursor>
 	</File>
-	<File name="arcRegimenComida.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="clsPersona.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="5816" topLine="172" />
-		</Cursor>
-	</File>
-	<File name="clsRegimenComida.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="1151" topLine="18" />
+			<Cursor1 position="1810" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="clsTurno.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1007" topLine="0" />
+			<Cursor1 position="1007" topLine="19" />
+		</Cursor>
+	</File>
+	<File name="Configuraciones.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="392" />
+		</Cursor>
+	</File>
+	<File name="clsRegimenComida.h" open="0" top="0" tabpos="13" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1151" topLine="66" />
+		</Cursor>
+	</File>
+	<File name="arcPago.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="10839" topLine="390" />
+		</Cursor>
+	</File>
+	<File name="arcHabitacion.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="11734" topLine="394" />
+		</Cursor>
+	</File>
+	<File name="arcPersona.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3132" topLine="123" />
+		</Cursor>
+	</File>
+	<File name="arcTipo.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6436" topLine="194" />
+		</Cursor>
+	</File>
+	<File name="arcTurno.h" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4508" topLine="163" />
+		</Cursor>
+	</File>
+	<File name="arcCategoria.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4377" topLine="157" />
 		</Cursor>
 	</File>
 	<File name="rlutil.h" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="0" topLine="588" />
+		</Cursor>
+	</File>
+	<File name="menus.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="18843" topLine="120" />
+		</Cursor>
+		<Folding>
+			<Collapse line="30" />
+			<Collapse line="125" />
+			<Collapse line="203" />
+			<Collapse line="281" />
+			<Collapse line="352" />
+			<Collapse line="452" />
+			<Collapse line="552" />
+			<Collapse line="652" />
+			<Collapse line="856" />
+			<Collapse line="956" />
+			<Collapse line="1055" />
+			<Collapse line="1154" />
+		</Folding>
+	</File>
+	<File name="main.cpp" open="1" top="1" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="854" topLine="7" />
+		</Cursor>
+	</File>
+	<File name="clsFecha.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3178" topLine="147" />
+		</Cursor>
+	</File>
+	<File name="funcionesGlobales.h" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="345" topLine="11" />
+		</Cursor>
+	</File>
+	<File name="clsHabitacion.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5034" topLine="264" />
+		</Cursor>
+	</File>
+	<File name="clsTipo.h" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1933" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="clsPagos.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5599" topLine="215" />
+		</Cursor>
+	</File>
+	<File name="clsCategoria.h" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="136" topLine="64" />
+		</Cursor>
+	</File>
+	<File name="clsEmpleado.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="-1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3128" topLine="4" />
+		</Cursor>
+	</File>
+	<File name="clsDetallesPagos.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5132" topLine="170" />
+		</Cursor>
+	</File>
+	<File name="arcRegimenComida.h" open="0" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="5816" topLine="172" />
+		</Cursor>
+	</File>
+	<File name="clsHuesped.h" open="0" top="0" tabpos="11" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="602" topLine="8" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

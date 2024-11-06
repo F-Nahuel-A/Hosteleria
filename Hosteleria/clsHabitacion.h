@@ -117,7 +117,11 @@ void Habitacion::setIdCategoria(int categoria)
                     cout<<"INGRESE EL ID DE LA CATEGORIA : ";
                     cin>>categoria;
                 }
-            else{return;}
+            else
+                {
+                _estado=false;
+                return;
+                }
             }
         }
         }
@@ -168,7 +172,11 @@ void Habitacion::setIdRegimen(int regimen)
                     cout<<"INGRESE EL ID DEL REGIMEN : ";
                     cin>>regimen;
                 }
-            else{return;}
+            else
+                {
+                _estado=false;
+                return;
+                }
             }
         }
         }

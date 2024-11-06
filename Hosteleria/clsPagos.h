@@ -236,7 +236,11 @@ void Pago::setNumeroderecibo(float recibo)
                     cout<<"INGRESE EL NUMERO DE RECIBO : ";
                     cin>>recibo;
                 }
-            else{return;}
+            else
+                {
+                _estado=false;
+                return;
+                }
             }
         }
         }

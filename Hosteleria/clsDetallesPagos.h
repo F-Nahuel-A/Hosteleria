@@ -195,7 +195,11 @@ void DetallesPago::setNumHabitacion(int numHab)
                     cout<<"INGRESE EL NUMERO DE HABITACION : ";
                     cin>>numHab;
                 }
-            else{return;}
+            else
+                {
+                _estado=false;
+                return;
+                }
             }
         }
         }
