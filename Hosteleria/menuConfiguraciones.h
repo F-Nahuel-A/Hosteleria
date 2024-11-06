@@ -43,7 +43,9 @@ void menuCategoriaConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaCategoria();
@@ -71,7 +73,7 @@ void menuCategoriaConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -110,7 +112,9 @@ void menuDetallesPagoConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaDetallesPago();
@@ -138,7 +142,7 @@ void menuDetallesPagoConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -177,7 +181,9 @@ void menuEmpleadoConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaEmpleado();
@@ -205,7 +211,7 @@ void menuEmpleadoConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -244,7 +250,9 @@ void menuHuespedConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaHuesped();
@@ -272,7 +280,7 @@ void menuHuespedConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -311,7 +319,9 @@ void menuPagoConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaPago();
@@ -339,7 +349,7 @@ void menuPagoConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -378,7 +388,9 @@ void menuRegimenComidaConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaRegimenComida();
@@ -406,7 +418,7 @@ void menuRegimenComidaConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -445,7 +457,9 @@ void menuTipoEmpleadoConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaTipoEmpleado();
@@ -473,7 +487,7 @@ void menuTipoEmpleadoConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -512,7 +526,9 @@ void menuTurnoEmpleadoConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaTurnoEmpleado();
@@ -540,7 +556,7 @@ void menuTurnoEmpleadoConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }
@@ -579,7 +595,9 @@ void menuHabitacionConfig()
                 y++;
                 if (y > 5) y = 5;
                 break;
-
+             case 1:
+                switch (y)
+                {
             case 1:
                 system("cls");
                 copiaHabitacion();
@@ -607,7 +625,7 @@ void menuHabitacionConfig()
             case 5:
                 op = 0;
                 break;
-
+                }
             default:
                 break;
         }

@@ -170,55 +170,25 @@ void recaudacionHabitacion()
 }
 
 void gananciaAnual() {
+
     ArchivoDetalles archivoDetalles;
-    ArchivoHabitacion archivoHabitacion;
-
-    int cantHabitaciones = archivoHabitacion.contarRegistros();
     int cantDetalles = archivoDetalles.contarRegistros();
+    float recaudadoAnual=0;
 
-    if (cantHabitaciones <= 0 || cantDetalles <= 0) {
+    if (cantDetalles <= 0)
+    {
         cout << "NO HAY DATOS SUFICIENTES PARA CALCULAR LA MAXIMA GANANCIA." << endl;
         return;
     }
 
-    float *gananciasPorHabitacion = new float[cantHabitaciones]();
-
-    /// ACUMULA LAS GANANCIAS POR HABITACION
     for (int i = 0; i < cantDetalles; i++) {
         DetallesPago detalle = archivoDetalles.leerRegistro(i);
 
         if (detalle.getEstado()) {
-            int numdeHabitacion = detalle.getNumdehabitacion();
-            float totalAbonado = detalle.getTotalabonado();
-
-            int posHabitacion = archivoHabitacion.buscarRegistro(numdeHabitacion);
-            if (posHabitacion != -1) {
-                gananciasPorHabitacion[posHabitacion] += totalAbonado;
-            }
+            recaudadoAnual+=detalle.getTotalabonado();
         }
     }
-
-    // BUSCA LA HABITACION CON MAYOR GANANCIA
-    float maxGanancia = 0;
-    int habitacionMaxGanancia = -1;
-
-    for (int j = 0; j < cantHabitaciones; j++) {
-        if (gananciasPorHabitacion[j] > maxGanancia) {
-            maxGanancia = gananciasPorHabitacion[j];
-            habitacionMaxGanancia = j;
-        }
-    }
-
-    /// DEBERIA MOSTRAR LA HABITACION CON MAYOR GANANCIA
-    if (habitacionMaxGanancia != -1) {
-        Habitacion habitacion = archivoHabitacion.leerRegistro(habitacionMaxGanancia);
-        cout << "LA HABITACION CON MAYOR GANANCIA ES LA: " << habitacion.getNumero() << endl;
-        cout << "CON UNA GANANCIA DE: $" << maxGanancia << endl;
-    } else {
-        cout << "NO SE REGISTRO LA MAYOR GANANCIA" << endl;
-    }
-
-    delete[] gananciasPorHabitacion;
+    cout<<"LA RECAUDACION DEL 2024 ES DE : "<<recaudadoAnual<<"$"<<endl;
 }
 
 #endif // INFORME_H_INCLUDED
