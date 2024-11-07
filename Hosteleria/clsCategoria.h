@@ -77,6 +77,9 @@ public:
         fclose(p);
         _id=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID
+
+        ///Leer final del archivo y de ahi incrementamos +1
+
         cout << "INGRESE UNA DESCRIPCION: ";
         cargarCadena(_descripcion,99);
         float auxF;

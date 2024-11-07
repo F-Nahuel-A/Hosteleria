@@ -33,6 +33,7 @@ using namespace std;
 #include "menus.h"
 #include "Configuraciones.h"
 #include "menuConfiguraciones.h"
+#include "reserva.h"
 
 void limpiar();
 

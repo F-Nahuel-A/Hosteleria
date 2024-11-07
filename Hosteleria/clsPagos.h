@@ -11,7 +11,7 @@ private:
     float _total;
     bool _estado;
 public:
-    Pago(int recibo=0, int forma=0, float t=0,int dni=0){
+    Pago(int recibo=-1, int forma=-1, float t=-1,int dni=-1){
     _NumRecibo=recibo;
     _dni=dni;
     _FormadPago=forma;
@@ -246,4 +246,26 @@ void Pago::setNumeroderecibo(float recibo)
         }
     }
 
+    ///HACER UNA FUNCIÓN QUE RECIBA UN ARRAY POR PARAMETRO Y QUE DEVUELVA LA CANTIDAD DE NUMEROS IMPARES
+int impar(int vec[],int tam)
+{
+    int contInpar=0;
+    for (int i=0;i<tam;i++)
+    {
+        if(vec[i]%2!=0)
+        {
+            contInpar++;
+        }
+    }
+
+    return contInpar;
+}
+
+///Hacer el ingreso más intuitivo
+///Verificar si los datos existen dentro del archivo (dni,leg,etc)
+///Hacer un menú más intuitivo, configuraciones general (que se copien,restablezcan todos los datos)
+///Listados por separado
+///Hacer un menú de reserva(Que se pida habitación,categoria,regimen) y que se modifique automaticamente las habitaciones
+///Mostrar habitaciones disponibles
+///Implementar fechas donde el cliente solicita el ingreso y la salida
 #endif // CLSPAGOS_H_INCLUDED

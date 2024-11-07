@@ -29,17 +29,23 @@ public:
     void cambiarTotalAbonado();
 };
 
- DetallesPago ArchivoDetalles::leerRegistro(int pos)
+ DetallesPago ArchivoDetalles::leerRegistro(int pos=-1)
     {
-        DetallesPago obj;
+        DetallesPago obj(-1,-1,-1,-1);
         FILE *p=fopen(_nombre, "rb");
         if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
         return obj;
     }
+    if(pos==-1)
+    {
+        fseek(p,0,2);
+        fread(&obj, sizeof obj, 1, p);
+    }
+    else
+        {
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
+        }
     fclose(p);
     return obj;
     }

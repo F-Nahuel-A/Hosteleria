@@ -32,20 +32,33 @@ public:
 };
 
 
-    Pago ArchivoPago::leerRegistro(int pos)
+    Pago ArchivoPago::leerRegistro(int pos=-1)
     {
-        Pago obj;
+        Pago obj(-8,-8,-8,-8);
         FILE *p=fopen(_nombre, "rb");
         if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
         return obj;
     }
+    if(pos==-1)
+    {
+
+        fseek(p,0,2);
+        fread(&obj,sizeof obj,1,p);
+        ///SI POS ES ==-1, NO PASÓ PARAMETROS. RECORRER ARCHIVO COMPLETO.
+        ///obj.getNumeroderecibo()==-8 no recibio
+        ///obj.getNumeroderecibo()==-1 recibio
+    }
+    else
+    {
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
     fclose(p);
     return obj;
     }
+    }
+
+
+    ///METODO, LEER REGISTRO SIN PARAMETROS
 
     int ArchivoPago::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");

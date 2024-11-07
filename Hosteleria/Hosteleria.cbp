@@ -60,6 +60,7 @@
 		<Unit filename="menuConfiguraciones.h" />
 		<Unit filename="menus.h" />
 		<Unit filename="modificaciones.h" />
+		<Unit filename="reserva.h" />
 		<Unit filename="rlutil.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
