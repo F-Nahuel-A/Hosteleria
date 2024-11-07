@@ -31,6 +31,8 @@ using namespace std;
 #include "modificaciones.h"
 #include "informe.h"
 #include "Configuraciones.h"
+#include "menuConfiguraciones.h"
+#include "reserva.h"
 #include "menus.h"
 
 void limpiar();

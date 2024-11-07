@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1730930037 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1730950941 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -29,10 +29,10 @@
 	"arcHuesped.h"
 	"modificaciones.h"
 	"informe.h"
-	"menus.h"
 	"Configuraciones.h"
 	"menuConfiguraciones.h"
 	"reserva.h"
+	"menus.h"
 
 1730591790 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
@@ -54,7 +54,7 @@
 
 1730818937 c:\users\admin\desktop\hosteleria\hosteleria\arcturno.h
 
-1730899245 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
+1730949867 c:\users\admin\desktop\hosteleria\hosteleria\clscategoria.h
 
 1730890815 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
 
@@ -110,7 +110,7 @@
 
 1730863436 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
 
-1730937262 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
+1730953007 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
 
 1730938389 c:\users\admin\desktop\hosteleria\hosteleria\arcpago.h
 
@@ -120,9 +120,9 @@
 
 1730939336 c:\users\admin\desktop\hosteleria\hosteleria\arcdetallespago.h
 
-1730937743 c:\users\admin\desktop\hosteleria\hosteleria\configuraciones.h
+1730949867 c:\users\admin\desktop\hosteleria\hosteleria\configuraciones.h
 
-1730852790 c:\users\admin\desktop\hosteleria\hosteleria\menuconfiguraciones.h
+1730951896 c:\users\admin\desktop\hosteleria\hosteleria\menuconfiguraciones.h
 
 1730893249 c:\users\admin\desktop\hosteleria\hosteleria\informe.h
 
@@ -226,5 +226,5 @@
 
 1730781910 c:\users\familia\desktop\hosteleria\menuconfiguraciones.h
 
-1730939792 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
+1730954354 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
 

@@ -4,7 +4,7 @@ int verificarCapacidad(int cap);
 int verificarCategoria(int cat);
 int verificarHabitacion(int num);
 int verificarRegimen(int reg);
-void habitacionesLibres(int cap,int cat);
+int habitacionesLibres(int cap,int cat);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 
 void agregarReserva()
@@ -22,8 +22,13 @@ void agregarReserva()
     if(capacidad==-1){return;}
 
     cout<<endl<<"HABITACIONES DISPONIBLES : "<<endl;
-    system("cls");
-    habitacionesLibres(capacidad,categoria);
+    int jeje=habitacionesLibres(capacidad,categoria);
+    if(jeje==0)
+    {
+        cout<<"NO HAY HABITACIONES DISPONIBLES."<<endl;
+        system("pause");
+        return;
+    }
 
     cout<<endl<<"DESEA CONTINUAR ?"<<endl<<"S/N : ";
     cin>>aux;
@@ -43,15 +48,18 @@ void agregarReserva()
     system("cls");
     float totalApagar;
     totalApagar=confirmacion(categoria,capacidad,numHab,regimen,totalApagar);
+    system("cls");
     if(totalApagar!=-1)
     {
         int pos=arcHab.buscarRegistro(numHab);
+        objHab=arcHab.leerRegistro(pos);
         objHab.setDisponibilidad(0);
         if(regimen!=0)
         {
             objHab.setIdRegimen(regimen);
         }
         arcHab.modificarRegistro(objHab,pos);
+        system("cls");
     }
 
     ArchivoHuesped arcH;
@@ -70,7 +78,7 @@ void agregarReserva()
     DetallesPago objD;
     objD=arcD.leerRegistro();
     int idDetalle;
-    idDetalle=objD.getID()+1;
+    idDetalle=objD.getID()+1; ///REVISAR LA FUNCION LEER REGISTRO, NO DEVUELVE BIEN
 
     objD.setIDdetalle(idDetalle);
     objD.setEstado(true);
@@ -80,11 +88,12 @@ void agregarReserva()
     arcD.grabarRegistro(objD);
 }
 
-void habitacionesLibres(int cap, int cat)
+int habitacionesLibres(int cap, int cat)
 {
     ArchivoHabitacion arcHab;
     Habitacion objHab;
     int contReg=arcHab.contarRegistros();
+    int contHab=0;
 
     for (int i=0;i<contReg;i++)
         {
@@ -94,10 +103,12 @@ void habitacionesLibres(int cap, int cat)
             if(objHab.getIdCategoria()==cat && objHab.getCapacidad()==cap)
             {
                 objHab.Mostrar();
+                contHab++;
             }
         }
 
         }
+    return contHab;
 }
 
 int verificarCapacidad(int cap)
@@ -112,12 +123,12 @@ int verificarCapacidad(int cap)
         cout<<endl;
         if(aux=='n' || aux=='N')
         {
-            cout<<endl<<"DESEA VOLVER A INTENTARLO ?"<<endl<<"S/N : ";
-            cin>>aux;
-            cout<<endl;
-            if(aux=='n' || aux=='N'){return -1;}
-            }else{return cap;}
             system("cls");
+            cout<<"DESEA VOLVER A INTENTARLO ?"<<endl<<"S/N : ";
+            cin>>aux;
+            if(aux=='n' || aux=='N'){return -1;}else{system("cls");}
+
+            }else{return cap;}
 }
 }
 
@@ -130,9 +141,8 @@ int verificarCategoria(int cat)
     cin>>cat;
     pos=arcCat.buscarRegistro(cat);
     while(pos==-1)
-    {
-        system("cls");
-        cout<<endl<<"SE TIPEO MAL LA CATEGORIA, QUIERE VOLVER A INTENTAR ? "<<endl<<"S/N : ";
+    {   system("cls");
+        cout<<"SE TIPEO MAL LA CATEGORIA, QUIERE VOLVER A INTENTAR ? "<<endl<<"S/N : ";
         cin>>aux;
         if(aux=='s' || aux=='S')
             {
@@ -156,7 +166,7 @@ int verificarHabitacion(int num)
         cin>>num;
         pos=arcHab.buscarRegistro(num);
          while(pos==-1)
-        {
+        {   system("cls");
             cout<<"SE TIPEO MAL LA HABITACION,DESEA VOLVER A INTENTARLO ? "<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='s' || aux=='S')
@@ -185,6 +195,7 @@ int verificarRegimen(int reg)
         pos=arcReg.buscarRegistro(reg);
         if(pos==-1)
         {
+            system("cls");
             cout<<"EL REGIMEN NO EXISTE, DESEA VOLVER A INTENTARLO ? "<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='n' || aux=='N'){return -1;}
@@ -197,11 +208,12 @@ int verificarRegimen(int reg)
             cin>>aux;
             if(aux=='n'||aux=='N')
                 {
+                    system("cls");
                     cout<<"QUIERE VOLVER A INTENTAR ? "<<endl<<"S/N : ";
                     cin>>aux;
                     if(aux=='n'||aux=='N')
                     {return -1;}
-                    else{pos=-1;}
+                    else{pos=-1;system("cls");}
 
                 }
         }
