@@ -1,8 +1,9 @@
 #ifndef CONFIGURACIONES_H_INCLUDED
 #define CONFIGURACIONES_H_INCLUDED
+
 ///COPIAS///
 void copiaCategoria();
-void copiaDetallesdPago();
+void copiaDetallesPago();
 void copiaEmpleado();
 void copiaHuesped();
 void copiaPago();
@@ -10,6 +11,21 @@ void copiaRegimenComida();
 void copiaTipoEmpleado();
 void copiaTurnoEmpleado();
 void copiaHabitacion();
+
+void copiaTodos();
+
+void copiaTodos()
+{
+    copiaCategoria();
+    copiaDetallesPago();
+    copiaEmpleado();
+    copiaHuesped();
+    copiaPago();
+    copiaRegimenComida();
+    copiaTipoEmpleado();
+    copiaTurnoEmpleado();
+    copiaHabitacion();
+}
 
 void copiaCategoria()
 {
@@ -25,8 +41,6 @@ void copiaCategoria()
             bkpCat.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO CATEGORIA COPIADO" << endl;
-    system("pause");
 }
 
 void copiaDetallesPago()
@@ -43,8 +57,6 @@ void copiaDetallesPago()
             bkpDet.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO DETALLES DE PAGO COPIADO" << endl;
-    system("pause");
 }
 
 void copiaEmpleado()
@@ -61,8 +73,6 @@ void copiaEmpleado()
             bkpEmp.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO EMPLEADO COPIADO" << endl;
-    system("pause");
 }
 
 void copiaHuesped()
@@ -79,8 +89,6 @@ void copiaHuesped()
             bkpHues.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO HUESPED COPIADO" << endl;
-    system("pause");
 }
 
 void copiaPago()
@@ -97,8 +105,6 @@ void copiaPago()
             bkpPag.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO PAGO COPIADO" << endl;
-    system("pause");
 }
 
 void copiaRegimenComida()
@@ -115,8 +121,6 @@ void copiaRegimenComida()
             bkpReg.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO REGIMEN DE COMIDA COPIADO" << endl;
-    system("pause");
 }
 
 void copiaTipoEmpleado()
@@ -133,8 +137,6 @@ void copiaTipoEmpleado()
             bkpTipo.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO TIPO DE EMPLEADO COPIADO" << endl;
-    system("pause");
 }
 
 void copiaTurnoEmpleado()
@@ -151,8 +153,6 @@ void copiaTurnoEmpleado()
             bkpTurno.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO TURNO DE EMPLEADO COPIADO" << endl;
-    system("pause");
 }
 
 void copiaHabitacion()
@@ -169,12 +169,7 @@ void copiaHabitacion()
             bkpHabit.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO HABITACION COPIADO" << endl;
-    system("pause");
 }
-
-
-
 ///COPIAS///
 
 ///RESTABLECER///
@@ -188,6 +183,20 @@ void restablecerTipoEmpleado();
 void restablecerTurnoEmpleado();
 void restablecerHabitacion();
 
+void restablecerTodos();
+
+void restablecerTodos()
+{
+    restablecerCategoria();
+    restablecerDetallesPago();
+    restablecerEmpleado();
+    restablecerHuesped();
+    restablecerPago();
+    restablecerRegimenComida();
+    restablecerTipoEmpleado();
+    restablecerTurnoEmpleado();
+    restablecerHabitacion();
+}
 
 void restablecerCategoria()
 {
@@ -203,8 +212,6 @@ void restablecerCategoria()
             arcCat.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO CATEGORIA RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerDetallesPago()
@@ -221,8 +228,6 @@ void restablecerDetallesPago()
             arcDet.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO DETALLES DE PAGO RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerEmpleado()
@@ -239,8 +244,6 @@ void restablecerEmpleado()
             arcEmp.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO EMPLEADO RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerHuesped()
@@ -257,8 +260,6 @@ void restablecerHuesped()
             arcHues.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO HUESPED RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerPago()
@@ -275,8 +276,6 @@ void restablecerPago()
             arcPag.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO PAGO RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerRegimenComida()
@@ -293,8 +292,6 @@ void restablecerRegimenComida()
             arcReg.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO REGIMEN DE COMIDA RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerTipoEmpleado()
@@ -311,8 +308,6 @@ void restablecerTipoEmpleado()
             arcTipo.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO TIPO DE EMPLEADO RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerTurnoEmpleado()
@@ -329,8 +324,6 @@ void restablecerTurnoEmpleado()
             arcTurno.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO TURNO DE EMPLEADO RESTABLECIDO" << endl;
-    system("pause");
 }
 
 void restablecerHabitacion()
@@ -347,11 +340,7 @@ void restablecerHabitacion()
             arcHabit.grabarRegistro(obj);
         }
     }
-    cout << "ARCHIVO HABITACION RESTABLECIDO" << endl;
-    system("pause");
 }
-
-
 ///RESTABLECER///
 
 ///ESTABLECER DATOS INI///
@@ -364,6 +353,21 @@ void establecerDatosIniRegimenComida();
 void establecerDatosIniTipoEmpleado();
 void establecerDatosIniTurnoEmpleado();
 void establecerDatosIniHabitacion();
+
+void establecerDatosIniHabitacion();
+
+void establecerDatosIniTodos()
+{
+    establecerDatosIniCategoria();
+    establecerDatosIniDetallesPago();
+    establecerDatosIniEmpleado();
+    establecerDatosIniHuesped();
+    establecerDatosIniPago();
+    establecerDatosIniRegimenComida();
+    establecerDatosIniTipoEmpleado();
+    establecerDatosIniTurnoEmpleado();
+    establecerDatosIniHabitacion();
+}
 
 void establecerDatosIniCategoria()
 {
@@ -379,8 +383,6 @@ void establecerDatosIniCategoria()
             arcCatIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI CATEGORIA ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniDetallesPago()
@@ -397,8 +399,6 @@ void establecerDatosIniDetallesPago()
             arcDetIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI DETALLES DE PAGO ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniEmpleado()
@@ -415,8 +415,6 @@ void establecerDatosIniEmpleado()
             arcEmpIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI EMPLEADO ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniHuesped()
@@ -433,8 +431,6 @@ void establecerDatosIniHuesped()
             arcHuesIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI HUESPED ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniPago()
@@ -451,8 +447,6 @@ void establecerDatosIniPago()
             arcPagIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI PAGO ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniRegimenComida()
@@ -469,8 +463,6 @@ void establecerDatosIniRegimenComida()
             arcRegIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI REGIMEN DE COMIDA ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniTipoEmpleado()
@@ -487,8 +479,6 @@ void establecerDatosIniTipoEmpleado()
             arcTipoIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI TIPO DE EMPLEADO ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniTurnoEmpleado()
@@ -505,8 +495,6 @@ void establecerDatosIniTurnoEmpleado()
             arcTurnoIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI TURNO DE EMPLEADO ESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void establecerDatosIniHabitacion()
@@ -523,11 +511,7 @@ void establecerDatosIniHabitacion()
             arcHabitIni.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI HABITACION ESTABLECIDOS" << endl;
-    system("pause");
 }
-
-
 ///ESTABLECER DATOS INI///
 
 ///RESTABLECER DATOS INI///
@@ -540,6 +524,22 @@ void restablecerDatosIniRegimenComida();
 void restablecerDatosIniTipoEmpleado();
 void restablecerDatosIniTurnoEmpleado();
 void restablecerDatosIniHabitacion();
+
+void restablecerDatosIniTodos();
+
+void restablecerDatosIniTodos()
+{
+    restablecerDatosIniCategoria();
+    restablecerDatosIniDetallesPago();
+    restablecerDatosIniEmpleado();
+    restablecerDatosIniHuesped();
+    restablecerDatosIniPago();
+    restablecerDatosIniRegimenComida();
+    restablecerDatosIniTipoEmpleado();
+    restablecerDatosIniTurnoEmpleado();
+    restablecerDatosIniHabitacion();
+
+}
 
 void restablecerDatosIniCategoria()
 {
@@ -555,8 +555,6 @@ void restablecerDatosIniCategoria()
             arcCat.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI CATEGORIA RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniDetallesPago()
@@ -573,8 +571,6 @@ void restablecerDatosIniDetallesPago()
             arcDet.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI DETALLES DE PAGO RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniEmpleado()
@@ -591,8 +587,6 @@ void restablecerDatosIniEmpleado()
             arcEmp.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI EMPLEADO RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniHuesped()
@@ -609,8 +603,6 @@ void restablecerDatosIniHuesped()
             arcHues.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI HUESPED RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniPago()
@@ -627,8 +619,6 @@ void restablecerDatosIniPago()
             arcPag.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI PAGO RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniRegimenComida()
@@ -645,8 +635,6 @@ void restablecerDatosIniRegimenComida()
             arcReg.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI REGIMEN DE COMIDA RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniTipoEmpleado()
@@ -663,8 +651,6 @@ void restablecerDatosIniTipoEmpleado()
             arcTipo.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI TIPO DE EMPLEADO RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniTurnoEmpleado()
@@ -681,8 +667,6 @@ void restablecerDatosIniTurnoEmpleado()
             arcTurno.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI TURNO DE EMPLEADO RESTABLECIDOS" << endl;
-    system("pause");
 }
 
 void restablecerDatosIniHabitacion()
@@ -699,10 +683,7 @@ void restablecerDatosIniHabitacion()
             arcHabit.grabarRegistro(obj);
         }
     }
-    cout << "DATOS INI HABITACION RESTABLECIDOS" << endl;
-    system("pause");
 }
-
 ///RESTABLECER DATOS INI///
 
 #endif // CONFIGURACIONES_H_INCLUDED
