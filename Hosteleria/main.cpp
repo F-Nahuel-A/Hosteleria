@@ -30,9 +30,8 @@ using namespace std;
 #include "arcHuesped.h"
 #include "modificaciones.h"
 #include "informe.h"
-#include "menus.h"
 #include "Configuraciones.h"
-#include "menuConfiguraciones.h"
+#include "menus.h"
 
 void limpiar();
 

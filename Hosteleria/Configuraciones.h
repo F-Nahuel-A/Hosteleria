@@ -1,8 +1,9 @@
 #ifndef CONFIGURACIONES_H_INCLUDED
 #define CONFIGURACIONES_H_INCLUDED
+
 ///COPIAS///
 void copiaCategoria();
-void copiaDetallesdPago();
+void copiaDetallesPago();
 void copiaEmpleado();
 void copiaHuesped();
 void copiaPago();
@@ -10,6 +11,24 @@ void copiaRegimenComida();
 void copiaTipoEmpleado();
 void copiaTurnoEmpleado();
 void copiaHabitacion();
+
+void copiaTodos();
+
+void copiaTodos()
+{
+  copiaCategoria();
+  copiaDetallesPago();
+  copiaEmpleado();
+  copiaHuesped();
+  copiaPago();
+  copiaRegimenComida();
+  copiaTipoEmpleado();
+  copiaTurnoEmpleado();
+  copiaHabitacion();
+  
+  cout << "TODOS LOS ARCHIVOS HAN SIDO COPIADOS" << endl;
+  system("pause");
+}
 
 void copiaCategoria()
 {
@@ -172,9 +191,6 @@ void copiaHabitacion()
     cout << "ARCHIVO HABITACION COPIADO" << endl;
     system("pause");
 }
-
-
-
 ///COPIAS///
 
 ///RESTABLECER///
@@ -188,6 +204,23 @@ void restablecerTipoEmpleado();
 void restablecerTurnoEmpleado();
 void restablecerHabitacion();
 
+void restablecerTodos();
+
+void restablecerTodos()
+{
+  restablecerCategoria();
+  restablecerDetallesPago();
+  restablecerEmpleado();
+  restablecerHuesped();
+  restablecerPago();
+  restablecerRegimenComida();
+  restablecerTipoEmpleado();
+  restablecerTurnoEmpleado();
+  restablecerHabitacion();
+
+  cout << "TODOS LOS ARCHIVOS HAN SIDO RESTABLECIDOS" << endl;
+  system("pause");
+}
 
 void restablecerCategoria()
 {
@@ -350,8 +383,6 @@ void restablecerHabitacion()
     cout << "ARCHIVO HABITACION RESTABLECIDO" << endl;
     system("pause");
 }
-
-
 ///RESTABLECER///
 
 ///ESTABLECER DATOS INI///
@@ -364,6 +395,24 @@ void establecerDatosIniRegimenComida();
 void establecerDatosIniTipoEmpleado();
 void establecerDatosIniTurnoEmpleado();
 void establecerDatosIniHabitacion();
+
+void establecerDatosIniHabitacion();
+
+void establecerDatosIniTodos()
+{
+  establecerDatosIniCategoria();
+  establecerDatosIniDetallesPago();
+  establecerDatosIniEmpleado();
+  establecerDatosIniHuesped();
+  establecerDatosIniPago();
+  establecerDatosIniRegimenComida();
+  establecerDatosIniTipoEmpleado();
+  establecerDatosIniTurnoEmpleado();
+  establecerDatosIniHabitacion();
+  
+  cout << "TODOS LOS DATOS .INI HAN SIDO ESTABLECIDOS" << endl;
+  system("pause");
+}
 
 void establecerDatosIniCategoria()
 {
@@ -526,8 +575,6 @@ void establecerDatosIniHabitacion()
     cout << "DATOS INI HABITACION ESTABLECIDOS" << endl;
     system("pause");
 }
-
-
 ///ESTABLECER DATOS INI///
 
 ///RESTABLECER DATOS INI///
@@ -540,6 +587,24 @@ void restablecerDatosIniRegimenComida();
 void restablecerDatosIniTipoEmpleado();
 void restablecerDatosIniTurnoEmpleado();
 void restablecerDatosIniHabitacion();
+
+void restablecerDatosIniTodos();
+
+void restablecerDatosIniTodos()
+{
+  restablecerDatosIniCategoria();
+  restablecerDatosIniDetallesPago();
+  restablecerDatosIniEmpleado();
+  restablecerDatosIniHuesped();
+  restablecerDatosIniPago();
+  restablecerDatosIniRegimenComida();
+  restablecerDatosIniTipoEmpleado();
+  restablecerDatosIniTurnoEmpleado();
+  restablecerDatosIniHabitacion();
+  
+  cout << "TODOS LOS DATOS .INI HAN SIDO RESTABLECIDOS" << endl;
+  system("pause");
+}
 
 void restablecerDatosIniCategoria()
 {
@@ -702,7 +767,6 @@ void restablecerDatosIniHabitacion()
     cout << "DATOS INI HABITACION RESTABLECIDOS" << endl;
     system("pause");
 }
-
 ///RESTABLECER DATOS INI///
 
 #endif // CONFIGURACIONES_H_INCLUDED
