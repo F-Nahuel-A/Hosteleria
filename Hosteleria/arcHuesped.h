@@ -13,11 +13,11 @@ public:
     int contarRegistros();
     bool grabarRegistro(Huesped obj);
     int buscarRegistro(int dni);
-    void modificarRegistro(Huesped obj, int pos);
+    bool modificarRegistro(Huesped obj, int pos);
     void listarArchivo();
     void listarPorDNI();
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -33,9 +33,9 @@ Huesped ArchivoHuesped::leerRegistro(int pos)
 {
     Huesped obj;
     FILE *p = fopen(_nombre, "rb");
-    if (p == NULL)
-    {
-        cout << "ERROR EN LA APERTURA" << endl;
+    if(p == NULL){
+        cout<<"ERROR EN LA APERTURA"<<endl;
+        system("pause");
         return obj;
     }
     fseek(p, pos * sizeof obj, 0);
@@ -49,7 +49,6 @@ int ArchivoHuesped::contarRegistros()
     FILE *p = fopen(_nombre, "rb");
     if (p == NULL)
     {
-        cout << "ERROR EN LA APERTURA" << endl;
         return -1;
     }
     fseek(p, 0, SEEK_END);
@@ -63,7 +62,6 @@ bool ArchivoHuesped::grabarRegistro(Huesped obj)
     FILE *p = fopen(_nombre, "ab");
     if (p == NULL)
     {
-        cout << "ERROR EN LA APERTURA" << endl;
         return false;
     }
     fwrite(&obj, sizeof obj, 1, p);
@@ -83,23 +81,18 @@ int ArchivoHuesped::buscarRegistro(int dni)
             return i;
         }
     }
-    cout << "NO SE ENCONTRO EL REGISTRO" << endl;
     return -1;
 }
 
-void ArchivoHuesped::modificarRegistro(Huesped obj, int pos)
+bool ArchivoHuesped::modificarRegistro(Huesped obj, int pos)
 {
     FILE *p = fopen(_nombre, "rb+");
     if (p == NULL)
-    {
-        cout << "ERROR EN LA APERTURA" << endl;
-        return;
-    }
+    {return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout << "MODIFICACION HECHA" << endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoHuesped::listarArchivo()
@@ -118,15 +111,15 @@ void ArchivoHuesped::listarArchivo()
     system("pause");
 }
 
-void ArchivoHuesped::limpiarArchivo()
+bool ArchivoHuesped::limpiarArchivo()
 {
     FILE *p = fopen(_nombre, "wb");
     if (p == NULL)
     {
-        cout << "ERROR EN LA APERTURA" << endl;
-        return;
+        return false;
     }
     fclose(p);
+    return true;
 }
 
 void ArchivoHuesped::altaRegistro()

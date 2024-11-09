@@ -12,11 +12,11 @@ public:
     int contarRegistros();
     bool grabarRegistro(Habitacion obj);
     int buscarRegistro(int id);
-    void modificarRegistro(Habitacion obj, int pos);
+    bool modificarRegistro(Habitacion obj, int pos);
     void listarArchivo();
     void listarPorNumero();
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -30,10 +30,14 @@ public:
 Habitacion ArchivoHabitacion::leerRegistro(int pos) {
     Habitacion obj;
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return obj;
+    if(p == NULL){return obj;}
+    if(pos==-1)
+    {
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Habitacion);
+        obj.setNumero(cantRegistros);
     }
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
@@ -43,9 +47,7 @@ Habitacion ArchivoHabitacion::leerRegistro(int pos) {
 
 int ArchivoHabitacion::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-            return -1;}
+    if(p == NULL){return -1;}
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
@@ -56,10 +58,7 @@ int ArchivoHabitacion::contarRegistros(){
 
 bool ArchivoHabitacion::grabarRegistro(Habitacion obj){
     FILE *p = fopen(_nombre,"ab");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        return false;
-    }
+    if(p == NULL){return false;}
     fwrite(&obj, sizeof obj, 1,p);
     fclose(p);
     return true;
@@ -74,21 +73,16 @@ int ArchivoHabitacion::buscarRegistro(int id){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoHabitacion::modificarRegistro(Habitacion obj, int pos){
+bool ArchivoHabitacion::modificarRegistro(Habitacion obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoHabitacion::listarArchivo(){
@@ -104,13 +98,11 @@ void ArchivoHabitacion::listarArchivo(){
     system("pause");
 }
 
-void ArchivoHabitacion::limpiarArchivo(){
+bool ArchivoHabitacion::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoHabitacion::altaRegistro()

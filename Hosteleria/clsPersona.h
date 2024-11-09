@@ -52,6 +52,7 @@ public:
         _nacimiento.Cargar();
     }
 
+
     void Mostrar()
     {
         if(_estado)
@@ -60,7 +61,7 @@ public:
         cout<<"NOMBRE : "<<_nombre<<endl;
         cout<<"APELLIDO : "<<_apellido<<endl;
         cout<<"NUMERO DE TELEFONO : "<<_telefono<<endl;
-        cout<<"FECHA DE NACIMIENTO"<<endl;
+        cout<<"FECHA DE NACIMIENTO : ";
         _nacimiento.Mostrar();
         }
     }

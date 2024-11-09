@@ -22,7 +22,8 @@ public:
     Fecha getFecha(){return _ingreso;}
     bool getEstado(){return _estado;}
 
-    void setLegajo(int l);
+    void setDNIEmp(int dni);
+    void setLegajo(int l){_legajo=l;}
     void setIDturno(int t);
     void setIDtipo(int t);
     void setFecha(Fecha f){_ingreso=f;}
@@ -32,15 +33,23 @@ public:
     {
         _estado=true;
         Persona::Cargar();
+        setDNIEmp(Persona::getDni());
+        if(_estado==false){return;}
         cout<<"DATOS PERSONALES CARGADOS"<<endl;
         system("pause");
         system("cls");
         cout<<"DATOS LABORALES"<<endl;
         int aux;
-        cout<<"INGRESE EL LEGAJO : ";
-        cin>>aux;
-        setLegajo(aux);
-        if(_estado==false){return;}
+        ///
+        FILE *p=fopen("Pago.dat","rb");
+        if(p == NULL){cout<<"ERROR EN LA APERTURA"<<endl;return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Empleado);
+        fclose(p);
+        _legajo=cantRegistros+1;
+        ///
         cout<<"INGRESE EL TURNO : ";
         cin>>aux;
         setIDturno(aux);
@@ -60,7 +69,7 @@ public:
         cout<<"LEGAJO : "<<_legajo<<endl;
         cout<<"TURNO : "<<_IDturno<<endl;
         cout<<"TIPO : "<<_IDtipo<<endl;
-        cout<<"FECHA DE INGRESO"<<endl;
+        cout<<"FECHA DE INGRESO : ";
         _ingreso.Mostrar();
         }
     }
@@ -76,7 +85,7 @@ void Empleado::setIDtipo(int t)
         pos=arc.buscarRegistro(t);
         if(pos==-1)
         {
-            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"ID DE SECTOR NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -95,7 +104,7 @@ void Empleado::setIDtipo(int t)
         if(pos!=-1)
         {
             obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL CARGO : "<<obj.getOcupacion()<<endl<<"S/N"<<endl;
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL CARGO : "<<obj.getOcupacion()<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -104,10 +113,11 @@ void Empleado::setIDtipo(int t)
             }
             else
             {
-                cout<<"QUIERE INGRESAR OTRO ? "<<endl<<"S/N"<<endl;
+                cout<<"QUIERE INGRESAR OTRO ? "<<endl<<"S/N : ";
                 cin>>aux;
                 if(aux=='S' || aux=='s')
                 {
+                    system("cls");
                     cout<<"INGRESE EL ID DEL SECTOR DE TRABAJO : ";
                     cin>>t;
                 }
@@ -131,7 +141,7 @@ void Empleado::setIDturno(int t)
         pos=arc.buscarRegistro(t);
         if(pos==-1)
         {
-            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"ID DE TURNO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -150,7 +160,7 @@ void Empleado::setIDturno(int t)
         if(pos!=-1)
         {
             obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL TURNO : "<<obj.getHorario()<<endl<<"S/N"<<endl;
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL TURNO : "<<obj.getHorario()<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -163,6 +173,7 @@ void Empleado::setIDturno(int t)
                 cin>>aux;
                 if(aux=='S' || aux=='s')
                 {
+                    system("cls");
                     cout<<"INGRESE EL ID DEL TURNO : ";
                     cin>>t;
                 }
@@ -176,41 +187,31 @@ void Empleado::setIDturno(int t)
         }
     }
 
-void Empleado::setLegajo(int l)
-    {
+void Empleado::setDNIEmp(int dni)
+{
         char aux;
-        if(l>0)
-        {
-            _legajo=l;
-            return;
-        }
-        else
-        {
-            while(l<0)
-                {
+        Empleado obj;
+        FILE *p=fopen("empleado.dat", "rb");
+        if(p == NULL){return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Empleado);
+        bool existe=false;
 
-            cout<<"LEGAJO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
-            cin>>aux;
-
-            if(aux=='S' || aux=='s')
+        for (int i=0;i<cantRegistros;i++)
+        {
+            fseek(p, i * sizeof obj, 0);
+            fread(&obj, sizeof obj, 1, p);
+            if(obj.getDni()==dni)
             {
-                system("cls");
-                cout<<"INGRESE EL LEGAJO : ";
-                cin>>l;
+                existe=true;
             }
-
-            else
+        }
+            if(existe)
             {
-                system("cls");
+                cout<<"EL DNI YA EXISTE,VUELVA A INGRESAR LOS DATOS."<<endl;
                 _estado=false;
-                return;
-            }
-
-            system("cls");
-
-                }
-
-            _legajo=l;
-        }
-    }
+            };
+       fclose(p); }
 #endif // CLSEMPLEADO_H_INCLUDED

@@ -12,11 +12,11 @@ public:
     int contarRegistros();
     bool grabarRegistro(Categoria obj);
     int buscarRegistro(int id);
-    void modificarRegistro(Categoria obj,int pos);
+    bool modificarRegistro(Categoria obj,int pos);
     void listarArchivo();
     void listarPorID();
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -24,13 +24,17 @@ public:
     void cambiarPrecioXpersona();
 };
 
-Categoria ArchivoCategoria::leerRegistro(int pos) {
+Categoria ArchivoCategoria::leerRegistro(int pos=-1) {
     Categoria obj;
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return obj;
+    if(p == NULL){return obj;}
+    if(pos==-1)
+    {
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Categoria);
+        obj.setId(cantRegistros);
     }
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
@@ -41,7 +45,6 @@ Categoria ArchivoCategoria::leerRegistro(int pos) {
 int ArchivoCategoria::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
             return -1;}
     fseek(p,0,2);
     int cantBytes;
@@ -54,7 +57,6 @@ int ArchivoCategoria::contarRegistros(){
 bool ArchivoCategoria::grabarRegistro(Categoria obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
         return false;
     }
     fwrite(&obj, sizeof obj, 1,p);
@@ -71,21 +73,16 @@ int ArchivoCategoria::buscarRegistro(int id){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoCategoria::modificarRegistro(Categoria obj, int pos){
+bool ArchivoCategoria::modificarRegistro(Categoria obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoCategoria::listarArchivo(){
@@ -101,13 +98,11 @@ void ArchivoCategoria::listarArchivo(){
     system("pause");
 }
 
-void ArchivoCategoria::limpiarArchivo(){
+bool ArchivoCategoria::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoCategoria::altaRegistro()
@@ -189,7 +184,7 @@ void ArchivoCategoria::cambiarDescripcion()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRA CATEGORIA ? "<<endl<<"S/N :"<<endl; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA CATEGORIA ? "<<endl<<"S/N :"; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {

@@ -176,6 +176,6 @@ void Fecha::Cargar()
 void Fecha::Mostrar()
 {
     if(_estado)
-    cout<<"FECHA : "<<_d<<"/"<<_m<<"/"<<_a<<endl;
+    cout<<_d<<"/"<<_m<<"/"<<_a<<endl;
 }
 #endif // CLSFECHA_H_INCLUDED

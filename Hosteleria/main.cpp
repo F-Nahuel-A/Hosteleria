@@ -20,14 +20,14 @@ using namespace std;
 #include "arcRegimenComida.h"
 #include "clsHabitacion.h"
 #include "arcHabitacion.h"
+#include "clsHuesped.h"
+#include "arcHuesped.h"
 #include "clsDetallesPagos.h"
 #include "arcDetallesPago.h"
 #include "clsPagos.h"
 #include "arcPago.h"
 #include "clsDetallesPagos.h"
 #include "arcDetallesPago.h"
-#include "clsHuesped.h"
-#include "arcHuesped.h"
 #include "modificaciones.h"
 #include "informe.h"
 #include "Configuraciones.h"
@@ -39,9 +39,9 @@ void limpiar();
 
 int main()
 {
+    cout<<sizeof(Empleado);
   mostrarMenu();
-  return 0;
-}
+  return 0;}
 
 void limpiar()
 {

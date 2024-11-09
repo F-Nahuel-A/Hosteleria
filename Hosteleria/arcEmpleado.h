@@ -14,12 +14,12 @@ public:
     int contarRegistros();
     bool grabarRegistro(Empleado obj);
     int buscarRegistro(int leg);
-    void modificarRegistro(Empleado obj,int pos);
+    bool modificarRegistro(Empleado obj,int pos);
     void listarArchivo();
     void listarPorID();
 
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -35,14 +35,18 @@ public:
 
 };
 
-Empleado ArchivoEmpleado::leerRegistro(int pos)
+Empleado ArchivoEmpleado::leerRegistro(int pos=-1)
 {
     Empleado obj;
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return obj;
+    if(p == NULL){return obj;}
+    if(pos==-1)
+    {
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Empleado);
+        obj.setLegajo(cantRegistros);
     }
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
@@ -53,7 +57,6 @@ Empleado ArchivoEmpleado::leerRegistro(int pos)
 int ArchivoEmpleado::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
     if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
             return -1;}
     fseek(p,0,2);
     int cantBytes;
@@ -66,7 +69,6 @@ int ArchivoEmpleado::contarRegistros(){
 bool ArchivoEmpleado::grabarRegistro(Empleado obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
         return false;
     }
     fwrite(&obj, sizeof obj, 1,p);
@@ -83,21 +85,16 @@ int ArchivoEmpleado::buscarRegistro(int leg){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoEmpleado::modificarRegistro(Empleado obj, int pos){
+bool ArchivoEmpleado::modificarRegistro(Empleado obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoEmpleado::listarArchivo(){
@@ -113,13 +110,11 @@ void ArchivoEmpleado::listarArchivo(){
     system("pause");
 }
 
-void ArchivoEmpleado::limpiarArchivo(){
+bool ArchivoEmpleado::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoEmpleado::altaRegistro()

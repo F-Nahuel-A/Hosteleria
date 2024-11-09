@@ -12,11 +12,11 @@ public:
     int contarRegistros();
     bool grabarRegistro(Persona obj);
     int buscarRegistro(int dni);
-    void modificarRegistro(Persona obj,int pos);
+    bool modificarRegistro(Persona obj,int pos);
     void listarArchivo();
 
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -39,9 +39,7 @@ Persona ArchivoPersona::leerRegistro(int pos)
 
 int ArchivoPersona::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-            return -1;}
+    if(p == NULL){return -1;}
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
@@ -52,10 +50,7 @@ int ArchivoPersona::contarRegistros(){
 
 bool ArchivoPersona::grabarRegistro(Persona obj){
     FILE *p = fopen(_nombre,"ab");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        return false;
-    }
+    if(p == NULL){return false;}
     fwrite(&obj, sizeof obj, 1,p);
     fclose(p);
     return true;
@@ -70,21 +65,16 @@ int ArchivoPersona::buscarRegistro(int dni){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoPersona::modificarRegistro(Persona obj, int pos){
+bool ArchivoPersona::modificarRegistro(Persona obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoPersona::listarArchivo(){
@@ -100,13 +90,11 @@ void ArchivoPersona::listarArchivo(){
 
 }
 
-void ArchivoPersona::limpiarArchivo(){
+bool ArchivoPersona::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoPersona::altaRegistro()

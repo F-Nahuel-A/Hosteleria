@@ -583,7 +583,7 @@ void modificacionesPago()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("NUMERO DE RECIBO",41,12,y==1);
+    showItem("ID DE DETALLE",41,12,y==1);
     showItem("DNI",48,13,y==2);
     showItem("FECHA DE PAGO",43,14,y==3);
     showItem("FORMA DE PAGO",43,15,y==4);
@@ -618,7 +618,7 @@ void modificacionesPago()
 
             case 1:
                 system("cls");
-                arc.cambiarNumeroderecibo();
+                arc.cambiarIDdetalle();
                 system("cls");
                 break;
 
@@ -642,7 +642,7 @@ void modificacionesPago()
 
             case 5:
                 system("cls");
-                arc.cambiarTotal();
+                arc.cambiarTotalAbonado();
                 system("cls");
                 break;
 
@@ -674,9 +674,9 @@ void modificacionesDetallesdePago()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("NUMERO DE RECIBO",42,12,y==1);
+    showItem("NUMERO DE DOCUMENTO",42,12,y==1);
     showItem("NUMERO DE HABITACION",40,13,y==2);
-    showItem("TOTAL ABONADO",43,14,y==3);
+    showItem("TOTAL A PAGAR",43,14,y==3);
     showItem("SALIR",47,15,y==4);
 
         switch (rlutil::getkey())
@@ -706,7 +706,7 @@ void modificacionesDetallesdePago()
                 {
             case 1:
                 system("cls");
-                arc.cambiarNumRecibo();
+                arc.cambiarDNI();
                 system("cls");
                 break;
 
@@ -718,7 +718,7 @@ void modificacionesDetallesdePago()
 
             case 3:
                 system("cls");
-                arc.cambiarTotalAbonado();
+                arc.cambiarTotalApagar();
                 system("cls");
                 break;
 

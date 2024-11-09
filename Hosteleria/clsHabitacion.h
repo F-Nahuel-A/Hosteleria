@@ -9,6 +9,8 @@ private:
     int _disponibilidad; /// 0: disponible, 1: ocupado, 2: reservada, 3: en reparaciones
     int _capacidad;
     bool _estado;
+    Fecha _ingreso;
+    Fecha _salida;
 
 public:
     Habitacion(int numero=0, int categoria=0, int regimen=0, int disponibilidad=0, int cap=0)
@@ -26,12 +28,24 @@ public:
     int getDisponibilidad() { return _disponibilidad; }
     int getCapacidad() { return _capacidad; }
     bool getEstado(){return _estado;}
+    Fecha getIngreso(){return _ingreso;}
+    Fecha getSalida(){return _salida;}
 
-    void setNumero(int numero);
+    void setNumero(int numero){_numHabitacion=numero;}
     void setIdCategoria(int categoria);
     void setIdRegimen(int regimen);
     void setDisponibilidad(int estado);
     void setCapacidad(int cap);
+    void setIngreso(Fecha in){_ingreso=in;}
+    void setSalida(Fecha salida){_salida=salida;}
+
+    Habitacion asignar(int idRegimen,int disponibilidad,Fecha ingreso, Fecha salida)
+    {
+        _IDRegimen=idRegimen;
+        _disponibilidad=disponibilidad;
+        _ingreso=ingreso;
+        _salida=salida;
+    }
 
     void setEstado(bool e){_estado=e;}
 
@@ -39,21 +53,19 @@ public:
     {
         _estado=true;
         int aux;
-        cout<<"INGRESE EL NUMERO HABITACION: ";
-        cin>>aux;
-        setNumero(aux);
-        if(_estado==false){return;}
+        ///ASIGNACIÓN AUTOMATICA DE LA HABITACION
+        FILE *p=fopen("habitacion.dat","rb");
+        if(p == NULL){cout<<"ERROR EN LA APERTURA";return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Habitacion);
+        fclose(p);
+        _numHabitacion=cantRegistros+1;
+        ///ASIGNACIÓN AUTOMATICA DE LA HABITACION
         cout<<"INGRESE LA CATEGORIA: ";
         cin>>aux;
         setIdCategoria(aux);
-        if(_estado==false){return;}
-        cout<<"INGRESE EL REGIMEN: ";
-        cin>>aux;
-        setIdRegimen(aux);
-        if(_estado==false){return;}
-        cout<<"INGRESE DISPONIBILIDAD: ";
-        cin>>aux;
-        setDisponibilidad(aux);
         if(_estado==false){return;}
         cout<<"INGRESE CAPACIDAD MAX: ";
         cin>>aux;
@@ -65,8 +77,34 @@ public:
         if(_estado){
         cout<<"NUMERO HABITACION: "<<_numHabitacion<<endl;
         cout<<"CATEGORIA: "<<_IDCategoria<<endl;
-        cout<<"REGIMEN: "<<_IDRegimen<<endl;
-        cout<<"DISPONIBILIDAD: "<<_disponibilidad<<endl;
+        if(_IDRegimen!=0)
+        {cout<<"REGIMEN: "<<_IDRegimen<<endl;}
+        switch (_disponibilidad)
+        {
+        case 0:
+            cout<<"DISPONIBLE";
+            break;
+
+        case 1:
+            cout<<"OCUPADA"<<endl;
+            cout<<"FECHA DE INGRESO : ";
+            _ingreso.Mostrar();
+            cout<<"FECHA DE SALIDA : ";
+            _salida.Mostrar();
+            break;
+
+        case 2:
+            cout<<"RESERVADA"<<endl;
+            cout<<"FECHA DE LLEADA : ";
+            _ingreso.Mostrar();
+            cout<<"FECHA DE SALIDA : ";
+            _salida.Mostrar();
+            break;
+
+        case 3:
+            cout<<"EN REPARACIONES";
+            break;
+        }
         cout<<"CAPACIDAD MAX: "<<_capacidad<<endl;
         }
     }
@@ -82,7 +120,7 @@ void Habitacion::setIdCategoria(int categoria)
         pos=arc.buscarRegistro(categoria);
         if(pos==-1)
         {
-            cout<<"ID DE CATEGORIA NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"ID DE CATEGORIA NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -101,7 +139,7 @@ void Habitacion::setIdCategoria(int categoria)
         if(pos!=-1)
         {
             obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR LA CATEGORIA : "<<obj.getDescripcion()<<endl<<"S/N"<<endl;
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR LA CATEGORIA : "<<obj.getDescripcion()<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -110,10 +148,11 @@ void Habitacion::setIdCategoria(int categoria)
             }
             else
             {
-                cout<<"QUIERE INGRESAR OTRA CATEGORIA? "<<endl<<"S/N"<<endl;
+                cout<<"QUIERE INGRESAR OTRA CATEGORIA? "<<endl<<"S/N : ";
                 cin>>aux;
                 if(aux=='S' || aux=='s')
                 {
+                    system("cls");
                     cout<<"INGRESE EL ID DE LA CATEGORIA : ";
                     cin>>categoria;
                 }
@@ -137,7 +176,7 @@ void Habitacion::setIdRegimen(int regimen)
         pos=arc.buscarRegistro(regimen);
         if(pos==-1)
         {
-            cout<<"ID DE REGIMEN NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"ID DE REGIMEN NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -156,7 +195,7 @@ void Habitacion::setIdRegimen(int regimen)
         if(pos!=-1)
         {
             obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL REGIMEN : "<<obj.getDesc()<<endl<<"S/N"<<endl;
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL REGIMEN : "<<obj.getDesc()<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -165,10 +204,11 @@ void Habitacion::setIdRegimen(int regimen)
             }
             else
             {
-                cout<<"QUIERE INGRESAR OTRO REGIMEN? "<<endl<<"S/N"<<endl;
+                cout<<"QUIERE INGRESAR OTRO REGIMEN? "<<endl<<"S/N : ";
                 cin>>aux;
                 if(aux=='S' || aux=='s')
                 {
+                    system("cls");
                     cout<<"INGRESE EL ID DEL REGIMEN : ";
                     cin>>regimen;
                 }
@@ -179,44 +219,6 @@ void Habitacion::setIdRegimen(int regimen)
                 }
             }
         }
-        }
-    }
-
-void Habitacion::setNumero(int numero)
-    {
-        char aux;
-        if(numero>0)
-        {
-            _numHabitacion=numero;
-            return;
-        }
-        else
-        {
-            while(numero<0)
-                {
-
-            cout<<"NUMERO DE HABITACION NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
-            cin>>aux;
-
-            if(aux=='S' || aux=='s')
-            {
-                system("cls");
-                cout<<"INGRESE EL NUMERO DE HABITACION : ";
-                cin>>numero;
-            }
-
-            else
-            {
-                system("cls");
-                _estado=false;
-                return;
-            }
-
-            system("cls");
-
-                }
-
-            _numHabitacion=numero;
         }
     }
 
@@ -233,7 +235,7 @@ void Habitacion::setDisponibilidad(int estado)
             while(estado<0)
                 {
 
-            cout<<"LA DISPONIBILIDAD DE LA HABITACION NO ES VALIDA,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"LA DISPONIBILIDAD DE LA HABITACION NO ES VALIDA,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')
@@ -271,7 +273,7 @@ void Habitacion::setCapacidad(int cap)
             while(cap<0)
                 {
 
-            cout<<"LA CAPACIDAD DE LA HABITACION NO ES VALIDA,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"LA CAPACIDAD DE LA HABITACION NO ES VALIDA,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')

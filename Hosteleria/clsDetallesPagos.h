@@ -5,29 +5,31 @@ class DetallesPago
 {
 private:
     int _IDdetalle;
-    int _NumRecibo;
+    int _DNI;
     int _NumHabitacion;
-    float _totalabonado;
+    float _total;
     bool _estado;
 public:
-    DetallesPago(int detalle=0,int numrecibo=0,int numHab=0, float tabonado=0){
+    DetallesPago(int detalle=0,int numHab=0, float total=0,int dni=0){
     _IDdetalle=detalle;
-    _NumRecibo=numrecibo;
+    _DNI=dni;
     _NumHabitacion=numHab;
-    _totalabonado=tabonado;
+    _total=total;
     }
 
     int getID(){return _IDdetalle;}
-    int getNumeroderecibo(){return _NumRecibo;}
     int getNumdehabitacion(){return _NumHabitacion;}
-    float getTotalabonado(){return _totalabonado;}
+    float getTotalabonado(){return _total;}
+    int getDNI(){return _DNI;}
     bool getEstado(){return _estado;}
 
 
-    void setNumrecibo(int recibo);
+    void setDNI(int dni);
     void setIDdetalle (int detalle){if(detalle>0){_IDdetalle=detalle;}}
     void setNumHabitacion(int numHab);
-    void setTotalabonado(float tabonado);
+    void setTotal(float total);
+
+    DetallesPago reserva(int id,int dni,int num,float total);
 
     void setEstado(bool e){_estado=e;}
 
@@ -37,7 +39,7 @@ public:
         int aux;
         float auxF;
          ///ASIGNACIÓN AUTOMATICA DEL ID DETALLE
-        FILE *p=fopen("detallepago.dat","rb");
+        FILE *p=fopen("detallePago.dat","rb");
         if(p == NULL){return;}
         fseek(p,0,2);
         int cantBytes;
@@ -46,9 +48,9 @@ public:
         fclose(p);
         _IDdetalle=cantRegistros+1;
         ///ASIGNACIÓN AUTOMATICA DEL ID DETALLE
-        cout<<"INGRESE EL NUMERO DE RECIBO : ";
+        cout<<"INGRESE EL DNI : ";
         cin>>aux;
-        setNumrecibo(aux);
+        setDNI(aux);
         if(_estado==false){return;}
         cout<<"INGRESE EL NUMERO DE HABITACION : ";
         cin>>aux;
@@ -56,7 +58,7 @@ public:
         if(_estado==false){return;}
         cout<<"INGRESE EL TOTAL : ";
         cin>>auxF;
-        setTotalabonado(auxF);
+        setTotal(auxF);
         if(_estado==false){return;}
     }
 
@@ -64,35 +66,35 @@ public:
     {
         if(_estado){
         cout<<"ID DETALLE : "<<_IDdetalle<<endl;
-        cout<<"NUMERO DE RECIBO :"<<_NumRecibo<<endl;
+        cout<<"NUMERO DE DNI :"<<_DNI<<endl;
         cout<<"NUMERO DE HABITACION : "<<_NumHabitacion<<endl;
-        cout<<"TOTAL ABONADO: "<<_totalabonado<<endl;
+        cout<<"TOTAL : "<<_total<<endl;
         }
     }
 
 };
 
-void DetallesPago::setTotalabonado(float tabonado)
+void DetallesPago::setTotal(float total)
     {
         char aux;
-        if(tabonado>0)
+        if(total>0)
         {
-            _totalabonado=tabonado;
+            _total=total;
             return;
         }
         else
         {
-            while(tabonado<0)
+            while(total<0)
                 {
 
-            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')
             {
                 system("cls");
                 cout<<"INGRESE EL MONTO : ";
-                cin>>tabonado;
+                cin>>total;
             }
 
             else
@@ -106,46 +108,52 @@ void DetallesPago::setTotalabonado(float tabonado)
 
                 }
 
-            _totalabonado=tabonado;
+            _total=total;
         }
     }
 
-void DetallesPago::setNumrecibo(int recibo)
+void DetallesPago::setDNI(int dni)
        {
         char aux;
-        if(recibo>0)
+        ArchivoHuesped arcH;
+        Huesped objH;
+        int pos=-1;
+        while(pos==-1)
         {
-            _NumRecibo=recibo;
-            return;
-        }
-        else
-        {
-            while(recibo<0)
+            pos=arcH.buscarRegistro(dni);
+            if(pos!=-1)
+            {
+                cout<<"ESTE ES EL CLIENTE CORRECTO ?"<<endl<<endl;
+                objH=arcH.leerRegistro(pos);
+                objH.Mostrar();
+                cout<<endl<<"S/N : ";
+                cin>>aux;
+
+                if(aux=='s'||'S')
                 {
-
-            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
-            cin>>aux;
-
-            if(aux=='S' || aux=='s')
-            {
-                system("cls");
-                cout<<"INGRESE EL NUMERO DE RECIBO : ";
-                cin>>recibo;
-            }
-
-            else
-            {
-                system("cls");
-                _estado=false;
-                return;
-            }
-
-            system("cls");
-
+                    _DNI=dni;
+                    return;
                 }
-
-            _NumRecibo=recibo;
+                else
+                {
+                    system("cls");
+                    cout<<"QUIERE VOLVER A INTENTARLO ?"<<endl;
+                    cout<<"S/N : ";
+                    cin>>aux;
+                    if(aux=='s'||'S')
+                    {
+                       pos=-1;
+                    system("cls");
+                    }
+                    else
+                    {
+                    _estado=false;
+                    return;
+                    }
+                }
+            }
         }
+
     }
 
 void DetallesPago::setNumHabitacion(int numHab)
@@ -204,4 +212,13 @@ void DetallesPago::setNumHabitacion(int numHab)
         }
         }
     }
+
+
+DetallesPago DetallesPago::reserva(int id,int dni,int num,float total)
+{
+    _IDdetalle=id;
+    _DNI=dni;
+    _NumHabitacion=num;
+    _total=total;
+}
 #endif // CLSDETALLESPAGOS_H_INCLUDED

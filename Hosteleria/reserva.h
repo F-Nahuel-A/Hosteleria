@@ -22,8 +22,8 @@ void agregarReserva()
     if(capacidad==-1){return;}
 
     cout<<endl<<"HABITACIONES DISPONIBLES : "<<endl;
-    int jeje=habitacionesLibres(capacidad,categoria);
-    if(jeje==0)
+    int libres=habitacionesLibres(capacidad,categoria);
+    if(libres==0)
     {
         cout<<"NO HAY HABITACIONES DISPONIBLES."<<endl;
         system("pause");
@@ -37,8 +37,9 @@ void agregarReserva()
     system("cls");
     numHab=verificarHabitacion(numHab);
     if(numHab==-1){return;}
-    cout<<"DESEA UN REGIMEN DE COMIDA ?"<<endl<<"S/N : ";
+    cout<<endl<<"DESEA UN REGIMEN DE COMIDA ?"<<endl<<"S/N : ";
     cin>>aux;
+    cout<<endl;
     if(aux=='s' || aux=='S')
         {
             regimen=verificarRegimen(regimen);
@@ -49,16 +50,39 @@ void agregarReserva()
     float totalApagar;
     totalApagar=confirmacion(categoria,capacidad,numHab,regimen,totalApagar);
     system("cls");
+
+    Fecha ingreso,salida,pago;
+    int disponibilidad;
+    int pos;
+
     if(totalApagar!=-1)
     {
-        int pos=arcHab.buscarRegistro(numHab);
+        pos=arcHab.buscarRegistro(numHab);
         objHab=arcHab.leerRegistro(pos);
-        objHab.setDisponibilidad(0);
-        if(regimen!=0)
+        cout<<"PARA RESERVAR O OCUPAR HOY : ";
+        cin>>disponibilidad;
+        system("cls");
+
+        switch (disponibilidad)
         {
-            objHab.setIdRegimen(regimen);
+        case 1:
+            cout<<"INGRESE LA FECHA DE SALIDA"<<endl;
+            salida.Cargar();
+            break;
+
+        case 2:
+            cout<<"INGRESE LA FECHA DE INGRESO"<<endl;
+            ingreso.Cargar();
+            cout<<endl<<"INGRESE LA FECHA DE SALIDA"<<endl;
+            salida.Cargar();
+            break;
+
+        default:
+            cout<<"OPCION INVALIDA"<<endl;
+            system("pause");
+            return;
         }
-        arcHab.modificarRegistro(objHab,pos);
+
         system("cls");
     }
 
@@ -70,23 +94,48 @@ void agregarReserva()
 
     ArchivoPago arcP;
     Pago objP;
-    objP.Cargar();
-    arcP.grabarRegistro(objP);
-    system("cls");
+    float adelantado;
+    int forma;
+    objP=arcP.leerRegistro();
+    int numRecibo;
+    numRecibo=objP.getNumeroderecibo()+1;
+
+    cout<<"INGRESE UN PAGO ADELANTADO : ";
+    cin>>adelantado;
+    objP.setTotalAbonado(adelantado);
+    cout<<"FORMA DE PAGO : ";
+    cin>>forma;
+    objP.setPago(forma);
+    cout<<"FECHA DE PAGO"<<endl;
+    pago.Cargar();
+
+        if(disponibilidad==1)
+        {
+            ingreso=pago;///Esto lo hago para no pedir la fecha varias veces. En caso de que reserve para HOY
+        }
+        objHab.asignar(regimen,disponibilidad,ingreso,salida);
+        arcHab.modificarRegistro(objHab,pos);
 
     ArchivoDetalles arcD;
     DetallesPago objD;
-    objD=arcD.leerRegistro();
     int idDetalle;
-    idDetalle=objD.getID()+1; ///REVISAR LA FUNCION LEER REGISTRO, NO DEVUELVE BIEN
+    objD=arcD.leerRegistro();
+    idDetalle=objD.getID()+1;
 
-    objD.setIDdetalle(idDetalle);
-    objD.setEstado(true);
-    objD.setNumHabitacion(numHab);
-    objD.setNumrecibo(objP.getNumeroderecibo());
-    objD.setTotalabonado(totalApagar-objP.getTotal()); ///TOTAL QUE DEBE PAGAR, NO ABONADO
+
+
+    totalApagar-=adelantado;
+    objD.reserva(idDetalle,objH.getDni(),numHab,totalApagar);
     arcD.grabarRegistro(objD);
+
+    objP.reserva(numRecibo,objH.getDni(),idDetalle,pago);
+    arcP.grabarRegistro(objP);
+
+    system("cls");
+
+
 }
+
 
 int habitacionesLibres(int cap, int cat)
 {
@@ -103,6 +152,7 @@ int habitacionesLibres(int cap, int cat)
             if(objHab.getIdCategoria()==cat && objHab.getCapacidad()==cap)
             {
                 objHab.Mostrar();
+                cout<<endl;
                 contHab++;
             }
         }
@@ -134,28 +184,57 @@ int verificarCapacidad(int cap)
 
 int verificarCategoria(int cat)
 {
-    char aux;
-    int pos;
-    ArchivoCategoria arcCat;
-    cout<<"INGRESE LA CATEGORIA QUE QUIERA : ";
-    cin>>cat;
-    pos=arcCat.buscarRegistro(cat);
-    while(pos==-1)
-    {   system("cls");
-        cout<<"SE TIPEO MAL LA CATEGORIA, QUIERE VOLVER A INTENTAR ? "<<endl<<"S/N : ";
-        cin>>aux;
-        if(aux=='s' || aux=='S')
+        cout<<"INGRESE UNA CATEGORIA : ";
+        cin>>cat;
+        ArchivoCategoria arc;
+        Categoria obj;
+        char aux;
+        int pos;
+        while(true){
+        pos=arc.buscarRegistro(cat);
+        if(pos==-1)
+        {
+            cout<<"ID DE CATEGORIA NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N : ";
+            cin>>aux;
+            if(aux=='S' || aux=='s')
             {
                 system("cls");
-                cout<<"INGRESE LA CATEGORIA : ";
+                cout<<"INGRESE EL ID DE LA CATEGORIA : ";
                 cin>>cat;
-                pos=arcCat.buscarRegistro(cat);
-
             }
-            else{return -1;}
+
+            else
+            {
+                system("cls");
+                return -1;
+            }
+        }
+        if(pos!=-1)
+        {
+            obj=arc.leerRegistro(pos);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR LA CATEGORIA : "<<obj.getDescripcion()<<endl<<"S/N"<<endl;
+            cin>>aux;
+            if(aux=='S' || aux=='s')
+            {
+                return cat;
+            }
+            else
+            {
+                cout<<"QUIERE INGRESAR OTRA CATEGORIA? "<<endl<<"S/N"<<endl;
+                cin>>aux;
+                if(aux=='S' || aux=='s')
+                {
+                    cout<<"INGRESE EL ID DE LA CATEGORIA : ";
+                    cin>>cat;
+                }
+            else
+                {
+                return -1;
+                }
+            }
+        }
+        }
     }
-    return cat;
-}
 
 int verificarHabitacion(int num)
 {

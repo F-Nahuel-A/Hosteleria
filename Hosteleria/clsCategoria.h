@@ -37,7 +37,7 @@ public:
             while(precioXpersona<0)
                 {
 
-            cout<<"PRECIO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"PRECIO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')

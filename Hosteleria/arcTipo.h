@@ -11,11 +11,11 @@ public:
     int contarRegistros();
     bool grabarRegistro(TipoEmpleado obj);
     int buscarRegistro(int id);
-    void modificarRegistro(TipoEmpleado obj,int pos);
+    bool modificarRegistro(TipoEmpleado obj,int pos);
     void listarArchivo();
     void listarPorID();
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
@@ -27,10 +27,14 @@ TipoEmpleado ArchivoTipoEmpleado::leerRegistro(int pos)
 {
     TipoEmpleado obj;
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return obj;
+    if(p == NULL){return obj;}
+    if(pos==-1)
+    {
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (TipoEmpleado);
+        obj.setID(cantRegistros);
     }
     fseek(p, pos * sizeof obj, 0);
     fread(&obj, sizeof obj, 1, p);
@@ -40,9 +44,7 @@ TipoEmpleado ArchivoTipoEmpleado::leerRegistro(int pos)
 
 int ArchivoTipoEmpleado::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-            return -1;}
+    if(p == NULL){return -1;}
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
@@ -53,10 +55,7 @@ int ArchivoTipoEmpleado::contarRegistros(){
 
 bool ArchivoTipoEmpleado::grabarRegistro(TipoEmpleado obj){
     FILE *p = fopen(_nombre,"ab");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        return false;
-    }
+    if(p == NULL){return false;}
     fwrite(&obj, sizeof obj, 1,p);
     fclose(p);
     return true;
@@ -71,21 +70,16 @@ int ArchivoTipoEmpleado::buscarRegistro(int id){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoTipoEmpleado::modificarRegistro(TipoEmpleado obj, int pos){
+bool ArchivoTipoEmpleado::modificarRegistro(TipoEmpleado obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoTipoEmpleado::listarArchivo(){
@@ -101,13 +95,11 @@ void ArchivoTipoEmpleado::listarArchivo(){
     system("pause");
 }
 
-void ArchivoTipoEmpleado::limpiarArchivo(){
+bool ArchivoTipoEmpleado::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoTipoEmpleado::altaRegistro()

@@ -5,59 +5,65 @@ class Pago
 {
 private:
     int _NumRecibo;
+    int _IDdetalle;
     int _dni;
     Fecha _FechadPago;
     int _FormadPago; /// 0: al contado y 1: transferencia
-    float _total;
+    float _totalAbonado;
     bool _estado;
 public:
-    Pago(int recibo=-1, int forma=-1, float t=-1,int dni=-1){
+    Pago(int recibo=0, int forma=0, float t=0,int dni=0){
     _NumRecibo=recibo;
     _dni=dni;
     _FormadPago=forma;
-    _total=t;
+    _totalAbonado=t;
     }
 
     int getNumeroderecibo(){return _NumRecibo;}
     int getDNI(){return _dni;}
     Fecha getFecha(){return _FechadPago;}
     int getFormadepago(){return _FormadPago;}
-    float getTotal(){return _total;}
+    float getTotalAbonado(){return _totalAbonado;}
     bool getEstado(){return _estado;}
-
-    void setNumero (int recibo){
-
-    if (recibo>0){_NumRecibo=recibo;} ///revisar la manera de que se genere automaticamente || LISTO
-
-    }
+    int getIDdetalle(){return _IDdetalle;}
 
     void setFecha(Fecha f){_FechadPago=f;}
-    void setNumeroderecibo(float n);
+    void setIDdetalle(int id);
+    void setNumeroderecibo(int  n){_NumRecibo=n;}
     void setPago(int forma);
-    void setTotal (float t); ///revisarlo, falta parte del codigo || LISTO
+    void setTotalAbonado(float t);
     void setDNI(int dni);
 
-    void setEstado(bool e){_estado=e;}
+    Pago reserva(int numRecibo,int dni, int detalle,Fecha f);
 
+    void setEstado(bool e){_estado=e;}
 
     void Cargar()
     {
         _estado=true;
         int aux;
         float auxF;
-        cout<<"INGRESE EL NUMERO DE RECIBO : ";
-        cin>>auxF;
-        setNumeroderecibo(auxF);
+        ///
+        FILE *p=fopen("Pago.dat","rb");
+        if(p == NULL){cout<<"ERROR EN LA APERTURA"<<endl;return;}
+        fseek(p,0,2);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Pago);
+        fclose(p);
+        _NumRecibo=cantRegistros+1;
+        ///
         cout<<"INGRESE EL DNI : ";
         cin>>aux;
         setDNI(aux);
+        if(_estado==false){return;}
         cout<<"INGRESE LA FORMA DE PAGO : ";
         cin>>aux;
         setPago(aux);
         if(_estado==false){return;}
         cout<<"INGRESE EL TOTAL : ";
         cin>>auxF;
-        setTotal(auxF);
+        setTotalAbonado(auxF);
         if(_estado==false){return;}
         _FechadPago.Cargar();
     }
@@ -66,21 +72,33 @@ public:
     {
         if(_estado){
         cout<<"NUMERO DE RECIBO : "<<_NumRecibo<<endl;
+        cout<<"ID DETALLE : "<<_IDdetalle<<endl;
         cout<<"DNI : "<<_dni<<endl;
-        cout<<"FORMA DE PAGO(0 AL CONTADO Y 1 TRANSFERENCIA) :"<<_FormadPago<<endl;
-        cout<<"TOTAL : "<<_total<<endl;
+        cout<<"FORMA DE PAGO : ";
+        switch (_FormadPago)
+        {
+        case 0:
+            cout<<"AL CONTADO";
+            break;
+
+        case 1:
+            cout<<"TRANSFERENCIA";
+            break;
+        }
+        cout<<endl<<"TOTAL ABONADO : "<<_totalAbonado<<endl;
+        cout<<"FECHA DE PAGO : ";
         _FechadPago.Mostrar();
         }
     }
 
 };
 
-void Pago::setTotal(float t)
+void Pago::setTotalAbonado(float t)
     {
         char aux;
         if(t>0)
         {
-            _total=t;
+            _totalAbonado=t;
             return;
         }
         else
@@ -88,7 +106,7 @@ void Pago::setTotal(float t)
             while(t<0)
                 {
 
-            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"MONTO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')
@@ -109,7 +127,7 @@ void Pago::setTotal(float t)
 
                 }
 
-            _total=t;
+            _totalAbonado=t;
         }
     }
 
@@ -126,7 +144,7 @@ void Pago::setPago(int forma)
             while(forma<0)
                 {
 
-            cout<<"FORMA DE PAGO NO VALIDA,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"FORMA DE PAGO NO VALIDA,QUIERE VOLVER A INTENTAR ? S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')
@@ -152,61 +170,84 @@ void Pago::setPago(int forma)
     }
 
 void Pago::setDNI(int dni)
-{
+       {
         char aux;
-        if(dni>0)
+        ArchivoHuesped arcH;
+        Huesped objH;
+        int pos;
+        while(_estado)
         {
-            _dni=dni;
-            return;
-        }
-        else
-        {
-            while(dni<0)
-                {
-
-            cout<<"DNI NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
-            cin>>aux;
-
-            if(aux=='S' || aux=='s')
+            pos=arcH.buscarRegistro(dni);
+            if(pos!=-1)
             {
-                system("cls");
-                cout<<"INGRESE EL DNI : ";
-                cin>>dni;
-            }
+                cout<<"ESTE ES EL CLIENTE CORRECTO ?"<<endl<<endl;
+                objH=arcH.leerRegistro(pos);
+                objH.Mostrar();
+                cout<<endl<<"S/N : ";
+                cin>>aux;
 
+                if(aux=='s'||'S')
+                {
+                    _dni=dni;
+                    return;
+                }
+                else
+                {
+                    system("cls");
+                    cout<<"QUIERE VOLVER A INTENTARLO ?"<<endl;
+                    cout<<"S/N : ";
+                    cin>>aux;
+                    if(aux=='s'||'S')
+                    {
+                        system("cls");
+                        cout<<"INGRESE EL DNI : ";
+                        cin>>dni;
+                    }
+                    else
+                    {
+                    _estado=false;
+                    return;
+                    }
+                }
+            }
             else
             {
-                system("cls");
-                _estado=false;
-                return;
-            }
-
-            system("cls");
-
+                cout<<"EL DNI NO EXISTE, DESEA VOLVER A INTENTARLO ?"<<endl<<"S/N : ";
+                cin>>aux;
+                if(aux=='s'||'S')
+                {
+                    system("cls");
+                    cout<<"INGRESE EL DNI : ";
+                    cin>>dni;
+                }
+                else
+                {
+                    _estado=false;
+                    return;
                 }
 
-            _dni=dni;
-        }
+            }
+        system("cls");}
+
     }
 
-void Pago::setNumeroderecibo(float recibo)
-    {
-        ArchivoDetalles arc;
-        DetallesPago obj;
-        char aux;
-        int pos;
-        while(_estado){
-        pos=arc.buscarRegistro(recibo);
+void Pago::setIDdetalle(int id)
+{
+    ArchivoDetalles arcD;
+    DetallesPago objD;
+    int pos;
+    char aux;
+    while(_estado){
+        pos=arcD.buscarRegistro(id);
         if(pos==-1)
         {
-            cout<<"NUMERO DE RECIBO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
+            cout<<"ID DE DETALLE NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<"S/N : ";
             cin>>aux;
-            cout<<endl;
             if(aux=='S' || aux=='s')
             {
                 system("cls");
-                cout<<"INGRESE EL NUMERO DE RECIBO : ";
-                cin>>recibo;
+                cout<<"INGRESE EL ID DEL DETALLE : ";
+                cin>>id;
             }
 
             else
@@ -218,23 +259,26 @@ void Pago::setNumeroderecibo(float recibo)
         }
         if(pos!=-1)
         {
-            obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL NUMERO DE RECIBO : "<<obj.getNumeroderecibo()<<endl<<"S/N : ";
+            objD=arcD.leerRegistro(pos);
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR EL SIGUIENTE DETALLE DE PAGO"<<endl<<endl;
+            objD.Mostrar();
+            cout<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
-                _NumRecibo=recibo;
+                _IDdetalle=id;
                 return;
             }
             else
             {
-                cout<<"QUIERE INGRESAR OTRO NUMERO DE RECIBO ? "<<endl<<"S/N : ";
+                system("cls");
+                cout<<"QUIERE INGRESAR OTRO ? "<<endl<<"S/N : ";
                 cin>>aux;
-                cout<<endl;
                 if(aux=='S' || aux=='s')
                 {
-                    cout<<"INGRESE EL NUMERO DE RECIBO : ";
-                    cin>>recibo;
+                    system("cls");
+                    cout<<"INGRESE EL ID DEL DETALLE : ";
+                    cin>>id;
                 }
             else
                 {
@@ -244,23 +288,17 @@ void Pago::setNumeroderecibo(float recibo)
             }
         }
         }
-    }
 
-    ///HACER UNA FUNCIÓN QUE RECIBA UN ARRAY POR PARAMETRO Y QUE DEVUELVA LA CANTIDAD DE NUMEROS IMPARES
-int impar(int vec[],int tam)
-{
-    int contInpar=0;
-    for (int i=0;i<tam;i++)
-    {
-        if(vec[i]%2!=0)
-        {
-            contInpar++;
-        }
-    }
-
-    return contInpar;
 }
 
+
+Pago Pago::reserva(int numRecibo,int dni, int detalle,Fecha f)
+{
+    _NumRecibo=numRecibo;
+    _IDdetalle=detalle;
+    _dni=dni;
+    _FechadPago=f;
+}
 ///Hacer el ingreso más intuitivo
 ///Verificar si los datos existen dentro del archivo (dni,leg,etc)
 ///Hacer un menú más intuitivo, configuraciones general (que se copien,restablezcan todos los datos)

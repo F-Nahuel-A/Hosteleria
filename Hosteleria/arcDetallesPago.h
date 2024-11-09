@@ -16,22 +16,22 @@ public:
     int contarRegistros();
     bool grabarRegistro(DetallesPago obj);
     int buscarRegistro(int id);
-    void modificarRegistro(DetallesPago obj, int pos);
+    bool modificarRegistro(DetallesPago obj, int pos);
     void listarArchivo();
     void listarPorID();
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
 
-    void cambiarNumRecibo();
+    void cambiarDNI();
     void cambiarNumHabitacion();
-    void cambiarTotalAbonado();
+    void cambiarTotalApagar();
 };
 
  DetallesPago ArchivoDetalles::leerRegistro(int pos=-1)
     {
-        DetallesPago obj(-1,-1,-1,-1);
+        DetallesPago obj;
         FILE *p=fopen(_nombre, "rb");
         if(p == NULL){
         return obj;
@@ -39,7 +39,10 @@ public:
     if(pos==-1)
     {
         fseek(p,0,2);
-        fread(&obj, sizeof obj, 1, p);
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (DetallesPago);
+        obj.setIDdetalle(cantRegistros);
     }
     else
         {
@@ -66,7 +69,6 @@ public:
 bool ArchivoDetalles::grabarRegistro(DetallesPago obj){
     FILE *p = fopen(_nombre,"ab");
     if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
         return false;
     }
     fwrite(&obj, sizeof obj, 1,p);
@@ -83,21 +85,16 @@ int ArchivoDetalles::buscarRegistro(int id){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoDetalles::modificarRegistro(DetallesPago obj, int pos){
+bool ArchivoDetalles::modificarRegistro(DetallesPago obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 void ArchivoDetalles::listarArchivo(){
@@ -113,13 +110,11 @@ void ArchivoDetalles::listarArchivo(){
     system("pause");
 }
 
-void ArchivoDetalles::limpiarArchivo(){
+bool ArchivoDetalles::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoDetalles::altaRegistro()
@@ -166,9 +161,9 @@ void ArchivoDetalles::altaRegistro()
     system("pause");
 }
 
-void ArchivoDetalles::cambiarNumRecibo()
+void ArchivoDetalles::cambiarDNI()
 {
-    int pos,recibo;
+    int pos,dni;
     char aux;
     DetallesPago obj;
     while(true){
@@ -187,14 +182,14 @@ void ArchivoDetalles::cambiarNumRecibo()
         cout<<endl;
         if(aux=='s' || aux=='S')
             {
-           cout<<"INGRESE EL NUEVO NUMERO DE RECIBO : ";
-           cin>>recibo;
-           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<recibo<<endl<<"S/N : ";
+           cout<<"INGRESE EL NUEVO NUMERO DE DNI : ";
+           cin>>dni;
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE DNI : "<<dni<<endl<<"S/N : ";
            cin>>aux;
            cout<<endl;
            if(aux=='s' || aux=='S')
                     {
-           obj.setNumrecibo(recibo);
+           obj.setDNI(dni);
            modificarRegistro(obj,pos);
            return;
                     }
@@ -265,7 +260,7 @@ void ArchivoDetalles::cambiarNumHabitacion()
     system("cls");
     }
 }
-void ArchivoDetalles::cambiarTotalAbonado()
+void ArchivoDetalles::cambiarTotalApagar()
 {
     int pos;
     float total;
@@ -286,14 +281,14 @@ void ArchivoDetalles::cambiarTotalAbonado()
         cout<<endl;
         if(aux=='s' || aux=='S')
             {
-           cout<<"INGRESE EL NUEVO TOTAL ABONADO : ";
+           cout<<"INGRESE EL NUEVO TOTAL A PAGAR : ";
            cin>>total;
            cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
            cin>>aux;
            cout<<endl;
            if(aux=='s' || aux=='S')
                     {
-           obj.setTotalabonado(total);
+           obj.setTotal(total);
            modificarRegistro(obj,pos);
            return;
                     }

@@ -15,38 +15,35 @@ public:
     int contarRegistros();
     bool grabarRegistro(Pago obj);
     int buscarRegistro(int id);
-    void modificarRegistro(Pago obj, int pos); ///Doble mensaje
+    bool modificarRegistro(Pago obj, int pos); ///Doble mensaje
     void listarArchivo();
     void listarPorID(); ///Doble mensaje
     void listarPorDNI(); ///Doble mensaje
 
-    void limpiarArchivo();
+    bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro(); ///Doble mensaje
 
-    void cambiarNumeroderecibo();
+    void cambiarIDdetalle();
     void cambiarDNI();
     void cambiarFecha();
     void cambiarFormadPago();
-    void cambiarTotal();
+    void cambiarTotalAbonado();
 };
 
 
     Pago ArchivoPago::leerRegistro(int pos=-1)
     {
-        Pago obj(-8,-8,-8,-8);
+        Pago obj;
         FILE *p=fopen(_nombre, "rb");
-        if(p == NULL){
-        return obj;
-    }
+        if(p == NULL){return obj;}
     if(pos==-1)
     {
-
         fseek(p,0,2);
-        fread(&obj,sizeof obj,1,p);
-        ///SI POS ES ==-1, NO PASÓ PARAMETROS. RECORRER ARCHIVO COMPLETO.
-        ///obj.getNumeroderecibo()==-8 no recibio
-        ///obj.getNumeroderecibo()==-1 recibio
+        int cantBytes;
+        cantBytes = ftell(p);
+        int cantRegistros = cantBytes / sizeof (Pago);
+        obj.setNumeroderecibo(cantRegistros);
     }
     else
     {
@@ -62,9 +59,7 @@ public:
 
     int ArchivoPago::contarRegistros(){
     FILE *p=fopen(_nombre, "rb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-            return -1;}
+    if(p == NULL){return -1;}
     fseek(p,0,2);
     int cantBytes;
     cantBytes = ftell(p);
@@ -75,10 +70,7 @@ public:
 
 bool ArchivoPago::grabarRegistro(Pago obj){
     FILE *p = fopen(_nombre,"ab");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        return false;
-    }
+    if(p == NULL){return false;}
     fwrite(&obj, sizeof obj, 1,p);
     fclose(p);
     return true;
@@ -93,21 +85,16 @@ int ArchivoPago::buscarRegistro(int recibo){
             return i;
         }
     }
-    cout<<"NO SE ENCONTRO EL REGISTRO"<<endl;
     return -1;
 }
 
-void ArchivoPago::modificarRegistro(Pago obj, int pos){
+bool ArchivoPago::modificarRegistro(Pago obj, int pos){
     FILE *p=fopen(_nombre, "rb+");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fseek(p, pos * sizeof obj, 0);
     fwrite(&obj, sizeof obj, 1, p);
     fclose(p);
-    cout<<"MODIFICACION HECHA"<<endl;
-    system("pause");
+    return true;
 }
 
 
@@ -124,13 +111,11 @@ void ArchivoPago::listarArchivo(){
     system("pause");
 }
 
-void ArchivoPago::limpiarArchivo(){
+bool ArchivoPago::limpiarArchivo(){
     FILE *p=fopen(_nombre, "wb");
-    if(p == NULL){
-        cout<<"ERROR EN LA APERTURA"<<endl;
-        system("pause");
-        return;}
+    if(p == NULL){return false;}
     fclose(p);
+    return true;
 }
 
 void ArchivoPago::altaRegistro()
@@ -319,7 +304,7 @@ void ArchivoPago::cambiarFormadPago()
         }
 
     }
-void ArchivoPago::cambiarTotal()
+void ArchivoPago::cambiarTotalAbonado()
 {
     int pos;
     float total;
@@ -340,13 +325,13 @@ void ArchivoPago::cambiarTotal()
         cout<<endl;
         if(aux=='s' || aux=='S')
             {
-           cout<<"INGRESE EL NUEVO TOTAL : ";
+           cout<<"INGRESE EL NUEVO TOTAL ABONADO : ";
            cin>>total;
            cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL TOTAL DE : "<<"$"<<total<<endl<<"S/N : ";
            cin>>aux;
            if(aux=='s' || aux=='S')
                     {
-           obj.setTotal(total);
+           obj.setTotalAbonado(total);
            modificarRegistro(obj,pos);
            return;
                     }
@@ -368,7 +353,7 @@ void ArchivoPago::listarPorID()
 {
     int id,pos;
     Pago obj;
-    cout<<"INGRESE EL ID ";
+    cout<<"INGRESE EL ID : ";
     cin>>id;
     pos=buscarRegistro(id);
     if(pos!=-1)
@@ -408,9 +393,9 @@ void ArchivoPago::listarPorDNI()
     }
 }
 
-void ArchivoPago::cambiarNumeroderecibo()
+void ArchivoPago::cambiarIDdetalle()
 {
-    int pos,numRecibo;
+    int pos,id;
     char aux;
     Pago obj;
     while(true){
@@ -428,20 +413,13 @@ void ArchivoPago::cambiarNumeroderecibo()
         cout<<endl;
         if(aux=='s' || aux=='S')
             {
-           cout<<"INGRESE EL NUEVO NUMERO DE RECIBO : ";
-           cin>>numRecibo;
-           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR EL NUMERO DE RECIBO : "<<numRecibo<<endl<<"S/N : ";
-           cin>>aux;
-           if(aux=='s' || aux=='S')
-                    {
-           obj.setNumeroderecibo(numRecibo);
-           modificarRegistro(obj,pos);
-           return;
-                    }
+           cout<<"INGRESE EL NUEVO ID DE DETALLE : ";
+           cin>>id;
+           obj.setIDdetalle(id);
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO PAGO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRO NUMERO DE RECIBO ?"<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            if(aux=='n' || aux=='N')
            {
