@@ -7,6 +7,41 @@ int verificarRegimen(int reg);
 int habitacionesLibres(int cap,int cat);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 
+void habitacionesDisponiblesHasta(Fecha fechaLimite) {
+    ArchivoHabitacion arcHab;
+    Habitacion objHab;
+
+    int totalHabitaciones = arcHab.contarRegistros();
+    if (totalHabitaciones == -1) {
+        cout << "Error al abrir el archivo\n";
+        return;
+    }
+
+    bool hayDisponibles = false;
+
+    cout << "Habitaciones disponibles hasta ";
+    fechaLimite.Mostrar();
+    cout << ":\n";
+
+    for (int i = 0; i < totalHabitaciones; ++i) {
+        objHab = arcHab.leerRegistro(i);
+
+        /// VERIFICAR DISPONIBILIDAD O SI SE PUEDE USAR ANTES DE LA RESERVA
+        if (objHab.getDisponibilidad() == 0 || 
+           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() > fechaLimite.getAnio()) ||
+           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() > fechaLimite.getMes()) ||
+           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() == fechaLimite.getMes() && objHab.getIngreso().getDia() > fechaLimite.getDia())) 
+        {
+            objHab.Mostrar();
+            hayDisponibles = true;
+        }
+    }
+
+    if (!hayDisponibles) {
+        cout << "No hay habitaciones disponibles hasta la fecha especificada...\n";
+    }
+}
+
 void agregarReserva()
 {
     int categoria,capacidad,numHab,regimen;
