@@ -89,6 +89,7 @@ public:
         cout<<"FECHA DE PAGO : ";
         _FechadPago.Mostrar();
         }
+        cout<<endl;
     }
 
 };
@@ -299,11 +300,9 @@ Pago Pago::reserva(int numRecibo,int dni, int detalle,Fecha f)
     _dni=dni;
     _FechadPago=f;
 }
-///Hacer el ingreso más intuitivo
-///Verificar si los datos existen dentro del archivo (dni,leg,etc)
-///Hacer un menú más intuitivo, configuraciones general (que se copien,restablezcan todos los datos)
-///Listados por separado
-///Hacer un menú de reserva(Que se pida habitación,categoria,regimen) y que se modifique automaticamente las habitaciones
-///Mostrar habitaciones disponibles
-///Implementar fechas donde el cliente solicita el ingreso y la salida
+
+///Esto se usa para la linea 132 de reserva.h . . .  Basicamente lo que hace es actuar como constructor pero agregandole fecha, se hizo de esta forma para facilitar la asignación.
+///Se podría haber hecho con el constructor anteriormente creado y usando un set, pero veo más prolijo usar otro constructor.
+
+
 #endif // CLSPAGOS_H_INCLUDED

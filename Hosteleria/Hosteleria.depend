@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1731186672 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1733320771 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	"rlutil.h"
@@ -74,13 +74,13 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1731182321 c:\users\admin\desktop\hosteleria\hosteleria\arccategoria.h
+1731194020 c:\users\admin\desktop\hosteleria\hosteleria\arccategoria.h
 
 1731182321 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
 
 1731182321 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
-1731193458 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
+1733320822 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 
 1731191687 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
 
@@ -226,5 +226,5 @@
 
 1730781910 c:\users\familia\desktop\hosteleria\menuconfiguraciones.h
 
-1731193106 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
+1733320765 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
 

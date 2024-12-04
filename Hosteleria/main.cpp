@@ -39,8 +39,7 @@ void limpiar();
 
 int main()
 {
-    cout<<sizeof(Empleado);
-  mostrarMenu();
+  deuda();
   return 0;}
 
 void limpiar()

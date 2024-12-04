@@ -7,6 +7,8 @@ int verificarRegimen(int reg);
 int habitacionesLibres(int cap,int cat);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 void habitacionesDisponiblesHasta();
+void deuda();
+void pagoFinal();
 
 void agregarReserva()
 {
@@ -357,10 +359,10 @@ void habitacionesDisponiblesHasta() {
         objHab = arcHab.leerRegistro(i);
 
         /// VERIFICAR DISPONIBILIDAD O SI SE PUEDE USAR ANTES DE LA RESERVA
-        if (objHab.getDisponibilidad() == 0 || 
+        if (objHab.getDisponibilidad() == 0 ||
            (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() > fechaLimite.getAnio()) ||
            (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() > fechaLimite.getMes()) ||
-           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() == fechaLimite.getMes() && objHab.getIngreso().getDia() > fechaLimite.getDia())) 
+           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() == fechaLimite.getMes() && objHab.getIngreso().getDia() > fechaLimite.getDia()))
         {
             objHab.Mostrar();
             hayDisponibles = true;
@@ -370,6 +372,68 @@ void habitacionesDisponiblesHasta() {
     if (!hayDisponibles) {
         cout << "No hay habitaciones disponibles hasta la fecha especificada...\n";
     }
+}
+
+void pagoFinal()
+{
+    ArchivoPago arcP;
+    Pago objP;
+    int contReg=arcP.contarRegistros();
+    int dni;
+
+    cout<<"INGRESE EL DNI DEL HUESPED : ";
+    cin>>dni;
+
+    for (int i=0;i<contReg;i++)
+    {
+        objP=arcP.leerRegistro(i);
+        if(objP.getEstado() && objP.getDNI()==dni)
+        {
+            cout<<"EL TOTAL A PAGAR ES DE : "<<objP.getTotalAbonado()<<"$"<<endl;
+            system("pause");
+            ///No hacemos ninguna otra operación ya que este último pago es cuando el huesped se está yendo de la habitación, por lo que.
+            ///No vemos necesario hacer una resta del total y dejar la posibilidad de que pague en otro mes, este es el último pago.
+            break;
+        }
+    }
+    objP.setEstado(false);
+
+    ArchivoDetalles arcD;
+    DetallesPago objD;
+
+    objD=arcD.buscarRegistro(objP.getIDdetalle);
+
+    ArchivoHabitacion arcH;
+    Habitacion objH;
+
+    int pos=arcH.buscarRegistro(objD.getNumdehabitacion);
+    objH=arcH.leerRegistro(pos);
+    objH.setDisponibilidad(0);
+    objH.setIdRegimen(0);
+    arcD.modificarRegistro();
+}
+
+void deuda()
+{
+    Pago obj;
+    ArchivoPago arc;
+    int contReg=arc.contarRegistros();
+    bool deudas;
+    for (int i=0;i<contReg;i++)
+    {
+        obj=arc.leerRegistro(i);
+        if(obj.getTotalAbonado()!=0)
+        {
+            obj.Mostrar();
+            deudas=true;
+        }
+    }
+    if(deudas==false)
+    {
+        cout<<"NO HAY DEUDAS REGISTRADAS"<<endl;
+        system("pause");
+    }
+
 }
 
 #endif // RESERVA_H_INCLUDED
