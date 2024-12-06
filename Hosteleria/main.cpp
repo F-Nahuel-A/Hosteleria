@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstring>
+#include <ctime>
 
 using namespace std;
 
@@ -38,9 +39,12 @@ using namespace std;
 void limpiar();
 
 int main()
-{
-  deuda();
-  return 0;}
+    {
+        revisionHab();
+        ///Esta función cada vez que se abra el programa va a comprobar si coinciden las fechas de salida de las habitaciones con la fecha del sistema
+
+        mostrarMenu();
+    }
 
 void limpiar()
 {
@@ -64,3 +68,5 @@ void limpiar()
     h.limpiarArchivo();
     i.limpiarArchivo();
 }
+
+

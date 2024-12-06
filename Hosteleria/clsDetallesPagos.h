@@ -23,7 +23,6 @@ public:
     int getDNI(){return _DNI;}
     bool getEstado(){return _estado;}
 
-
     void setDNI(int dni);
     void setIDdetalle (int detalle){if(detalle>0){_IDdetalle=detalle;}}
     void setNumHabitacion(int numHab);

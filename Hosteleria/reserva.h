@@ -4,6 +4,7 @@ int verificarCapacidad(int cap);
 int verificarCategoria(int cat);
 int verificarHabitacion(int num);
 int verificarRegimen(int reg);
+void verificarPago(int deuda,int abonado);
 int habitacionesLibres(int cap,int cat);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 void habitacionesDisponiblesHasta();
@@ -379,7 +380,8 @@ void pagoFinal()
     ArchivoPago arcP;
     Pago objP;
     int contReg=arcP.contarRegistros();
-    int dni;
+    int dni,abonado;
+    bool pago=false;
 
     cout<<"INGRESE EL DNI DEL HUESPED : ";
     cin>>dni;
@@ -389,28 +391,39 @@ void pagoFinal()
         objP=arcP.leerRegistro(i);
         if(objP.getEstado() && objP.getDNI()==dni)
         {
-            cout<<"EL TOTAL A PAGAR ES DE : "<<objP.getTotalAbonado()<<"$"<<endl;
+            if(objP.getTotalAbonado()!=0)
+            {
+            cout<<"EL TOTAL A PAGAR ES DE : "<<objP.getTotalAbonado()<<"$"<<endl<<endl;
+            cout<<"INGRESE EL MONTO ABONADO : ";
+            cin>>abonado;
+            verificarPago(objP.getTotalAbonado(),abonado);
             system("pause");
-            ///No hacemos ninguna otra operación ya que este último pago es cuando el huesped se está yendo de la habitación, por lo que.
-            ///No vemos necesario hacer una resta del total y dejar la posibilidad de que pague en otro mes, este es el último pago.
+            pago=true;
             break;
+            }
         }
     }
-    objP.setEstado(false);
+    if(pago)
+    {
+    objP.setTotalAbonado(0);
 
     ArchivoDetalles arcD;
     DetallesPago objD;
+    int numH=objD.getNumdehabitacion();
 
-    objD=arcD.buscarRegistro(objP.getIDdetalle);
+    ///Creación del nuevo detalle anteriormente abonado.
+    objD=arcD.leerRegistro();
+    objD.setDNI(dni);
+    objD.setNumHabitacion(numH);
+    objD.setTotal(abonado);
+    ///Leer registros sin parametros te retorna un nuevo número de ID
+    }
+    else
+    {
+        cout<<"EL CLIENTE NO DEBE PAGAR";
 
-    ArchivoHabitacion arcH;
-    Habitacion objH;
-
-    int pos=arcH.buscarRegistro(objD.getNumdehabitacion);
-    objH=arcH.leerRegistro(pos);
-    objH.setDisponibilidad(0);
-    objH.setIdRegimen(0);
-    arcD.modificarRegistro();
+        ///Se debe cambiar la disponibilidad de la habitación
+    }
 }
 
 void deuda()
@@ -422,7 +435,7 @@ void deuda()
     for (int i=0;i<contReg;i++)
     {
         obj=arc.leerRegistro(i);
-        if(obj.getTotalAbonado()!=0)
+        if(obj.getTotalAbonado()==0)
         {
             obj.Mostrar();
             deudas=true;
@@ -434,6 +447,18 @@ void deuda()
         system("pause");
     }
 
+}
+
+void verificarPago(int deuda,int abonado)
+{
+    while(abonado<deuda)
+    {
+        cout<<"LO ABONADO NO ES SUFICIENTE, VUELVA A ABONAR"<<endl;
+        cout<<"INGRESE EL MONTO : ";
+        cin>>abonado;
+        system("cls");
+    }
+    cout<<"PAGO REALIZADO"<<endl;
 }
 
 #endif // RESERVA_H_INCLUDED

@@ -108,6 +108,9 @@ public:
         cout<<"CAPACIDAD MAX: "<<_capacidad<<endl;
         }
     }
+
+
+
 };
 
 void Habitacion::setIdCategoria(int categoria)

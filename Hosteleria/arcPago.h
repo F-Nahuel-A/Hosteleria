@@ -103,7 +103,7 @@ void ArchivoPago::listarArchivo(){
     int cantReg = contarRegistros();
     for(int i = 0; i < cantReg; i++){
         obj = leerRegistro(i);
-        if(obj.getEstado()){
+        if(obj.getEstado() && obj.getTotalAbonado()!=0){
             obj.Mostrar();
             cout<<endl;
         }

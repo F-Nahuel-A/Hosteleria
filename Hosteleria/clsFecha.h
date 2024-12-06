@@ -27,6 +27,7 @@ public:
     void Cargar();
     void Mostrar();
 
+    bool operator==(Fecha a);
 };
 
 void Fecha::setAnio(int anio)
@@ -157,6 +158,7 @@ void Fecha::setDia(int dia)
         }
     }
 
+
 void Fecha::Cargar()
 {   int aux;
     _estado=true;
@@ -178,4 +180,13 @@ void Fecha::Mostrar()
     if(_estado)
     cout<<_d<<"/"<<_m<<"/"<<_a<<endl;
 }
+
+bool Fecha::operator==(Fecha a)
+    {
+        if(a.getDia()==_d && a.getMes()==_m && a.getAnio()==_a)
+        {
+            return true;
+        }
+        return false;
+    }
 #endif // CLSFECHA_H_INCLUDED

@@ -97,7 +97,7 @@ public:
 void Pago::setTotalAbonado(float t)
     {
         char aux;
-        if(t>0)
+        if(t>-1)
         {
             _totalAbonado=t;
             return;

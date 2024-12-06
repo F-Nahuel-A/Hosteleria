@@ -417,4 +417,30 @@ void ArchivoHabitacion::listarPorNumero()
         cout<<"NO SE ENCONTRO EL REGISTRO."<<endl;system("pause");
     }
 }
+
+void revisionHab()
+{
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+    int dia=now->tm_mday;
+    int mes=now->tm_mon;
+    int anio=now->tm_year;
+
+    ArchivoHabitacion arcH;
+    int cantReg=arcH.contarRegistros();
+    Habitacion objH;
+
+    Fecha actual(dia,mes,anio);
+
+    for (int i=0;i<cantReg;i++)
+        {
+            objH=arcH.leerRegistro(i);
+            if(actual==objH.getSalida())
+            {
+               objH.setDisponibilidad(0);
+               arcH.modificarRegistro(objH,i);
+            }
+        }
+
+}
 #endif // ARCHABITACION_H_INCLUDED
