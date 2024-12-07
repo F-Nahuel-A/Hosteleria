@@ -5,11 +5,15 @@ int verificarCategoria(int cat);
 int verificarHabitacion(int num);
 int verificarRegimen(int reg);
 void verificarPago(int deuda,int abonado);
-int habitacionesLibres(int cap,int cat);
+int habitacionesLibres(int cap,int cat,Fecha ing,Fecha sal);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 void habitacionesDisponiblesHasta();
-void deuda();
+void pagosHechos();
 void pagoFinal();
+void actualizarFacturasAnt(int fac,int cantReg);
+int asignarDisponibilidad(Fecha ingreso);
+bool verificarOcupada(Habitacion obj,Fecha ing);
+bool verificarReservada(Habitacion obj,Fecha sal);
 
 void agregarReserva()
 {
@@ -19,14 +23,23 @@ void agregarReserva()
     ArchivoHabitacion arcHab;
     Habitacion objHab;
 
+    Fecha ingreso,salida,pago;
+
+    cout<<"INGRESE EL INGRESO DEL HUESPED"<<endl;
+    ingreso.Cargar();
+    cout<<"INGRESE LA SALIDA DEL HUESPED"<<endl;
+    salida.Cargar();
+    cout<<endl;
+
     categoria=verificarCategoria(categoria);
     if(categoria==-1){return;}
 
     capacidad=verificarCapacidad(capacidad);
     if(capacidad==-1){return;}
+    system("cls");
 
-    cout<<endl<<"HABITACIONES DISPONIBLES : "<<endl;
-    int libres=habitacionesLibres(capacidad,categoria);
+    cout<<"HABITACIONES DISPONIBLES : "<<endl;
+    int libres=habitacionesLibres(capacidad,categoria,ingreso,salida);
     if(libres==0)
     {
         cout<<"NO HAY HABITACIONES DISPONIBLES."<<endl;
@@ -39,8 +52,10 @@ void agregarReserva()
     if(aux=='n' || aux=='N'){return;}
 
     system("cls");
+
     numHab=verificarHabitacion(numHab);
     if(numHab==-1){return;}
+
     cout<<endl<<"DESEA UN REGIMEN DE COMIDA ?"<<endl<<"S/N : ";
     cin>>aux;
     cout<<endl;
@@ -55,40 +70,16 @@ void agregarReserva()
     totalApagar=confirmacion(categoria,capacidad,numHab,regimen,totalApagar);
     system("cls");
 
-    Fecha ingreso,salida,pago;
-    int disponibilidad;
+    if(totalApagar==-1)
+    {
+        return;
+    }
+
+    int disponibilidad=asignarDisponibilidad(ingreso);
     int pos;
 
-    if(totalApagar!=-1)
-    {
-        pos=arcHab.buscarRegistro(numHab);
-        objHab=arcHab.leerRegistro(pos);
-        cout<<"PARA RESERVAR O OCUPAR HOY : ";
-        cin>>disponibilidad;
-        system("cls");
-
-        switch (disponibilidad)
-        {
-        case 1:
-            cout<<"INGRESE LA FECHA DE SALIDA"<<endl;
-            salida.Cargar();
-            break;
-
-        case 2:
-            cout<<"INGRESE LA FECHA DE INGRESO"<<endl;
-            ingreso.Cargar();
-            cout<<endl<<"INGRESE LA FECHA DE SALIDA"<<endl;
-            salida.Cargar();
-            break;
-
-        default:
-            cout<<"OPCION INVALIDA"<<endl;
-            system("pause");
-            return;
-        }
-
-        system("cls");
-    }
+    pos=arcHab.buscarRegistro(numHab);
+    objHab=arcHab.leerRegistro(pos);
 
     ArchivoHuesped arcH;
     Huesped objH;
@@ -113,12 +104,17 @@ void agregarReserva()
     cout<<"FECHA DE PAGO"<<endl;
     pago.Cargar();
 
-        if(disponibilidad==1)
+        if(objHab.getDisponibilidad()!=0)
         {
-            ingreso=pago;///Esto lo hago para no pedir la fecha varias veces. En caso de que reserve para HOY
+        objHab.asignar(regimen,disponibilidad,ingreso,salida);
+        arcHab.grabarRegistro(objHab);
         }
+        else
+        {
         objHab.asignar(regimen,disponibilidad,ingreso,salida);
         arcHab.modificarRegistro(objHab,pos);
+        }
+        ///Lo que hago acá es subir otro registro si el anterior ya se encuentra ocupado, una vez se libere esa hbitación, se va a borrar del sistema para no tener duplicados.
 
     ArchivoDetalles arcD;
     DetallesPago objD;
@@ -140,8 +136,7 @@ void agregarReserva()
 
 }
 
-
-int habitacionesLibres(int cap, int cat)
+int habitacionesLibres(int cap, int cat,Fecha ing,Fecha sal)
 {
     ArchivoHabitacion arcHab;
     Habitacion objHab;
@@ -151,15 +146,41 @@ int habitacionesLibres(int cap, int cat)
     for (int i=0;i<contReg;i++)
         {
             objHab=arcHab.leerRegistro(i);
-        if(objHab.getEstado() && objHab.getDisponibilidad()==0)
+
+        switch (objHab.getDisponibilidad())
         {
+        case 0:
             if(objHab.getIdCategoria()==cat && objHab.getCapacidad()==cap)
             {
                 objHab.Mostrar();
                 cout<<endl;
                 contHab++;
             }
+            break;
+
+        case 1:
+            if(verificarOcupada(objHab,ing))
+            {
+                objHab.Mostrar();
+                cout<<endl;
+                contHab++;
+            }
+            break;
+
+        case 2:
+           if(verificarReservada(objHab,sal))
+            {
+                objHab.Mostrar();
+                cout<<endl;
+                contHab++;
+            }
+            break;
+
+        default:
+            break;
         }
+
+
 
         }
     return contHab;
@@ -405,7 +426,6 @@ void pagoFinal()
     }
     if(pago)
     {
-    objP.setTotalAbonado(0);
 
     ArchivoDetalles arcD;
     DetallesPago objD;
@@ -413,40 +433,55 @@ void pagoFinal()
 
     ///Creación del nuevo detalle anteriormente abonado.
     objD=arcD.leerRegistro();
+    objD.setIDdetalle(objD.getID()+1);
     objD.setDNI(dni);
     objD.setNumHabitacion(numH);
     objD.setTotal(abonado);
     ///Leer registros sin parametros te retorna un nuevo número de ID
+
+    objP.setTotalAbonado(0);
+    objP.setIDdetalle(objD.getID());
+    arcP.grabarRegistro(objP);
+
+    actualizarFacturasAnt(objP.getNumeroderecibo(),contReg);
+    ///Pone a todas las facturas anteriores con el mismo número en 0
+
+
     }
     else
     {
         cout<<"EL CLIENTE NO DEBE PAGAR";
-
-        ///Se debe cambiar la disponibilidad de la habitación
     }
 }
 
-void deuda()
+void pagosHechos()
 {
-    Pago obj;
-    ArchivoPago arc;
-    int contReg=arc.contarRegistros();
-    bool deudas;
-    for (int i=0;i<contReg;i++)
-    {
-        obj=arc.leerRegistro(i);
-        if(obj.getTotalAbonado()==0)
-        {
-            obj.Mostrar();
-            deudas=true;
-        }
-    }
-    if(deudas==false)
-    {
-        cout<<"NO HAY DEUDAS REGISTRADAS"<<endl;
-        system("pause");
-    }
+    Pago objP;
+    ArchivoPago arcP;
+    objP=arcP.leerRegistro();
+    int cantRecibos=objP.getNumeroderecibo()+1;
 
+    DetallesPago objD;
+    ArchivoDetalles arcD;
+
+    int contReg=arcP.contarRegistros();
+
+    for(int i=0;i<cantRecibos;i++)
+    {
+
+        for (int j=0;j<contReg;j++)
+        {
+            objP=arcP.leerRegistro(j);
+            if(i==objP.getNumeroderecibo() && objP.getTotalAbonado()==0)
+            {
+                int pos=arcD.buscarRegistro(objP.getIDdetalle());
+                objD=arcD.leerRegistro(pos);
+                objP.Mostrar();
+                cout<<"PAGADO : "<<objD.getTotalabonado()<<"$"<<endl;
+            }
+        }
+
+    }
 }
 
 void verificarPago(int deuda,int abonado)
@@ -459,6 +494,82 @@ void verificarPago(int deuda,int abonado)
         system("cls");
     }
     cout<<"PAGO REALIZADO"<<endl;
+}
+
+
+void actualizarFacturasAnt(int fac,int cantReg)
+{
+    Pago obj;
+    ArchivoPago arc;
+
+    for (int i=0;i<cantReg;i++)
+    {
+        if(fac==obj.getNumeroderecibo())
+        {
+            obj=arc.leerRegistro(i);
+            obj.setTotalAbonado(0);
+            arc.modificarRegistro(obj,i);
+        }
+    }
+
+}
+
+int asignarDisponibilidad(Fecha ingreso)
+{
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+    int dia=now->tm_mday;
+    int mes=now->tm_mon;
+    int anio=now->tm_year;
+
+    if(ingreso.getAnio()==anio && ingreso.getMes()==mes&& ingreso.getDia()==dia)
+    {
+        return 1;
+    }
+    else {return 2;}
+}
+
+
+bool verificarOcupada(Habitacion obj,Fecha ing)
+{
+    if(ing==obj.getSalida())
+    {
+        return true;
+    }
+    if(ing.getAnio()>obj.getSalida().getAnio())
+    {
+        return true;
+    }
+    if(ing.getAnio()==obj.getSalida().getAnio() && ing.getMes()>obj.getSalida().getMes())
+    {
+        return true;
+    }
+    if(ing.getAnio()==obj.getSalida().getAnio() && ing.getMes()==obj.getSalida().getMes()&& ing.getDia()>obj.getSalida().getDia())
+    {
+        return true;
+    }
+    return false;
+}
+
+bool verificarReservada(Habitacion obj,Fecha sal)
+{
+    if(sal==obj.getIngreso())
+    {
+        return true;
+    }
+    if(sal.getAnio()<obj.getIngreso().getAnio())
+    {
+        return true;
+    }
+    if(sal.getAnio()==obj.getIngreso().getAnio() && sal.getMes()<obj.getIngreso().getMes())
+    {
+        return true;
+    }
+    if(sal.getAnio()==obj.getIngreso().getAnio() && sal.getMes()==obj.getIngreso().getMes()&& sal.getDia()<obj.getIngreso().getDia())
+    {
+        return true;
+    }
+    return false;
 }
 
 #endif // RESERVA_H_INCLUDED

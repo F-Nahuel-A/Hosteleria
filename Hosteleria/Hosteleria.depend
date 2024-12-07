@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733495070 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1733495778 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	<ctime>
@@ -79,7 +79,7 @@
 
 1731182321 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
 
-1731182321 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
+1733495681 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
 1733494877 c:\users\admin\desktop\hosteleria\hosteleria\clspagos.h
 
@@ -227,5 +227,5 @@
 
 1730781910 c:\users\familia\desktop\hosteleria\menuconfiguraciones.h
 
-1733495579 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
+1733603721 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
 
