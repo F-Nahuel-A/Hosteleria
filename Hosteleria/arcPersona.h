@@ -19,6 +19,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
 };
 
@@ -141,5 +142,34 @@ void ArchivoPersona::bajaRegistro()
     cout<<"EL REGISTRO SE BORRO CORRECTAMENTE."<<endl;
     system("pause");
 }
+
+bool ArchivoPersona::bajaFisica(int pos)
+{
+    Persona *objP;
+    objP=new Persona[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objP[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objP[i], sizeof(objP[i]), 1, p);
+        }
+    fclose(p);
+    delete []objP;
+}
+
 
 #endif // ARCPERSONA_H_INCLUDED

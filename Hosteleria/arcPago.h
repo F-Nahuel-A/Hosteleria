@@ -23,6 +23,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro(); ///Doble mensaje
+    bool bajaFisica(int pos);
 
     void cambiarIDdetalle();
     void cambiarDNI();
@@ -430,4 +431,32 @@ void ArchivoPago::cambiarIDdetalle()
 
     }
 
+
+bool ArchivoPago::bajaFisica(int pos)
+{
+    Pago *objP;
+    objP=new Pago[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objP[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objP[i], sizeof(objP[i]), 1, p);
+        }
+    fclose(p);
+    delete []objP;
+}
 #endif // ARCPAGO_H_INCLUDED

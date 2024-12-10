@@ -14,6 +14,7 @@ void actualizarFacturasAnt(int fac,int cantReg);
 int asignarDisponibilidad(Fecha ingreso);
 bool verificarOcupada(Habitacion obj,Fecha ing);
 bool verificarReservada(Habitacion obj,Fecha sal);
+void actualizarHabitaciones();
 
 void agregarReserva()
 {
@@ -27,18 +28,19 @@ void agregarReserva()
 
     cout<<"INGRESE EL INGRESO DEL HUESPED"<<endl;
     ingreso.Cargar();
+    cout<<endl;
     cout<<"INGRESE LA SALIDA DEL HUESPED"<<endl;
     salida.Cargar();
     cout<<endl;
 
     categoria=verificarCategoria(categoria);
     if(categoria==-1){return;}
-
+    cout<<endl;
     capacidad=verificarCapacidad(capacidad);
     if(capacidad==-1){return;}
     system("cls");
 
-    cout<<"HABITACIONES DISPONIBLES : "<<endl;
+    cout<<"HABITACIONES DISPONIBLES : "<<endl<<endl;
     int libres=habitacionesLibres(capacidad,categoria,ingreso,salida);
     if(libres==0)
     {
@@ -83,9 +85,29 @@ void agregarReserva()
 
     ArchivoHuesped arcH;
     Huesped objH;
+    char resp;
+    cout<<"ES UN CLIENTE YA EXISTENTE ?"<<endl;
+    cout<<"S/N : ";
+    cin>>resp;
+    system("cls");
+    if(resp=='s' || resp=='S')
+    {
+        system("cls");
+        int dni;
+        cout<<"INGRESE EL DNI : ";
+        cin>>dni;
+        int posHuesped=arcH.buscarRegistro(dni);
+        objH=arcH.leerRegistro(posHuesped);
+        system("cls");
+
+
+    }
+    else
+    {
     objH.Cargar();
     arcH.grabarRegistro(objH);
     system("cls");
+    }
 
     ArchivoPago arcP;
     Pago objP;
@@ -126,6 +148,7 @@ void agregarReserva()
 
     totalApagar-=adelantado;
     objD.reserva(idDetalle,objH.getDni(),numHab,totalApagar);
+    objD.setEstado(true);
     arcD.grabarRegistro(objD);
 
     objP.reserva(numRecibo,objH.getDni(),idDetalle,pago);
@@ -237,7 +260,7 @@ int verificarCategoria(int cat)
         if(pos!=-1)
         {
             obj=arc.leerRegistro(pos);
-            cout<<"ESTA SEGURO QUE DESEA ASIGNAR LA CATEGORIA : "<<obj.getDescripcion()<<endl<<"S/N"<<endl;
+            cout<<"ESTA SEGURO QUE DESEA ASIGNAR LA CATEGORIA : "<<obj.getDescripcion()<<endl<<"S/N : ";
             cin>>aux;
             if(aux=='S' || aux=='s')
             {
@@ -245,7 +268,7 @@ int verificarCategoria(int cat)
             }
             else
             {
-                cout<<"QUIERE INGRESAR OTRA CATEGORIA? "<<endl<<"S/N"<<endl;
+                cout<<"QUIERE INGRESAR OTRA CATEGORIA? "<<endl<<"S/N : ";
                 cin>>aux;
                 if(aux=='S' || aux=='s')
                 {
@@ -570,6 +593,115 @@ bool verificarReservada(Habitacion obj,Fecha sal)
         return true;
     }
     return false;
+
+}
+void actualizarHabitaciones()
+{
+    Habitacion objH;
+    ArchivoHabitacion arcH;
+    int contRepetidos=0,numRepetido,contReg=arcH.contarRegistros();
+
+    for (int i=0;i<contReg;i++)
+        {
+            objH=arcH.leerRegistro(i);
+
+            if(objH.getDisponibilidad()==0){
+
+            numRepetido=objH.getNumero();
+
+            for (int j=0;j<contReg;j++)
+            {
+                objH=arcH.leerRegistro(j);
+                if(numRepetido==objH.getNumero())
+                {
+                    contRepetidos++;
+                }
+            }
+
+              if(contRepetidos>1)
+              {
+                if(arcH.bajaFisica(i)==false)
+                {
+                    cout<<"NO SE PUDO REALIZAR LA OPERACION"<<endl;
+                    system("pause");
+                }
+              }
+
+            }
+        contRepetidos=0;
+        }
+
 }
 
+void habitacionLibre()
+{
+    Habitacion obj;
+    ArchivoHabitacion arc;
+    int contReg=arc.contarRegistros();
+    int contLibres=0;
+    for (int i=0;i<contReg;i++)
+        {
+            obj=arc.leerRegistro(i);
+            if(obj.getDisponibilidad()==0)
+            {
+                obj.Mostrar();
+                contLibres++;
+            }
+        }
+        if(contLibres==0)
+        {
+            cout<<"NO HAY HABITACIONES LIBRES."<<endl;
+        }
+        system("pause");
+}
+
+void habitacionLibreXcategoria()
+{
+    Habitacion obj;
+    ArchivoHabitacion arc;
+    int cat,contReg=arc.contarRegistros();
+    int contLibres=0;
+    cout<<"INGRESE LA CATEGORIA : ";
+    cin>>cat;
+    cout<<endl;
+    for (int i=0;i<contReg;i++)
+        {
+            obj=arc.leerRegistro(i);
+            if(obj.getDisponibilidad()==0 && obj.getIdCategoria()==cat)
+            {
+                obj.Mostrar();
+                contLibres++;
+            }
+        }
+        if(contLibres==0)
+        {
+            cout<<"NO HAY HABITACIONES LIBRES."<<endl;
+        }
+        system("pause");
+}
+
+void habitacionLibreXcapacidad()
+{
+    Habitacion obj;
+    ArchivoHabitacion arc;
+    int cap,contReg=arc.contarRegistros();
+    int contLibres=0;
+    cout<<"INGRESE LA CAPACIDAD : ";
+    cin>>cap;
+    cout<<endl;
+    for (int i=0;i<contReg;i++)
+        {
+            obj=arc.leerRegistro(i);
+            if(obj.getDisponibilidad()==0 && obj.getCapacidad()==cap)
+            {
+                obj.Mostrar();
+                contLibres++;
+            }
+        }
+        if(contLibres==0)
+        {
+            cout<<"NO HAY HABITACIONES LIBRES."<<endl;
+        }
+        system("pause");
+}
 #endif // RESERVA_H_INCLUDED

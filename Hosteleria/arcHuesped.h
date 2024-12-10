@@ -20,6 +20,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarDNI();
     void cambiarNombre();
@@ -475,4 +476,33 @@ void ArchivoHuesped::listarPorDNI()
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
 }
+
+bool ArchivoHuesped::bajaFisica(int pos)
+{
+    Huesped *objH;
+    objH=new Huesped[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objH[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objH[i], sizeof(objH[i]), 1, p);
+        }
+    fclose(p);
+    delete []objH;
+}
+
 #endif // ARCHUESPED_H_INCLUDED

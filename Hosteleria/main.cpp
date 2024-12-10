@@ -43,8 +43,9 @@ int main()
         revisionHab();
         ///Esta función cada vez que se abra el programa va a comprobar si coinciden las fechas de salida de las habitaciones con la fecha del sistema
 
-
         ///Aparte de esa función, una que haga lo mismo pero revisando duplicados.
+        actualizarHabitaciones();
+
         mostrarMenu();
     }
 

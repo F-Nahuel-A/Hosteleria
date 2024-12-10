@@ -22,6 +22,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarHorario();
 };
@@ -215,5 +216,33 @@ void ArchivoTurnoEmpleado::listarPorID()
     {
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
+}
+
+bool ArchivoTurnoEmpleado::bajaFisica(int pos)
+{
+    TurnoEmpleado *objTE;
+    objTE=new TurnoEmpleado[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objTE[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objTE[i], sizeof(objTE[i]), 1, p);
+        }
+    fclose(p);
+    delete []objTE;
 }
 #endif // ARCTURNO_H_INCLUDED

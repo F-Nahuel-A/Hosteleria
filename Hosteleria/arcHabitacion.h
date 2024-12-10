@@ -19,6 +19,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarNumHabitacion();
     void cambiarIDcategoria();
@@ -423,8 +424,8 @@ void revisionHab()
     time_t t = time(nullptr);
     tm* now = localtime(&t);
     int dia=now->tm_mday;
-    int mes=now->tm_mon;
-    int anio=now->tm_year;
+    int mes=now->tm_mon+1;
+    int anio=now->tm_year+1900;
 
     ArchivoHabitacion arcH;
     int cantReg=arcH.contarRegistros();
@@ -442,5 +443,33 @@ void revisionHab()
             }
         }
 
+}
+
+bool ArchivoHabitacion::bajaFisica(int pos)
+{
+    Habitacion *objH;
+    objH=new Habitacion[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objH[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objH[i], sizeof(objH[i]), 1, p);
+        }
+    fclose(p);
+    delete []objH;
 }
 #endif // ARCHABITACION_H_INCLUDED

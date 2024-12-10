@@ -43,7 +43,7 @@ void Fecha::setAnio(int anio)
             while(anio<1900 || anio>2025)
                 {
 
-            cout<<"ANIO NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"ANIO NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')
@@ -101,7 +101,7 @@ void Fecha::setMes(int mes)
     }
     if(validar==false)
     {   system("cls");
-        cout<<"MES NO VALIDO, QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+        cout<<"MES NO VALIDO, QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
         cin>>aux;
         if(aux=='S' || aux=='s')
             {
@@ -133,7 +133,7 @@ void Fecha::setDia(int dia)
             while(dia<0 || dia>32)
                 {
 
-            cout<<"DIA NO VALIDO,QUIERE VOLVER A INTENTAR ? S/N"<<endl;
+            cout<<"DIA NO VALIDO,QUIERE VOLVER A INTENTAR ?"<<endl<<"S/N : ";
             cin>>aux;
 
             if(aux=='S' || aux=='s')

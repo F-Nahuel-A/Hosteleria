@@ -108,59 +108,58 @@ void recaudacionHabitacion()
 {
     ArchivoDetalles arcD;
     DetallesPago objD;
-    float habitaciones[6]={};
-    int contReg=arcD.contarRegistros();
+
+    ArchivoPago arcP;
+    Pago objP;
+
+    ArchivoHabitacion arcH;
+    Habitacion objH=arcH.leerRegistro(-1);
+    int cant=objH.getNumero();
+    float *recau;
+    recau=new float[cant];
+    for (int i=0;i<cant;i++){recau[i]=0;}
+    int contReg=arcP.contarRegistros();
 
     for (int i=0;i<contReg;i++)
-    {
-        objD=arcD.leerRegistro(i);
-        if(objD.getEstado())
         {
-            habitaciones[objD.getNumdehabitacion()-1]+=objD.getTotalabonado();
-        }
-    }
-cout<<"RECAUDACION DE HABITACIONES"<<endl<<endl;
+            objP=arcP.leerRegistro(i);
+            objD=arcD.buscarRegistro(objP.getIDdetalle());
+            recau[objD.getNumdehabitacion()]+=objP.getTotalAbonado();
 
-    for (int i=0;i<6;i++) {
-        float maxRecaudado=0;
-        int pos=0;
 
-        for (int j=0;j<6;j++) {
-            if(habitaciones[j] > maxRecaudado)
-            {
-                maxRecaudado = habitaciones[j];
-                pos=j;
-            }
         }
 
-        cout<<"HABITACION : "<<pos+1<<endl;
-        cout<<"RECAUDACION : "<<maxRecaudado<<endl<<endl;
-        habitaciones[pos]=0;
-
+    for (int i=0;i<cant;i++)
+    {
+        cout<<"HABITACION "<<i+1<<" : "<<recau[i]<<"$"<<endl;;
     }
+
     system("pause");
+    delete[] recau;
 }
 
 void gananciaAnual() {
 
-    ArchivoDetalles archivoDetalles;
-    int cantDetalles = archivoDetalles.contarRegistros();
-    float recaudadoAnual=0;
+    ArchivoPago arcP;
+    Pago objP;
+    int catReg=arcP.contarRegistros();
+    float recauAnual=0;
 
-    if (cantDetalles <= 0)
+    if (catReg<=0)
     {
         cout << "NO HAY DATOS SUFICIENTES PARA CALCULAR LA MAXIMA GANANCIA." << endl;
+        system("pause");
         return;
     }
 
-    for (int i = 0; i < cantDetalles; i++) {
-        DetallesPago detalle = archivoDetalles.leerRegistro(i);
+    for (int i=0;i<catReg;i++) {
+        objP=arcP.leerRegistro(i);
 
-        if (detalle.getEstado()) {
-            recaudadoAnual+=detalle.getTotalabonado();
+        if (objP.getEstado()) {
+            recauAnual+=objP.getTotalAbonado();
         }
     }
-    cout<<"LA RECAUDACION DEL 2024 ES DE : "<<recaudadoAnual<<"$"<<endl;
+    cout<<"LA RECAUDACION DEL 2024 ES DE : "<<recauAnual<<"$"<<endl;
     system("pause");
 }
 

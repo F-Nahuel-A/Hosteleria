@@ -67,7 +67,7 @@ public:
         cout<<"ID DETALLE : "<<_IDdetalle<<endl;
         cout<<"NUMERO DE DNI :"<<_DNI<<endl;
         cout<<"NUMERO DE HABITACION : "<<_NumHabitacion<<endl;
-        cout<<"TOTAL : "<<_total<<endl;
+        cout<<"TOTAL RESTANTE : "<<_total<<endl;
         }
     }
 

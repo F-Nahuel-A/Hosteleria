@@ -22,6 +22,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarDNI();
     void cambiarNombre();
@@ -575,5 +576,33 @@ void ArchivoEmpleado::listarPorID()
         }
     }
     else{cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");}
+}
+
+bool ArchivoEmpleado::bajaFisica(int pos)
+{
+    Empleado *objE;
+    objE=new Empleado[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objE[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objE[i], sizeof(objE[i]), 1, p);
+        }
+    fclose(p);
+    delete []objE;
 }
 #endif // ARCEMPLEADO_H_INCLUDED

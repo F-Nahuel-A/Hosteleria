@@ -23,6 +23,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarDNI();
     void cambiarNumHabitacion();
@@ -326,5 +327,34 @@ void ArchivoDetalles::listarPorID()
     {
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
+}
+
+
+bool ArchivoDetalles::bajaFisica(int pos)
+{
+    DetallesPago *objDP;
+    objDP=new DetallesPago[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objDP[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objDP[i], sizeof(objDP[i]), 1, p);
+        }
+    fclose(p);
+    delete []objDP;
 }
 #endif // ARCDETALLESPAGO_H_INCLUDED

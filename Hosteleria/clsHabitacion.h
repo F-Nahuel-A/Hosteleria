@@ -82,7 +82,7 @@ public:
         switch (_disponibilidad)
         {
         case 0:
-            cout<<"DISPONIBLE";
+            cout<<"DISPONIBLE"<<endl;
             break;
 
         case 1:
@@ -107,6 +107,7 @@ public:
         }
         cout<<"CAPACIDAD MAX: "<<_capacidad<<endl;
         }
+        cout<<endl;
     }
 
 
@@ -300,4 +301,5 @@ void Habitacion::setCapacidad(int cap)
             _capacidad=cap;
         }
     }
+
 #endif // CLSHABITACION_H_INCLUDED

@@ -19,6 +19,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarDescripcion();
     void cambiarPrecioXpersona();
@@ -262,4 +263,31 @@ void ArchivoCategoria::listarPorID()
     }
 }
 
+bool ArchivoCategoria::bajaFisica(int pos)
+{
+    Categoria *objC;
+    objC=new Categoria[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objC[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objC[i], sizeof(objC[i]), 1, p);
+        }
+    fclose(p);
+    delete []objC;
+}
 #endif // ARCCATEGORIA_H_INCLUDED

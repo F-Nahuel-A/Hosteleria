@@ -21,6 +21,7 @@ public:
     bool limpiarArchivo();
     void altaRegistro();
     void bajaRegistro();
+    bool bajaFisica(int pos);
 
     void cambiarDescripcion();
     void cambiarPrecio();
@@ -261,6 +262,34 @@ void ArchivoRegimenComida::listarPorID()
     {
         cout<<"NO SE ENCONTRO EL ARCHIVO."<<endl;system("pause");
     }
+}
+
+bool ArchivoRegimenComida::bajaFisica(int pos)
+{
+    RegimenComida *objR;
+    objR=new RegimenComida[contarRegistros()-1];
+    int contReg=0;
+
+    for (int i=0;i<contarRegistros();i++)
+        {
+            if(pos!=i)
+            {
+                objR[i]=leerRegistro(i);
+                contReg++;
+            }
+
+        }
+    FILE *p=fopen(_nombre,"wb");
+    if(p==nullptr)
+    {
+        return false;
+    }
+    for (int i=0;i<contReg;i++)
+        {
+            fwrite(&objR[i], sizeof(objR[i]), 1, p);
+        }
+    fclose(p);
+    delete []objR;
 }
 
 #endif // ARCREGIMENCOMIDA_H_INCLUDED
