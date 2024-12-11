@@ -30,7 +30,7 @@ public:
     bool operator==(Fecha a);
     bool operator>=(Fecha a);
     bool operator>(Fecha a);
-    bool operator<(Fecha a)
+    bool operator<(Fecha a);
 };
 
 void Fecha::setAnio(int anio)
