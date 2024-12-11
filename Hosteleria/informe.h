@@ -89,7 +89,7 @@ void tipoDpago()
             obj=arc.leerRegistro(i);
             if(obj.getEstado())
             {
-                tipoPago[obj.getFormadepago()-1]++;
+                tipoPago[obj.getFormadepago()]++;
             }
         }
     float porcentaje1 = (float(tipoPago[0]) / float(contReg)) * 100;
@@ -123,7 +123,8 @@ void recaudacionHabitacion()
     for (int i=0;i<contReg;i++)
         {
             objP=arcP.leerRegistro(i);
-            objD=arcD.buscarRegistro(objP.getIDdetalle());
+            int pos=arcD.buscarRegistro(objP.getIDdetalle());
+            objD=arcD.leerRegistro(pos);
             recau[objD.getNumdehabitacion()]+=objP.getTotalAbonado();
 
 

@@ -26,6 +26,8 @@ public:
     void cambiarIDregimen();
     void cambiarDisponibilidad();
     void cambiarCapacidad();
+    void cambiarFechaLlegada();
+    void cambiarFechaSalida();
 };
 
 Habitacion ArchivoHabitacion::leerRegistro(int pos) {
@@ -385,7 +387,105 @@ void ArchivoHabitacion::cambiarCapacidad()
                 }
             }
                 }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
-           cout<<"DESEA BUSCAR OTRO EMPLEADO ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           cout<<endl;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
+
+void ArchivoHabitacion::cambiarFechaLlegada(){
+    int pos;
+    Fecha nueva;
+    char aux;
+    Habitacion obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
+    cin>>pos;
+    cout<<endl;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
+        obj.Mostrar();
+        cout<<endl<<"S/N : ";
+        cin>>aux;
+        cout<<endl;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE LA NUEVA FECHA"<<endl;
+           nueva.Cargar();
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA FECHA : ";
+           nueva.Mostrar();
+           cout<<endl<<"S/N : ";
+           cin>>aux;
+           cout<<endl;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setIngreso(nueva);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
+           cin>>aux;
+           cout<<endl;
+           if(aux=='n' || aux=='N')
+           {
+               return;
+           }
+	system("cls");
+        }
+
+    }
+
+void ArchivoHabitacion::cambiarFechaSalida(){
+    int pos;
+    Fecha nueva;
+    char aux;
+    Habitacion obj;
+    while(true){
+    cout<<"INGRESE EL NUMERO DE HABITACION QUE DESEE CAMBIAR : ";
+    cin>>pos;
+    cout<<endl;
+    pos=buscarRegistro(pos);
+    if(pos!=-1)
+        {
+        obj=leerRegistro(pos);
+        if(obj.getEstado()){
+        cout<<"EL ARCHIVO QUE DESEA MODIFICAR ES EL SIGUIENTE ? "<<endl<<endl;
+        obj.Mostrar();
+        cout<<endl<<"S/N : ";
+        cin>>aux;
+        cout<<endl;
+        if(aux=='s' || aux=='S')
+            {
+           cout<<"INGRESE LA NUEVA FECHA"<<endl;
+           nueva.Cargar();
+           cout<<endl<<"ESTAS SEGURO QUE QUERES ASIGNAR LA FECHA : ";
+           nueva.Mostrar();
+           cout<<endl<<"S/N : ";
+           cin>>aux;
+           cout<<endl;
+           if(aux=='s' || aux=='S')
+                    {
+           obj.setSalida(nueva);
+           modificarRegistro(obj,pos);
+           return;
+                    }
+                }
+            }
+                }else{cout<<"REGISTRO NO VALIDO"<<endl;} ///ESTE MENSAJE APARECE SI EL OBJETO TIENE EL ESTADO EN FALSO
+           cout<<"DESEA BUSCAR OTRA HABITACION ? "<<endl<<"S/N : "; ///ESTE MENSAJE APARECE SI EL USUARIO NO QUIERE CARGAR ESE REGISTRO
            cin>>aux;
            cout<<endl;
            if(aux=='n' || aux=='N')
@@ -436,7 +536,7 @@ void revisionHab()
     for (int i=0;i<cantReg;i++)
         {
             objH=arcH.leerRegistro(i);
-            if(actual==objH.getSalida())
+            if(actual>=objH.getSalida())
             {
                objH.setDisponibilidad(0);
                arcH.modificarRegistro(objH,i);

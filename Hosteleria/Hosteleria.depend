@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1733834000 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
+1733884540 source:c:\users\admin\desktop\hosteleria\hosteleria\main.cpp
 	<iostream>
 	<cstring>
 	<ctime>
@@ -51,7 +51,7 @@
 
 1730683024 c:\users\admin\desktop\hosteleria\hosteleria\funcionesglobales.h
 
-1733838917 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
+1733889433 c:\users\admin\desktop\hosteleria\hosteleria\clsfecha.h
 
 1731193514 c:\users\admin\desktop\hosteleria\hosteleria\clspersona.h
 
@@ -77,15 +77,15 @@
 
 1733834516 c:\users\admin\desktop\hosteleria\hosteleria\arcregimencomida.h
 
-1733836587 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
+1733885298 c:\users\admin\desktop\hosteleria\hosteleria\clshabitacion.h
 
-1733837669 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
+1733887725 c:\users\admin\desktop\hosteleria\hosteleria\archabitacion.h
 
 1731191687 c:\users\admin\desktop\hosteleria\hosteleria\clshuesped.h
 
 1733834523 c:\users\admin\desktop\hosteleria\hosteleria\archuesped.h
 
-1733846607 c:\users\admin\desktop\hosteleria\hosteleria\clsdetallespagos.h
+1733883866 c:\users\admin\desktop\hosteleria\hosteleria\clsdetallespagos.h
 
 1733834588 c:\users\admin\desktop\hosteleria\hosteleria\arcdetallespago.h
 
@@ -93,15 +93,15 @@
 
 1733834530 c:\users\admin\desktop\hosteleria\hosteleria\arcpago.h
 
-1731170512 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
+1733887523 c:\users\admin\desktop\hosteleria\hosteleria\modificaciones.h
 
-1733840100 c:\users\admin\desktop\hosteleria\hosteleria\informe.h
+1733887079 c:\users\admin\desktop\hosteleria\hosteleria\informe.h
 
 1730949867 c:\users\admin\desktop\hosteleria\hosteleria\configuraciones.h
 
 1730951896 c:\users\admin\desktop\hosteleria\hosteleria\menuconfiguraciones.h
 
-1733845795 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
+1733889522 c:\users\admin\desktop\hosteleria\hosteleria\reserva.h
 
-1733868120 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
+1733889522 c:\users\admin\desktop\hosteleria\hosteleria\menus.h
 

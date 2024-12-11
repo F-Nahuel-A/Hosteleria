@@ -39,9 +39,9 @@ void mostrarMenu()
     showItem("SERVICIOS",44,15,y==4);
     showItem("PAGOS",46,16,y==5);
     showItem("INFORMES",45,17,y==6);
-    showItem("LISTADOS",45,18,y==7);
-    showItem("CONFIGURACION",42,19,y==8);
-    showItem("SALIR",46,20,y==9);
+//    showItem("LISTADOS",45,18,y==7);
+    showItem("CONFIGURACION",42,18,y==7);
+    showItem("SALIR",46,19,y==8);
 
         switch (rlutil::getkey())
         {
@@ -52,7 +52,7 @@ void mostrarMenu()
                 y--;
                 if(y<1)
                 {
-                    y=9;
+                    y=8;
                 }
                 break;
 
@@ -61,7 +61,7 @@ void mostrarMenu()
                 cout << " ";  ///Borra el cursor en la posición actual
                 ///Cicla a la primera opción si baja desde la última
                 y++;
-                if(y>9)
+                if(y>8)
                 {
                     y=1;
                 }
@@ -108,23 +108,17 @@ void mostrarMenu()
 
             case 7:
               system("cls");
-              menuListados();
+              menuConfiguraciones();
               system("cls");
               break;
 
             case 8:
-              system("cls");
-              menuConfiguraciones();
-              system("cls");
-              break;
-            case 9:
                 op=0;
                 break;
 
                 default:
                     break;
                 }
-
 
             default:
                 break;
@@ -137,6 +131,8 @@ void mostrarMenu()
 void menuReserva()
 {
     int y=1,op=1;
+    ArchivoCategoria arcC;
+    ArchivoRegimenComida arcR;
 
 
     do
@@ -146,10 +142,15 @@ void menuReserva()
     rlutil::hidecursor();
     rlutil::locate(44,10);
     cout<<"MENU DE RESERVA"<<endl;
-    showItem("AGREGAR RESERVA",44,12,y==1);
-    showItem("DISPONIBILIDAD POR CATEGORIA",45,13,y==2);
-    showItem("HABITACIONES LIBRES",41,14,y==3);
-    showItem("SALIR",47,15,y==4);
+    showItem("AGREGAR RESERVA",42,12,y==1);
+    showItem("PRECIO CATEGORIAS",42,13,y==2);
+    showItem("PRECIO REGIMEN",42,14,y==3);
+//    showItem("DISPONIBILIDAD POR FECHA",38,15,y==4);
+    showItem("DISPONIBILIDAD POR CATEGORIA",36,15,y==4);
+    showItem("DISPONIBILIDAD POR CAPACIDAD",36,16,y==5);
+    showItem("HABITACIONES LIBRES",41,17,y==6);
+    showItem("PAGO FINAL",45,18,y==7);
+    showItem("SALIR",47,19,y==8);
 
         switch (rlutil::getkey())
         {
@@ -159,7 +160,7 @@ void menuReserva()
                 y--;
                 if(y<1)
                 {
-                    y=1;
+                    y=8;
                 }
                 break;
 
@@ -167,9 +168,9 @@ void menuReserva()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>4)
+                if(y>8)
                 {
-                    y=4;
+                    y=1;
                 }
                 break;
 
@@ -184,17 +185,47 @@ void menuReserva()
 
             case 2:
                 system("cls");
-//                menuCategoria();
+                arcC.listarArchivo();
                 system("cls");
                 break;
 
             case 3:
                 system("cls");
-//                menuRegimen();
+                arcR.listarArchivo();
                 system("cls");
                 break;
 
+//            case 4:
+//                system("cls");
+//                habitacionesDisponiblesHasta();
+//                system("cls");
+//                break;
+
             case 4:
+                system("cls");
+                habitacionLibreXcategoria();
+                system("cls");
+                break;
+
+            case 5:
+                system("cls");
+                habitacionLibreXcapacidad();
+                system("cls");
+                break;
+
+            case 6:
+                system("cls");
+                habitacionLibre();
+                system("cls");
+                break;
+
+            case 7:
+                system("cls");
+                pagoFinal();
+                system("cls");
+                break;
+
+            case 8:
                 op=0;
                 break;
 
@@ -456,264 +487,7 @@ void menuEmpleado()
     showItem("ELIMINAR EMPLEADO",41,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
-
-        switch (rlutil::getkey())
-        {
-            case 14:
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y--;
-                if(y<1)
-                {
-                    y=1;
-                }
-                break;
-
-            case 15:
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y++;
-                if(y>5)
-                {
-                    y=5;
-                }
-                break;
-
-            case 1:
-                switch (y)
-                {
-            case 1:
-                system("cls");
-                arc.altaRegistro();
-                system("cls");
-                break;
-
-            case 2:
-                system("cls");
-                arc.bajaRegistro();
-                system("cls");
-                break;
-
-            case 3:
-                system("cls");
-                modificacionesEmpleado();
-                system("cls");
-                break;
-
-            case 4:
-                system("cls");
-                arc.listarPorID();
-                system("cls");
-                break;
-
-            case 5:
-                op=0;
-                break;
-
-                default:
-                    break;
-                }
-
-
-            default:
-                break;
-        }
-    }
-    while(op!=0);
-}
-
-/// /// ///
-
-void menuHuesped()
-{
-    int y=1,op=1;
-    ArchivoHuesped arc;
-
-    do
-    {
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::hidecursor();
-    rlutil::locate(46,10);
-    cout<<"MENU HUESPED"<<endl;
-    showItem("CCARGAR HUESPED",42,12,y==1);
-    showItem("ELIMINAR HUESPED",42,13,y==2);
-    showItem("MODIFICAR ARCHIVO",42,14,y==3);
-    showItem("LISPAR POR DNI",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
-
-        switch (rlutil::getkey())
-        {
-            case 14:
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y--;
-                if(y<1)
-                {
-                    y=1;
-                }
-                break;
-
-            case 15:
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y++;
-                if(y>5)
-                {
-                    y=5;
-                }
-                break;
-
-            case 1:
-                switch (y)
-                {
-            case 1:
-                system("cls");
-                arc.altaRegistro();
-                system("cls");
-                break;
-
-            case 2:
-                system("cls");
-                arc.bajaRegistro();
-                system("cls");
-                break;
-
-            case 3:
-                system("cls");
-                modificacionesHuesped();
-                system("cls");
-                break;
-
-            case 4:
-                system("cls");
-                arc.listarPorDNI();
-                system("cls");
-                break;
-
-            case 5:
-                op=0;
-                break;
-
-                default:
-                    break;
-                }
-
-
-            default:
-                break;
-        }
-    }
-    while(op!=0);
-}
-
-
-/// /// ///
-
-void menuHabitacion()
-{
-    int y=1,op=1;
-    ArchivoHabitacion arc;
-
-
-    do
-    {
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::hidecursor();
-    rlutil::locate(40,10);
-    cout<<"MENU DE HABITACIONES"<<endl;
-    showItem("CARGAR HABITACION",41,12,y==1);
-    showItem("ELIMINAR HABITACION",40,13,y==2);
-    showItem("MODIFICAR ARCHIVO",41,14,y==3);
-    showItem("LISTAR POR NUMERO",41,15,y==4);
-    showItem("SALIR",47,16,y==5);
-
-        switch (rlutil::getkey())
-        {
-            case 14:  ///Flecha arriba
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y--;
-                if(y<1)
-                {
-                    y=1;
-                }
-                break;
-
-            case 15:
-                rlutil::locate(48, 12 + y);
-                cout << " ";
-                y++;
-                if(y>5)
-                {
-                    y=5;
-                }
-                break;
-
-            case 1:
-                switch (y)
-                {
-            case 1:
-                system("cls");
-                arc.altaRegistro();
-                system("cls");
-                break;
-
-            case 2:
-                system("cls");
-                arc.bajaRegistro();
-                system("cls");
-                break;
-
-            case 3:
-                system("cls");
-                modificacionesHabitacion();
-                system("cls");
-                break;
-
-            case 4:
-                system("cls");
-                arc.listarPorNumero();
-                system("cls");
-                break;
-
-            case 5:
-                op=0;
-                break;
-
-                default:
-                    break;
-                }
-
-
-            default:
-                break;
-        }
-    }
-    while(op!=0);
-}
-
-/// /// ///
-
-void menuPagos()
-{
-    int y=1,op=1;
-    ArchivoPago arc;
-
-    do
-    {
-    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
-    rlutil::setColor(rlutil::COLOR::WHITE);
-    rlutil::hidecursor();
-    rlutil::locate(45,10);
-    cout<<"MENU DE PAGOS"<<endl;
-    showItem("CARGAR PAGO",44,12,y==1);
-    showItem("ELIMINAR PAGO",43,13,y==2);
-    showItem("MODIFICAR ARCHIVO",41,14,y==3);
-    showItem("LISTAR POR ID",43,15,y==4);
-    showItem("LISTAR POR DNI",43,16,y==5);
+    showItem("LISTAR ARCHIVO",42,16,y==5);
     showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
@@ -755,6 +529,285 @@ void menuPagos()
 
             case 3:
                 system("cls");
+                modificacionesEmpleado();
+                system("cls");
+                break;
+
+            case 4:
+                system("cls");
+                arc.listarPorID();
+                system("cls");
+                break;
+
+            case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
+                op=0;
+                break;
+
+                default:
+                    break;
+                }
+
+
+            default:
+                break;
+        }
+    }
+    while(op!=0);
+}
+
+/// /// ///
+
+void menuHuesped()
+{
+    int y=1,op=1;
+    ArchivoHuesped arc;
+
+    do
+    {
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::hidecursor();
+    rlutil::locate(46,10);
+    cout<<"MENU HUESPED"<<endl;
+    showItem("CARGAR HUESPED",42,12,y==1);
+    showItem("ELIMINAR HUESPED",42,13,y==2);
+    showItem("MODIFICAR ARCHIVO",42,14,y==3);
+    showItem("LISTAR POR DNI",43,15,y==4);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
+
+        switch (rlutil::getkey())
+        {
+            case 14:
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y--;
+                if(y<1)
+                {
+                    y=1;
+                }
+                break;
+
+            case 15:
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y++;
+                if(y>6)
+                {
+                    y=6;
+                }
+                break;
+
+            case 1:
+                switch (y)
+                {
+            case 1:
+                system("cls");
+                arc.altaRegistro();
+                system("cls");
+                break;
+
+            case 2:
+                system("cls");
+                arc.bajaRegistro();
+                system("cls");
+                break;
+
+            case 3:
+                system("cls");
+                modificacionesHuesped();
+                system("cls");
+                break;
+
+            case 4:
+                system("cls");
+                arc.listarPorDNI();
+                system("cls");
+                break;
+
+            case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
+                op=0;
+                break;
+
+                default:
+                    break;
+                }
+
+
+            default:
+                break;
+        }
+    }
+    while(op!=0);
+}
+
+
+/// /// ///
+
+void menuHabitacion()
+{
+    int y=1,op=1;
+    ArchivoHabitacion arc;
+
+
+    do
+    {
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::hidecursor();
+    rlutil::locate(40,10);
+    cout<<"MENU DE HABITACIONES"<<endl;
+    showItem("CARGAR HABITACION",41,12,y==1);
+    showItem("ELIMINAR HABITACION",40,13,y==2);
+    showItem("MODIFICAR ARCHIVO",41,14,y==3);
+    showItem("LISTAR POR NUMERO",41,15,y==4);
+    showItem("LISTAR ARCHIVO",42,16,y==5);
+    showItem("SALIR",47,17,y==6);
+
+        switch (rlutil::getkey())
+        {
+            case 14:  ///Flecha arriba
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y--;
+                if(y<1)
+                {
+                    y=1;
+                }
+                break;
+
+            case 15:
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y++;
+                if(y>6)
+                {
+                    y=6;
+                }
+                break;
+
+            case 1:
+                switch (y)
+                {
+            case 1:
+                system("cls");
+                arc.altaRegistro();
+                system("cls");
+                break;
+
+            case 2:
+                system("cls");
+                arc.bajaRegistro();
+                system("cls");
+                break;
+
+            case 3:
+                system("cls");
+                modificacionesHabitacion();
+                system("cls");
+                break;
+
+            case 4:
+                system("cls");
+                arc.listarPorNumero();
+                system("cls");
+                break;
+
+            case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
+                op=0;
+                break;
+
+                default:
+                    break;
+                }
+
+
+            default:
+                break;
+        }
+    }
+    while(op!=0);
+}
+
+/// /// ///
+
+void menuPagos()
+{
+    int y=1,op=1;
+    ArchivoPago arc;
+
+    do
+    {
+    rlutil::setBackgroundColor(rlutil::COLOR::BLACK);
+    rlutil::setColor(rlutil::COLOR::WHITE);
+    rlutil::hidecursor();
+    rlutil::locate(45,10);
+    cout<<"MENU DE PAGOS"<<endl;
+    showItem("CARGAR PAGO",44,12,y==1);
+    showItem("ELIMINAR PAGO",43,13,y==2);
+    showItem("MODIFICAR ARCHIVO",41,14,y==3);
+    showItem("LISTAR POR ID",43,15,y==4);
+    showItem("LISTAR POR DNI",43,16,y==5);
+    showItem("LISTAR ARCHIVOS",43,17,y==6);
+    showItem("SALIR",47,18,y==7);
+
+        switch (rlutil::getkey())
+        {
+            case 14:
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y--;
+                if(y<1)
+                {
+                    y=1;
+                }
+                break;
+
+            case 15:
+                rlutil::locate(48, 12 + y);
+                cout << " ";
+                y++;
+                if(y>7)
+                {
+                    y=7;
+                }
+                break;
+
+            case 1:
+                switch (y)
+                {
+            case 1:
+                system("cls");
+                arc.altaRegistro();
+                system("cls");
+                break;
+
+            case 2:
+                system("cls");
+                arc.bajaRegistro();
+                system("cls");
+                break;
+
+            case 3:
+                system("cls");
                 modificacionesPago();
                 system("cls");
                 break;
@@ -773,6 +826,11 @@ void menuPagos()
 
 
             case 6:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+
+            case 7:
                 op=0;
                 break;
 
@@ -807,7 +865,8 @@ void menuRegimen()
     showItem("ELIMINAR REGIMEN",42,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -825,9 +884,9 @@ void menuRegimen()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>6)
                 {
-                    y=5;
+                    y=6;
                 }
                 break;
 
@@ -859,6 +918,12 @@ void menuRegimen()
                 break;
 
             case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
                 op=0;
                 break;
 
@@ -892,7 +957,8 @@ void menuTipoEmpleado()
     showItem("ELIMINAR SECTOR",42,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -910,9 +976,9 @@ void menuTipoEmpleado()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>6)
                 {
-                    y=5;
+                    y=6;
                 }
                 break;
 
@@ -944,6 +1010,12 @@ void menuTipoEmpleado()
                 break;
 
             case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
                 op=0;
                 break;
 
@@ -978,7 +1050,8 @@ void menuTurnoEmpleado()
     showItem("ELIMINAR TURNO",43,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -996,9 +1069,9 @@ void menuTurnoEmpleado()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>6)
                 {
-                    y=5;
+                    y=6;
                 }
                 break;
 
@@ -1030,6 +1103,12 @@ void menuTurnoEmpleado()
                 break;
 
             case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
                 op=0;
                 break;
 
@@ -1187,7 +1266,8 @@ void menuCategoria()
     showItem("ELIMINAR CATEGORIA",41,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("SALIR",47,17,y==6);
 
         switch (rlutil::getkey())
         {
@@ -1205,9 +1285,9 @@ void menuCategoria()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>6)
                 {
-                    y=5;
+                    y=6;
                 }
                 break;
 
@@ -1239,6 +1319,12 @@ void menuCategoria()
                 break;
 
             case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
                 op=0;
                 break;
 
@@ -1272,7 +1358,9 @@ void menuDetalles()
     showItem("ELIMINAR DETALLE",42,13,y==2);
     showItem("MODIFICAR ARCHIVO",41,14,y==3);
     showItem("LISTAR POR ID",43,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("LISTAR ARCHIVO",43,16,y==5);
+    showItem("LIBRES DE DEUDAS",42,17,y==6);
+    showItem("SALIR",47,18,y==7);
 
         switch (rlutil::getkey())
         {
@@ -1290,9 +1378,9 @@ void menuDetalles()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>7)
                 {
-                    y=5;
+                    y=7;
                 }
                 break;
 
@@ -1324,6 +1412,18 @@ void menuDetalles()
                 break;
 
             case 5:
+                system("cls");
+                arc.listarArchivo();
+                system("cls");
+                break;
+
+            case 6:
+                system("cls");
+                sinDeuda();
+                system("cls");
+                break;
+
+            case 7:
                 op=0;
                 break;
 

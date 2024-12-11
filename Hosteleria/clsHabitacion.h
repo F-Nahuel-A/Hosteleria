@@ -95,7 +95,7 @@ public:
 
         case 2:
             cout<<"RESERVADA"<<endl;
-            cout<<"FECHA DE LLEADA : ";
+            cout<<"FECHA DE LLEGADA : ";
             _ingreso.Mostrar();
             cout<<"FECHA DE SALIDA : ";
             _salida.Mostrar();

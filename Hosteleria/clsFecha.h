@@ -28,6 +28,9 @@ public:
     void Mostrar();
 
     bool operator==(Fecha a);
+    bool operator>=(Fecha a);
+    bool operator>(Fecha a);
+    bool operator<(Fecha a)
 };
 
 void Fecha::setAnio(int anio)
@@ -189,4 +192,51 @@ bool Fecha::operator==(Fecha a)
         }
         return false;
     }
+
+bool Fecha::operator>=(Fecha a)
+{
+    if (_a>a.getAnio())
+    {
+        return true;
+    }
+    else if (_a==a.getAnio())
+    {
+        if (_m>a.getMes())
+        {
+            return true;
+        }
+        else if (_m==a.getMes())
+        {
+            if (_d>=a.getDia())
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool Fecha::operator<(Fecha a)
+{
+    if (_a<a.getAnio())
+    {
+        return true;
+    }
+    else if (_a==a.getAnio())
+    {
+        if (_m<a.getMes())
+        {
+            return true;
+        }
+        else if (_m==a.getMes())
+        {
+            if (_d<a.getDia())
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 #endif // CLSFECHA_H_INCLUDED

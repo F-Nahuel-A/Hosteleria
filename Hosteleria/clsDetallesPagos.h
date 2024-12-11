@@ -27,10 +27,10 @@ public:
     void setIDdetalle (int detalle){if(detalle>0){_IDdetalle=detalle;}}
     void setNumHabitacion(int numHab);
     void setTotal(float total);
+    void setEstado(bool e){_estado=e;}
 
     DetallesPago reserva(int id,int dni,int num,float total);
 
-    void setEstado(bool e){_estado=e;}
 
     void Cargar()
     {
@@ -63,7 +63,7 @@ public:
 
     void Mostrar()
     {
-        if(_estado){
+        if(_estado&&_total!=0){
         cout<<"ID DETALLE : "<<_IDdetalle<<endl;
         cout<<"NUMERO DE DNI :"<<_DNI<<endl;
         cout<<"NUMERO DE HABITACION : "<<_NumHabitacion<<endl;

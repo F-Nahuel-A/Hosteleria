@@ -435,7 +435,9 @@ void modificacionesHabitacion()
     showItem("ID CATEGORIA",43,13,y==2);
     showItem("DISPONIBILIDAD",43,14,y==3);
     showItem("CAPACIDAD",45,15,y==4);
-    showItem("SALIR",47,16,y==5);
+    showItem("INGRESO",46,16,y==5);
+    showItem("SALIDA",46,17,y==6);
+    showItem("SALIR",47,18,y==7);
 
         switch (rlutil::getkey())
         {
@@ -453,9 +455,9 @@ void modificacionesHabitacion()
                 rlutil::locate(48, 12 + y);
                 cout << " ";
                 y++;
-                if(y>5)
+                if(y>7)
                 {
-                    y=5;
+                    y=7;
                 }
                 break;
 
@@ -487,6 +489,18 @@ void modificacionesHabitacion()
                 break;
 
             case 5:
+                system("cls");
+                arc.cambiarFechaLlegada();
+                system("cls");
+                break;
+
+            case 6:
+                system("cls");
+                arc.cambiarFechaSalida();
+                system("cls");
+                break;
+
+            case 7:
                 op=0;
                 break;
 
@@ -583,7 +597,7 @@ void modificacionesPago()
     rlutil::hidecursor();
     rlutil::locate(37,10);
     cout<<"MENU DE MODIFICACIONES REGIMEN"<<endl;
-    showItem("ID DE DETALLE",41,12,y==1);
+    showItem("ID DE DETALLE",43,12,y==1);
     showItem("DNI",48,13,y==2);
     showItem("FECHA DE PAGO",43,14,y==3);
     showItem("FORMA DE PAGO",43,15,y==4);

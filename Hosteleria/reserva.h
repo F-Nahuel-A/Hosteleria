@@ -4,13 +4,12 @@ int verificarCapacidad(int cap);
 int verificarCategoria(int cat);
 int verificarHabitacion(int num);
 int verificarRegimen(int reg);
-void verificarPago(int deuda,int abonado);
+void verificarPago(float deuda,float abonado);
 int habitacionesLibres(int cap,int cat,Fecha ing,Fecha sal);
 float confirmacion(int cat,int cap,int num,int reg,float total);
 void habitacionesDisponiblesHasta();
-void pagosHechos();
+void sinDeuda();
 void pagoFinal();
-void actualizarFacturasAnt(int fac,int cantReg);
 int asignarDisponibilidad(Fecha ingreso);
 bool verificarOcupada(Habitacion obj,Fecha ing);
 bool verificarReservada(Habitacion obj,Fecha sal);
@@ -182,7 +181,7 @@ int habitacionesLibres(int cap, int cat,Fecha ing,Fecha sal)
             break;
 
         case 1:
-            if(verificarOcupada(objHab,ing))
+            if(verificarOcupada(objHab,ing)&&objHab.getIdCategoria()==cat && objHab.getCapacidad()==cap)
             {
                 objHab.Mostrar();
                 cout<<endl;
@@ -191,7 +190,7 @@ int habitacionesLibres(int cap, int cat,Fecha ing,Fecha sal)
             break;
 
         case 2:
-           if(verificarReservada(objHab,sal))
+           if(verificarReservada(objHab,sal)&&objHab.getIdCategoria()==cat && objHab.getCapacidad()==cap)
             {
                 objHab.Mostrar();
                 cout<<endl;
@@ -382,49 +381,43 @@ float confirmacion(int cat,int cap,int num,int reg,float total)
     else{return -1;}
 }
 
-void habitacionesDisponiblesHasta() {
-    Fecha fechaLimite;
-    ArchivoHabitacion arcHab;
-    Habitacion objHab;
-
-    fechaLimite.Cargar();
-    int totalHabitaciones = arcHab.contarRegistros();
-    if (totalHabitaciones == -1) {
-        cout << "Error al abrir el archivo\n";
-        return;
-    }
-
-    bool hayDisponibles = false;
-
-    cout << "Habitaciones disponibles hasta ";
-    fechaLimite.Mostrar();
-    cout << ":\n";
-
-    for (int i = 0; i < totalHabitaciones; ++i) {
-        objHab = arcHab.leerRegistro(i);
-
-        /// VERIFICAR DISPONIBILIDAD O SI SE PUEDE USAR ANTES DE LA RESERVA
-        if (objHab.getDisponibilidad() == 0 ||
-           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() > fechaLimite.getAnio()) ||
-           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() > fechaLimite.getMes()) ||
-           (objHab.getDisponibilidad() == 2 && objHab.getIngreso().getAnio() == fechaLimite.getAnio() && objHab.getIngreso().getMes() == fechaLimite.getMes() && objHab.getIngreso().getDia() > fechaLimite.getDia()))
-        {
-            objHab.Mostrar();
-            hayDisponibles = true;
-        }
-    }
-
-    if (!hayDisponibles) {
-        cout << "No hay habitaciones disponibles hasta la fecha especificada...\n";
-    }
-}
+//void habitacionesDisponiblesHasta() {
+//    Fecha fechaLimite;
+//    ArchivoHabitacion arcHab;
+//    Habitacion objHab;
+//
+//    fechaLimite.Cargar();
+//    system("cls");
+//
+//    int cantReg=arcHab.contarRegistros();
+//
+//    for (int i=0;i<cantReg;i++)
+//    {
+//        objHab=arcHab.leerRegistro(i);
+//        if(objHab.getDisponibilidad()==0)
+//        {
+//            objHab.Mostrar();
+//        }
+//        if(objHab.getDisponibilidad()==1)
+//        {
+//            if(verificarOcupada(objHab,fechaLimite))
+//                objHab.Mostrar();
+//        }
+//        if(objHab.getDisponibilidad()==2)
+//        {
+//            if(verificarReservada(objHab,fechaLimite));
+//                objHab.Mostrar();
+//        }
+//    }
+//    system("pause");
+//}
 
 void pagoFinal()
 {
-    ArchivoPago arcP;
-    Pago objP;
-    int contReg=arcP.contarRegistros();
-    int dni,abonado;
+    ArchivoDetalles arcD;
+    DetallesPago objD;
+    int contReg=arcD.contarRegistros();
+    int dni,abonado,formaP,pos;
     bool pago=false;
 
     cout<<"INGRESE EL DNI DEL HUESPED : ";
@@ -432,17 +425,20 @@ void pagoFinal()
 
     for (int i=0;i<contReg;i++)
     {
-        objP=arcP.leerRegistro(i);
-        if(objP.getEstado() && objP.getDNI()==dni)
+        objD=arcD.leerRegistro(i);
+        if(objD.getEstado() && objD.getDNI()==dni)
         {
-            if(objP.getTotalAbonado()!=0)
+            if(objD.getTotalabonado()!=0)
             {
-            cout<<"EL TOTAL A PAGAR ES DE : "<<objP.getTotalAbonado()<<"$"<<endl<<endl;
+            cout<<"EL TOTAL A PAGAR ES DE : "<<objD.getTotalabonado()<<"$"<<endl<<endl;
+            cout<<"INGRESE LA FORMA DE PAGO : ";
+            cin>>formaP;
             cout<<"INGRESE EL MONTO ABONADO : ";
             cin>>abonado;
-            verificarPago(objP.getTotalAbonado(),abonado);
+            verificarPago(objD.getTotalabonado(),abonado);
             system("pause");
             pago=true;
+            pos=i;
             break;
             }
         }
@@ -450,64 +446,53 @@ void pagoFinal()
     if(pago)
     {
 
-    ArchivoDetalles arcD;
-    DetallesPago objD;
+    ///Pone a todas las facturas anteriores con el mismo número de dni en 0
+    ArchivoPago arcP;
+    Pago objP;
+    contReg=arcP.contarRegistros();
+    for (int i=0;i<contReg;i++)
+    {
+        objP=arcP.leerRegistro(i);
+        if(objD.getID()==objP.getIDdetalle() && objD.getEstado())
+        {
+            break;
+        }
+    }
+
+
+    time_t t = time(nullptr);
+    tm* now = localtime(&t);
+    int dia=now->tm_mday;
+    int mes=now->tm_mon+1;
+    int anio=now->tm_year+1900;
+
     int numH=objD.getNumdehabitacion();
 
     ///Creación del nuevo detalle anteriormente abonado.
-    objD=arcD.leerRegistro();
+    objD.setTotal(0);
+    arcD.modificarRegistro(objD,pos);
     objD.setIDdetalle(objD.getID()+1);
-    objD.setDNI(dni);
-    objD.setNumHabitacion(numH);
-    objD.setTotal(abonado);
+    arcD.grabarRegistro(objD);
     ///Leer registros sin parametros te retorna un nuevo número de ID
 
-    objP.setTotalAbonado(0);
+    ///Creación del nuevo pago anteriormente abonado.
     objP.setIDdetalle(objD.getID());
+    Fecha actual(dia,mes,anio);
+    objP.setFecha(actual);
+    objP.setPago(formaP);
+    objP.setTotalAbonado(abonado);
     arcP.grabarRegistro(objP);
 
-    actualizarFacturasAnt(objP.getNumeroderecibo(),contReg);
-    ///Pone a todas las facturas anteriores con el mismo número en 0
-
-
+    ///AMBAS CLASES YA ESTAN CARGADAS EN LAS ANTERIORES ITERACIONES DEL CICLO EXACTO, POR ESO UNICAMENTE SETEO ALGUNAS PROPIEDADES.
     }
     else
     {
         cout<<"EL CLIENTE NO DEBE PAGAR";
+        system("pause");
     }
 }
 
-void pagosHechos()
-{
-    Pago objP;
-    ArchivoPago arcP;
-    objP=arcP.leerRegistro();
-    int cantRecibos=objP.getNumeroderecibo()+1;
-
-    DetallesPago objD;
-    ArchivoDetalles arcD;
-
-    int contReg=arcP.contarRegistros();
-
-    for(int i=0;i<cantRecibos;i++)
-    {
-
-        for (int j=0;j<contReg;j++)
-        {
-            objP=arcP.leerRegistro(j);
-            if(i==objP.getNumeroderecibo() && objP.getTotalAbonado()==0)
-            {
-                int pos=arcD.buscarRegistro(objP.getIDdetalle());
-                objD=arcD.leerRegistro(pos);
-                objP.Mostrar();
-                cout<<"PAGADO : "<<objD.getTotalabonado()<<"$"<<endl;
-            }
-        }
-
-    }
-}
-
-void verificarPago(int deuda,int abonado)
+void verificarPago(float deuda,float abonado)
 {
     while(abonado<deuda)
     {
@@ -519,33 +504,17 @@ void verificarPago(int deuda,int abonado)
     cout<<"PAGO REALIZADO"<<endl;
 }
 
-
-void actualizarFacturasAnt(int fac,int cantReg)
-{
-    Pago obj;
-    ArchivoPago arc;
-
-    for (int i=0;i<cantReg;i++)
-    {
-        if(fac==obj.getNumeroderecibo())
-        {
-            obj=arc.leerRegistro(i);
-            obj.setTotalAbonado(0);
-            arc.modificarRegistro(obj,i);
-        }
-    }
-
-}
-
 int asignarDisponibilidad(Fecha ingreso)
 {
     time_t t = time(nullptr);
     tm* now = localtime(&t);
     int dia=now->tm_mday;
-    int mes=now->tm_mon;
-    int anio=now->tm_year;
+    int mes=now->tm_mon+1;
+    int anio=now->tm_year+1900;
 
-    if(ingreso.getAnio()==anio && ingreso.getMes()==mes&& ingreso.getDia()==dia)
+    Fecha actual(dia,mes,anio);
+
+    if(ingreso==actual || ingreso<actual)
     {
         return 1;
     }
@@ -567,7 +536,7 @@ bool verificarOcupada(Habitacion obj,Fecha ing)
     {
         return true;
     }
-    if(ing.getAnio()==obj.getSalida().getAnio() && ing.getMes()==obj.getSalida().getMes()&& ing.getDia()>obj.getSalida().getDia())
+    if(ing.getAnio()==obj.getSalida().getAnio() && ing.getMes()==obj.getSalida().getMes()&& ing.getDia()>=obj.getSalida().getDia())
     {
         return true;
     }
@@ -588,7 +557,7 @@ bool verificarReservada(Habitacion obj,Fecha sal)
     {
         return true;
     }
-    if(sal.getAnio()==obj.getIngreso().getAnio() && sal.getMes()==obj.getIngreso().getMes()&& sal.getDia()<obj.getIngreso().getDia())
+    if(sal.getAnio()==obj.getIngreso().getAnio() && sal.getMes()==obj.getIngreso().getMes()&& sal.getDia()<=obj.getIngreso().getDia())
     {
         return true;
     }
@@ -703,5 +672,26 @@ void habitacionLibreXcapacidad()
             cout<<"NO HAY HABITACIONES LIBRES."<<endl;
         }
         system("pause");
+}
+
+void sinDeuda()
+{
+    DetallesPago obj;
+    ArchivoDetalles arc;
+
+    int contReg=arc.contarRegistros();
+
+    for (int i=0;i<contReg;i++)
+    {
+        obj=arc.leerRegistro(i);
+        if(obj.getTotalabonado()==0 && i%2 != 0)
+        {
+            cout<<"DNI : "<<obj.getDNI()<<endl;
+            cout<<"HABITACION USADA : "<<obj.getNumdehabitacion()<<endl<<endl;
+
+        }
+    }
+    system("pause");
+
 }
 #endif // RESERVA_H_INCLUDED
